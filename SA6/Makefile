@@ -2,7 +2,7 @@ WRAPPER=g++
 CC=$(WRAPPER)
 CFLAGS=-Wall -W -Werror -g
 
-EXE=sa6
+EXE=sa6.out
 
 #Pour améliorer le makefile à l'avenir
 HEADERS=$(wildcard *.h)
