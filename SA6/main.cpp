@@ -7,5 +7,7 @@
 using namespace std;
 
 int main (void){
-    cout<<"test"<<endl;
+    Parking P(0, 2, 10, "parking.csv");
+    P.AfficherInfo();
+    return 0;
 }
