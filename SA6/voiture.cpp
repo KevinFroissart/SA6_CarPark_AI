@@ -28,10 +28,7 @@ void Voiture::readCSV(){
     int lineNumber = 0;
     while(myFile.good()){
         string tmp;
-        if(++lineNumber == m_id)
-            getline(myFile, m_line, '\n');
-        else
-            getline(myFile, tmp, '\n');
+        ++lineNumber == m_id ? getline(myFile, m_line, '\n') : getline(myFile, tmp, '\n');
     }
     myFile.close();
 }
