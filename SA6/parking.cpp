@@ -1,9 +1,4 @@
 #include "parking.h"
-#include <iostream>
-#include <thread>
-#include <fstream>
-using namespace std;
-
 
 Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFichier){
     prixBase = defaultPrice;
@@ -20,8 +15,6 @@ Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFich
     }
     else{cout<<"erreur lors de l'ouverture du fichier "<<filePath<<endl;};
 }
-
-
 
 bool Parking::EstRempli(){
     return (remplissage == capacite);

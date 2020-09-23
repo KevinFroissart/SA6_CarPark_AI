@@ -9,7 +9,7 @@ class CSVManager{
     public:
         CSVManager();
         string CSVReader(string file, int id);
-        string CSVWriter();
+        bool CSVWriter(string file);
 
     private:
         

@@ -20,6 +20,17 @@ string CSVManager::CSVReader(string file, int id){
     return line;
 }
 
-string CSVManager::CSVWriter(){
+bool CSVManager::CSVWriter(string file){
+    bool done = true;
 
+    ofstream File(file);
+    if (File.is_open()){
+        
+        File.close();
+    }else{
+        done = false;
+        throw std::runtime_error("Could not open file");
+    }
+
+    return done;
 }
