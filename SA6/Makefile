@@ -13,12 +13,14 @@ OBJS=$(CFILES:.c=.o)
 
 all: $(EXE)
 
-$(EXE) : main.o voiture.o parking.o
-	$(CC) $(CFLAGS) main.o voiture.o parking.o -o $@
-
+$(EXE) : main.o voiture.o parking.o CSVManager.o
+	$(CC) $(CFLAGS) main.o voiture.o parking.o CSVManager.o -o $@
 
 main.o : main.cpp
 	$(CC) $(CFLAGS) -c main.cpp
+
+CSVManager.o : CSVManager.cpp
+	$(CC) $(CFLAGS) -c CSVManager.cpp
 
 voiture.o : voiture.cpp
 	$(CC) $(CFLAGS) -c voiture.cpp
