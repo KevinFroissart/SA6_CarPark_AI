@@ -27,5 +27,4 @@ class Voiture{
         bool EcouterReponseParking(); //se met à l'écoute d'une réponse du parking
 };
 
-
 #endif

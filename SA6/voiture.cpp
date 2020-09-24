@@ -3,7 +3,6 @@
 #include <sstream>
 
 Voiture::Voiture(int id, string filePath) : m_id(id), m_path(filePath){
-
     CSVManager CSVm;    
     string input,m_line = CSVm.CSVReader(m_path, m_id);
 
@@ -26,6 +25,5 @@ Voiture::~Voiture(){
 }
 
 void Voiture::printData(){
-
     cout<<"id: "<<m_id<<" | Nom de la voiture: "<<m_name<<" | Marque: "<< m_marque <<" | Statut: "<< m_statut<<" | Handicap: "<<m_handicap<<" | age: "<<m_age<< endl;
 }

@@ -5,7 +5,7 @@ CSVManager::CSVManager(){}
 string CSVManager::CSVReader(string file, int id){
     
     fstream myFile(file);
-    if(!myFile.is_open()) throw std::runtime_error("Could not open file");
+    if(!myFile.is_open()) throw runtime_error("Could not open file");
 
     int lineNumber = 0;
     string tmp;
@@ -29,7 +29,7 @@ bool CSVManager::CSVWriter(string file){
         File.close();
     }else{
         done = false;
-        throw std::runtime_error("Could not open file");
+        throw runtime_error("Could not open file");
     }
 
     return done;
