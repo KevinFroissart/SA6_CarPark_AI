@@ -22,6 +22,7 @@ class Voiture{
         string m_statut; //statut social
         string m_handicap;
         string m_age;
+        string m_heure; //durée demandée pour le stationement 
         bool rechercheParking;
         void InterrogerParking(); //crée la requête dans le tampon pour interroger un parking
         bool EcouterReponseParking(); //se met à l'écoute d'une réponse du parking
