@@ -11,6 +11,9 @@ Voiture::Voiture(int id, string filePath) : m_id(id), m_path(filePath){
 
     getline(input_stringstream, m_name, ',');
     getline(input_stringstream, m_marque, ',');
+    getline(input_stringstream, m_statut, ',');
+    getline(input_stringstream, m_handicap, ',');
+    getline(input_stringstream, m_age, ',');
 }
 
 Voiture::Voiture(int id, string name, string marque) : m_id(id), m_name(name), m_marque(marque){
