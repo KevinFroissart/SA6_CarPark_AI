@@ -1,7 +1,6 @@
 #include "parking.h"
 #include "CSVManager.h"
 #include <sstream>
-using namespace std;
 
 Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFichier){
     prixBase = defaultPrice;
@@ -21,10 +20,10 @@ Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFich
 
 
 
-Parking::Parking(int id, string cheminFichier){
+Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
 
     CSVManager CSVm;    
-    string input,m_line = CSVm.CSVReader(cheminFichier, id);
+    string input = CSVm.CSVReader(filePath, id);
 
     stringstream input_stringstream(input);
 
@@ -49,7 +48,7 @@ bool Parking::EstRempli(){
     return (remplissage == capacite);
 }
 
-void Parking::AfficherInfo(){
-    cout<<"id: " << idParking<<" | " << "prix de base: " << prixBase <<" | "<< "remplissage actuel: "<< remplissage <<"/"<< capacite <<endl;
+void Parking::printData(){
+    cout<<"id: " << s_idParking<<" | " << "prix de base: " << s_prixBase <<" | "<< "remplissage actuel: "<< s_remplissage <<"/"<< s_capacite <<endl;
 }
 

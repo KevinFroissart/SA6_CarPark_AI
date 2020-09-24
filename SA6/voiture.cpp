@@ -16,7 +16,8 @@ Voiture::Voiture(int id, string filePath) : m_id(id), m_path(filePath){
     getline(input_stringstream, m_age, ',');
 }
 
-Voiture::Voiture(int id, string name, string marque) : m_id(id), m_name(name), m_marque(marque){
+Voiture::Voiture(int id, string name, string marque, string statut, string handicap, string age) : 
+m_id(id), m_name(name), m_marque(marque), m_statut(statut), m_handicap(handicap), m_age(age){
 
 }
 
@@ -26,5 +27,5 @@ Voiture::~Voiture(){
 
 void Voiture::printData(){
 
-    cout << "id : " << m_id << " | Nom de la voiture : " << m_name << " | Marque : " << m_marque << endl;
+    cout<<"id: "<<m_id<<" | Nom de la voiture: "<<m_name<<" | Marque: "<< m_marque <<" | Statut: "<< m_statut<<" | Handicap: "<<m_handicap<<" | age: "<<m_age<< endl;
 }

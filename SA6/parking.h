@@ -11,7 +11,7 @@ class Parking{
         Parking(int id, float defaultPrice, int capacite_max, string cheminFichier);
         Parking(int id, string cheminFichier);
         ~Parking();
-        void AfficherInfo();
+        void printData();
 
     private:
         float prixBase;
