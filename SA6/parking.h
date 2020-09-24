@@ -9,6 +9,7 @@ using namespace std;
 class Parking{
     public:
         Parking(int id, float defaultPrice, int capacite_max, string cheminFichier);
+        Parking(int id, string cheminFichier);
         void AfficherInfo();
 
     private:

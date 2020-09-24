@@ -1,4 +1,6 @@
 #include "parking.h"
+#include "CSVManager.h"
+#include <sstream>
 
 Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFichier){
     prixBase = defaultPrice;
@@ -15,6 +17,22 @@ Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFich
     }
     else{cout<<"erreur lors de l'ouverture du fichier "<<filePath<<endl;};
 }
+
+
+
+Parking::Parking(int id, string cheminFichier){
+
+    CSVManager CSVm;    
+    string input,m_line = CSVm.CSVReader(cheminFichier, id);
+
+    stringstream input_stringstream(input);
+
+    getline(input_stringstream, id, ',');
+    getline(input_stringstream, prix, ',');
+    getline(input_stringstream, remplissage, ',');
+    getline(input_stringstream, capacite, ',');
+}
+
 
 bool Parking::EstRempli(){
     return (remplissage == capacite);
