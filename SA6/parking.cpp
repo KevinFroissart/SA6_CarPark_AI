@@ -50,7 +50,7 @@ float Parking::calcul_prix(string tab[]){
     float nb_heures = tab_facteurs[0]; 
 
     tab_facteurs.push_back(1 - 0.25 * (float)stoi(tab[1]) );    //Facteur handicap
-    tab_facteurs.push_back(1 - 0.25 * (float)stoi(tab[2]) );    //facteur age (jeune, normal, vieux)
+    tab_facteurs.push_back(1 - 0.25 * (float)stoi(tab[2]) );    //facteur age (jeune, adulte, vieux)
     tab_facteurs.push_back(1 - 0.25 * (float)stoi(tab[3]) );    //facteur statut social
 
     float somme_facteur = 0;

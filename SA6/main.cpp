@@ -9,7 +9,7 @@ using namespace std;
 int main (void){
 
     Voiture * v1 = new Voiture(8, "voitures.csv");
-    Voiture * v2 = new Voiture(16, "Voiture n°16", "Porsche", "chômeur", "non", "25");
+    Voiture * v2 = new Voiture(16, "Voiture n°16", "Porsche", "chômeur", "non", "25", "12");
     v1->printData();
     v2->printData();
     
