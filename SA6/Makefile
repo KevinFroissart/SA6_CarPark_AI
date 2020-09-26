@@ -1,4 +1,4 @@
-WRAPPER=g++
+WRAPPER=$(if $(shell which clang++), clang++, g++)
 CC=$(WRAPPER)
 CFLAGS=-Wall -W -Werror -g
 
