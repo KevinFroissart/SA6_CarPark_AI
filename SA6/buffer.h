@@ -9,6 +9,6 @@ class Tampon{
     public:
 
     private:
-}
+};
 
 #endif
