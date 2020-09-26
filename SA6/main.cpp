@@ -17,6 +17,8 @@ int main (void){
     //P1->AfficherInfo();
     Parking * P2 = new Parking(1, "parking.csv");
     P2->printData();
+    string tab[4] = {"1","0","0","0"}; //nb heures, handicap, âge, statut
+    P2->calcul_prix(tab);
 
     delete v1;
     delete v2;
