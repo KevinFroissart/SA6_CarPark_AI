@@ -166,7 +166,7 @@ bool Server(int port)
 	if (server == INVALID_SOCKET)
 		return false;
 	sockaddr_in addr;
-	addr.sin_addr.s_addr = INADDR_ANY; // indique que toutes les adresses sont acceptées
+	addr.sin_addr.s_addr = INADDR_ANY; // indique que toutes les adresses sont acceptï¿½es
 	addr.sin_port = htons(port);
 	addr.sin_family = AF_INET;
 	int res = bind(server, (sockaddr*)&addr, sizeof(addr));
@@ -183,7 +183,7 @@ bool Server(int port)
 		for (;;)
 		{
 			SOCKET newClient;
-			sockaddr addr = { 0 };
+			sockaddr addr = { 0,0 };
 			socklen_t len = sizeof(addr);
 			newClient = accept(server, &addr, &len);
 			if (newClient == INVALID_SOCKET)
