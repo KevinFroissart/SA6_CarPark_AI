@@ -1,6 +1,6 @@
-FOLDERS=SA6
+FOLDERS=SA6 Server
 .PHONY: all $(FOLDERS)
 all: $(FOLDERS)
 
-SA6 : 
-	make -C SA6
+$(FOLDERS) :
+	make -C $@
