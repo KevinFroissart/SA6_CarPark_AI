@@ -1,7 +1,0 @@
-obj/CSVManager.o: src/CSVManager.cpp src/../headers/CSVManager.h
-obj/voiture.o: src/voiture.cpp src/../headers/voiture.h \
- src/../headers/CSVManager.h
-obj/parking.o: src/parking.cpp src/../headers/parking.h \
- src/../headers/CSVManager.h
-obj/main.o: src/main.cpp src/../headers/voiture.h src/../headers/parking.h
-obj/buffer.o: src/buffer.cpp src/../headers/buffer.h
