@@ -1,31 +1,50 @@
 WRAPPER=$(if $(shell which clang++), clang++, g++)
-CC=$(WRAPPER)
+CPP=$(WRAPPER)
+LD=$(WRAPPER)
 CFLAGS=-Wall -W -Werror -g
+
+LDFLAGS =
+LIBS =
+
+EXE=sa6
 
 TARGET=bin/
 CPATH=src/
 HPATH=header/
 
 HEADERS=$(wildcard $(HPATH)*.h)
-CFILES=$(wildcard $(CPATH)*.cpp)
-OBJS=$(CFILES:.cpp=.o)
+SOURCES=$(wildcard $(CPATH)*.cpp)
+OBJECTS = $(foreach source, $(SOURCES), obj/$(patsubst src/%.cpp,%.o,$(source)))
+BINARY = bin/$(EXE)
 
-EXE=sa6.out
+.PHONY: all clean mrproper rebuild run
 
-.PHONY: all clean mrproper
-
-all: $(EXE)
-
-$(EXE) : $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)$@
-
-makefile.dep: $(CFILES) $(HEADERS)
-	$(CC) -MM $(CFILES) > $@
+all: $(BINARY)
 
 clean: 
-	$(RM) $(OBJS) makefile.dep
+	$(RM) $(OBJECTS) 
+	$(RM) Makefile.dep 
+	$(RM) obj/?*.* # catch all renamed files
+	
+mrproper: clean 
+	$(RM) $(BINARY) 
 
-mrproper : clean
-	$(RM) $(TARGET)$(EXE)
+rebuild: 
+	@make mrproper
+	@make
+	
+run: all
+	./$(BINARY) 
+	
+makefile.dep: $(SOURCES) $(HEADERS)
+	@echo "Calculating dependencies"
+	@$(RM) makefile.dep
+	@for file in $(SOURCES); do echo "obj/`g++ $(CFLAGS) -M $$file`" >> makefile.dep; done
 
+$(BINARY): $(OBJECTS)
+	$(LD) $(LDFLAGS) -o $@ $^ $(LIBS)
+
+obj/%.o: src/%.cpp
+	$(CPP) $(CFLAGS) -o $@ -c $<
+	
 include makefile.dep
