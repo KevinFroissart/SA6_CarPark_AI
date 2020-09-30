@@ -10,25 +10,25 @@ EXEs=server.out
 all: $(EXE) $(EXEs)
 
 $(EXE) : Main.o Sockets.o TCPSocket.o
-	$(CC) $(CFLAGS) Main.o Sockets.o TCPSocket.o -o $@
+	$(CC) $(CFLAGS) Main.o Sockets.o TCPSocket.o -o bin/$@
 
 $(EXEs) : MainServeur.o
-	$(CC) $(CFLAGS) MainServeur.o -o $@
+	$(CC) $(CFLAGS) MainServeur.o -o bin/$@
 
-MainServeur.o : MainServeur.cpp
-	$(CC) $(CFLAGS) -c MainServeur.cpp
+MainServeur.o : src/MainServeur.cpp
+	$(CC) $(CFLAGS) -c src/MainServeur.cpp
 
-Main.o : Main.cpp
-	$(CC) $(CFLAGS) -c Main.cpp
+Main.o : src/Main.cpp
+	$(CC) $(CFLAGS) -c src/Main.cpp
 
-Sockets.o : Sockets.cpp
-	$(CC) $(CFLAGS) -c Sockets.cpp
+Sockets.o : src/Sockets.cpp
+	$(CC) $(CFLAGS) -c src/Sockets.cpp
 
-TCPSocket.o : TCPSocket.cpp	
-	$(CC) $(CFLAGS) -c TCPSocket.cpp
+TCPSocket.o : src/TCPSocket.cpp	
+	$(CC) $(CFLAGS) -c src/TCPSocket.cpp
 
 clean: 
 	$(RM) *.o
 
 mrproper : clean
-	$(RM) *.out
+	$(RM) bin/*.out

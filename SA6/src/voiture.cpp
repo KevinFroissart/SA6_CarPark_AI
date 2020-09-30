@@ -1,5 +1,5 @@
-#include "voiture.h"
-#include "CSVManager.h"
+#include "../headers/voiture.h"
+#include "../headers/CSVManager.h"
 #include <sstream>
 
 Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
