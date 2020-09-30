@@ -39,7 +39,7 @@ run: all
 makefile.dep: $(SOURCES) $(HEADERS)
 	@echo "Calculating dependencies"
 	@$(RM) makefile.dep
-	@for file in $(SOURCES); do echo "obj/`g++ $(CFLAGS) -M $$file`" >> makefile.dep; done
+	@for file in $(SOURCES); do echo "obj/`g++ $(CFLAGS) -MM $$file`" >> makefile.dep; done
 
 $(BINARY): $(OBJECTS)
 	$(LD) $(LDFLAGS) -o $@ $^ $(LIBS)
