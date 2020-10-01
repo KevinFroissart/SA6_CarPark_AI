@@ -66,3 +66,28 @@ float Parking::calcul_prix(string tab[]){
     cout<<"prix après réduction = "<<prix<<endl;
     return prix;
 }
+
+float Parking::RepondreVoiture(string tab[]){
+    if(s_remplissage<s_capacite){
+        float prix = calcul_prix(tab);
+        cout<<"le parking" << s_idParking << "n'est pas rempli. Il propose le prix suivant"<<prix<<endl;
+        return prix;
+    }
+    else {
+        cout<<"le parking" << s_idParking << "est rempli"<<endl;
+        return -1;
+    }
+}
+
+float Parking::RepondreVoiture2(float prix_propose, string tab[]){
+    float prix = calcul_prix(tab);
+    if (prix_propose> (0.85 * prix)){
+        cout<<"le parking" << s_idParking << "n'est pas rempli. Il accepte l'offre de "<<prix_propose<<"€"<<endl;
+        //s_remplissage++;
+        return prix;
+    }
+    else{
+        cout<<"le parking "<<s_idParking<<" n'accepte pas la proposition de la voiture";
+        return -1;
+    }
+} 
