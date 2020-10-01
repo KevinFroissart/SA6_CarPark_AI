@@ -24,7 +24,7 @@ all: $(BINARY)
 clean: 
 	$(RM) $(OBJECTS) 
 	$(RM) Makefile.dep 
-	$(RM) obj/?*.* # catch all renamed files
+	$(RM) obj/?*.o # catch all renamed files
 	
 mrproper: clean 
 	$(RM) $(BINARY) 
