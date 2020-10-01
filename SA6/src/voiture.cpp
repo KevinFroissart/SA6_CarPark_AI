@@ -57,11 +57,11 @@ float Voiture::calcul_prix(){
 
     float somme_facteur = 0;
     for(unsigned int i = 1; i<tab_facteurs.size(); i++){
-        somme_facteur = somme_facteur + tab_facteurs[i];
+        somme_facteur += tab_facteurs[i];
     }
     cout<<"prix 1 = "<<prix<<endl;
 
-    prix = prix * ((somme_facteur / (tab_facteurs.size()-1))        //moyenne des facteurs (compris entre 0 et 2) sauf la durée
+    prix *= ((somme_facteur / (tab_facteurs.size()-1))        //moyenne des facteurs (compris entre 0 et 2) sauf la durée
                 * (nb_heures*0.7 + 0.3*(float)log(nb_heures)));   // fois le nombre d'heures (et un logarithme);
     cout<<"prix après réduction = "<<prix<<endl;
     return prix;
