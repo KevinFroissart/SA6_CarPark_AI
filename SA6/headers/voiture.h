@@ -13,6 +13,7 @@ class Voiture{
         ~Voiture();
         void printData();
         float calcul_prix();
+        bool communicateServer(int port);
 
     private:
         float prixVoulu;
@@ -30,7 +31,6 @@ class Voiture{
         bool rechercheParking;
         void InterrogerParking(); //crée la requête dans le tampon pour interroger un parking
         bool EcouterReponseParking(); //se met à l'écoute d'une réponse du parking
-        bool communicateServer();
         string tabToString(vector<float> tab, char delimiter);
 };
 

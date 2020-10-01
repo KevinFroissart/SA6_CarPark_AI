@@ -28,6 +28,7 @@ Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
     getline(input_stringstream, s_prixBase, ',');
     getline(input_stringstream, s_remplissage, ',');
     getline(input_stringstream, s_capacite, ',');
+    getline(input_stringstream, s_port, ',');
 }
 
 Parking::~Parking(){
@@ -91,3 +92,7 @@ float Parking::RepondreVoiture2(float prix_propose, string tab[]){
         return -1;
     }
 } 
+
+int Parking::getPort() {
+    return stoi(s_port);
+}

@@ -69,7 +69,7 @@ float Voiture::calcul_prix(){
     return prix;
 }
 
-bool Voiture::communicateServer()
+bool Voiture::communicateServer(int port)
 {
 	if(!Sockets::Start())
 	{
@@ -77,15 +77,12 @@ bool Voiture::communicateServer()
 		return false;
 	}
 	TCPSocket client;
-	int port = 8080;
 	if(!client.Connect("127.0.0.1", port))
 		cout << "Impossible de se connecter au serveur [127.0.0.1:" << port << "] : " << Sockets::GetError() << endl;
 	else
 	{
-		cin.ignore();
-		cout << "Connecte!" << endl;
+		cout << v_name << " est connectée!" << endl;
 		string phrase = tabToString(v_tab, ',');
-		getline(cin, phrase);
 		if(client.Send(phrase.c_str(), phrase.length()) == SOCKET_ERROR)
 			cout << "Erreur envoi : " << Sockets::GetError() << endl;
 		else
