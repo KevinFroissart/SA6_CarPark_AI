@@ -6,7 +6,7 @@ CFLAGS=-Wall -W -Werror -g
 LDFLAGS =
 LIBS =
 
-EXE=sa6
+EXE=sa6.out
 
 TARGET=bin/
 CPATH=src/
