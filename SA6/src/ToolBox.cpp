@@ -1,6 +1,6 @@
-#include "../headers/CSVManager.h"
+#include "../headers/ToolBox.h"
 
-CSVManager::CSVManager(){}
+ToolBox::ToolBox(){}
 
 /**
  * Read a CSV file at a specific line.
@@ -10,7 +10,7 @@ CSVManager::CSVManager(){}
  * @throw std::runtime_error Thrown if `file` could not be opened.
  * @return the line read in the CSV.
  */
-string CSVManager::CSVReader(string file, int id){
+string ToolBox::CSVReader(string file, int id){
     fstream myFile(file);
     if(!myFile.is_open()) throw runtime_error("Could not open file");
 
@@ -33,7 +33,7 @@ string CSVManager::CSVReader(string file, int id){
  * @throw std::runtime_error Thrown if `file` could not be opened.
  * @return true, false if nothing was written in the file.
  */
-bool CSVManager::CSVWriter(string file){
+bool ToolBox::CSVWriter(string file){
     bool done = true;
 
     ofstream File(file);

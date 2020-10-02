@@ -1,13 +1,13 @@
 #include "../headers/voiture.h"
-#include "../headers/CSVManager.h"
+#include "../headers/ToolBox.h"
 #include "../headers/Sockets.h"
 #include "../headers/TCPSocket.h"
 #include <sstream>
 #include <math.h>
 
 Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
-    CSVManager CSVm;    
-    string input = CSVm.CSVReader(v_path, v_id);
+    ToolBox tb;    
+    string input = tb.CSVReader(v_path, v_id);
 
     stringstream input_stringstream(input);
 

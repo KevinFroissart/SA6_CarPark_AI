@@ -1,5 +1,5 @@
 #include "../headers/parking.h"
-#include "../headers/CSVManager.h"
+#include "../headers/ToolBox.h"
 #include <sstream>
 #include <vector>
 #include <math.h>
@@ -19,8 +19,8 @@ Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFich
 }
 
 Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
-    CSVManager CSVm;    
-    string input = CSVm.CSVReader(filePath, id);
+    ToolBox tb;    
+    string input = tb.CSVReader(filePath, id);
 
     stringstream input_stringstream(input);
 
