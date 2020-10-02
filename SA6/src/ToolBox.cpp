@@ -46,3 +46,20 @@ bool ToolBox::CSVWriter(string file){
     }
     return done;
 }
+
+/**
+ * Convert a tab of floats into a single string.
+ *
+ * @param tab the tab to convert.
+ * @param delimiter the delimiter to be put between each tab element.
+ * @return res, the final string.
+ */
+string ToolBox::floatTabToString(vector<float> tab, char delimiter) {
+    string res = to_string((int) tab[0]);
+    if(tab.size() > 1) {
+        for(unsigned int i = 1; i < tab.size(); i++){
+            res += delimiter + to_string((int) tab[i]);
+        }
+    }
+    return res;
+}

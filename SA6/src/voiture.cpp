@@ -5,10 +5,10 @@
 #include <sstream>
 #include <math.h>
 
-Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
-    ToolBox tb;    
-    string input = tb.CSVReader(v_path, v_id);
+ToolBox tb;    
 
+Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
+    string input = tb.CSVReader(v_path, v_id);
     stringstream input_stringstream(input);
 
     getline(input_stringstream, v_name, ',');
@@ -34,7 +34,7 @@ Voiture::~Voiture(){
 
 void Voiture::printData(){
     cout<<"id: "<<v_id<<" | "<<v_name<<" | Marque: "<<v_marque <<" | Statut: "<<v_statut<<" | Handicap: "<<v_handicap<<" | age: "<<v_age<<" | heure: "<<v_heure<<endl;
-    tabToString(v_tab, ',');
+    tb.floatTabToString(v_tab, ',');
 }
 
 vector<float> Voiture::initTab(){
@@ -82,7 +82,7 @@ bool Voiture::communicateServer(int port)
 	else
 	{
 		cout << v_name << " est connectée!" << endl;
-		string phrase = tabToString(v_tab, ',');
+		string phrase = tb.floatTabToString(v_tab, ',');
 		if(client.Send(phrase.c_str(), phrase.length()) == SOCKET_ERROR)
 			cout << "Erreur envoi : " << Sockets::GetError() << endl;
 		else
@@ -100,15 +100,4 @@ bool Voiture::communicateServer(int port)
 	}
 	Sockets::Release();
 	return true;
-}
-
-string Voiture::tabToString(vector<float> tab, char delimiter) {
-    string res = to_string((int) tab[0]);
-    if(tab.size() > 1) {
-        for(unsigned int i = 1; i < tab.size(); i++){
-            res += delimiter + to_string((int) tab[i]);
-        }
-    }
-    cout << res << endl;
-    return res;
 }
