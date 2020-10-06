@@ -1,5 +1,6 @@
 #include "../headers/parking.h"
 #include "../headers/ToolBox.h"
+#include "../headers/ServerParking.h"
 #include <sstream>
 #include <vector>
 #include <math.h>
@@ -29,6 +30,8 @@ Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
     getline(input_stringstream, s_remplissage, ',');
     getline(input_stringstream, s_capacite, ',');
     getline(input_stringstream, s_port, ',');
+
+    //demarerServer(); Ne peux pas marcher sans les threads
 }
 
 Parking::~Parking(){
@@ -95,4 +98,22 @@ float Parking::RepondreVoiture2(float prix_propose, string tab[]){
 
 int Parking::getPort() {
     return stoi(s_port);
+}
+
+bool Parking::demarerServer()
+{
+	if(!ServerP::Start())
+	{
+		std::cout << "Erreur initialisation sockets : " << ServerP::GetError() << std::endl;
+		return -1;
+	}
+	int port;
+	std::cout << "Port du serveur > ";
+	std::cin >> port;
+	if (!ServerP::Server(port))
+	{
+		std::cout << "Serveur termine avec l'erreur " << ServerP::GetError() << std::endl;
+	}
+	ServerP::End();
+	return 0;
 }

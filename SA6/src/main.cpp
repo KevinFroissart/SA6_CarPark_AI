@@ -8,6 +8,11 @@ using namespace std;
 
 int main (void){
 
+    Parking * P2 = new Parking(1, "parking.csv");
+    P2->printData();
+    Parking * P3 = new Parking(2, "parking.csv");
+    P3->printData();
+
     Voiture * v1 = new Voiture(8, "voitures.csv");
     v1->printData();
     v1->communicateServer(8080);
@@ -18,10 +23,7 @@ int main (void){
 
     //Parking * P1 = new Parking(0, 2, 10, "parking.csv");
     //P1->AfficherInfo();
-    Parking * P2 = new Parking(1, "parking.csv");
-    P2->printData();
-    Parking * P3 = new Parking(2, "parking.csv");
-    P3->printData();
+    
     //string tab[4] = {"1","0","0","0"}; //nb heures, handicap, âge, statut
     //P2->calcul_prix(tab);
 
