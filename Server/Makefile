@@ -12,11 +12,14 @@ all: $(EXE) $(EXEs)
 $(EXE) : Main.o Sockets.o TCPSocket.o
 	$(CC) $(CFLAGS) Main.o Sockets.o TCPSocket.o -o bin/$@
 
-$(EXEs) : MainServeur.o
-	$(CC) $(CFLAGS) MainServeur.o -o bin/$@
+$(EXEs) : MainServeur.o ServerParking.o
+	$(CC) $(CFLAGS) MainServeur.o ServerParking.o -o bin/$@
 
 MainServeur.o : src/MainServeur.cpp
 	$(CC) $(CFLAGS) -c src/MainServeur.cpp
+
+ServerParking.o : src/ServerParking.cpp
+	$(CC) $(CFLAGS) -c src/ServerParking.cpp
 
 Main.o : src/Main.cpp
 	$(CC) $(CFLAGS) -c src/Main.cpp
