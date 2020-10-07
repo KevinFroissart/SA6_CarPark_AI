@@ -1,5 +1,6 @@
-#include "../headers/ServerParking.h"
+#include "../headers/ServerParking.hpp"
 
+using namespace std;
 
 	bool ServerP::Start()
 	{
@@ -42,12 +43,12 @@
 #endif
 	}
 
-	std::string ServerP::ConvertAddr(const sockaddr_in& addr)
+	string ServerP::ConvertAddr(const sockaddr_in& addr)
 	{
 #if defined(_WIN32) && _MSC_VER >= 1800
 		char buff[32] = {0};
 		InetNtop(addr.sin_family, (void*)&(addr.sin_addr), buff, 31);
-		return std::string(buff, 32);
+		return string(buff, 32);
 #else
 		return inet_ntoa(addr.sin_addr);
 #endif
@@ -66,61 +67,62 @@
 	}
 
 #define BUFFER_MAX 1024
-	bool ServerP::Receive(SOCKET socket, std::string& _buffer)
+bool ServerP::Receive(SOCKET socket, string& _buffer)
+{
+	char buffer[BUFFER_MAX + 1] = { 0 };
+	int iLastRecievedBufferLen = 0;
+	do {
+		iLastRecievedBufferLen = recv(socket, buffer, BUFFER_MAX, 0);
+		_buffer += buffer;
+	} while (iLastRecievedBufferLen == BUFFER_MAX);
+	if (iLastRecievedBufferLen > 0)
+		return true;
+	else
 	{
-		char buffer[BUFFER_MAX + 1] = { 0 };
-		int iLastRecievedBufferLen = 0;
-		do {
-			iLastRecievedBufferLen = recv(socket, buffer, BUFFER_MAX, 0);
-			_buffer += buffer;
-		} while (iLastRecievedBufferLen == BUFFER_MAX);
-		if (iLastRecievedBufferLen > 0)
+		int error = GetError();
+		if ( error == Errors::WOULDBLOCK )
 			return true;
-		else
-		{
-			int error = GetError();
-			if ( error == Errors::WOULDBLOCK )
-				return true;
-			return false;
-		}
+		return false;
 	}
+}
 
 
-	std::vector<std::string> ServerP::Split(const std::string& str, const std::string& separator)
+vector<string> ServerP::Split(const string& str, const string& separator)
+{
+	vector<string> parts;
+	int start = 0;
+	size_t end;
+	while ( (end = str.find(separator, start)) != string::npos )
 	{
-		std::vector<std::string> parts;
-		int start = 0;
-		size_t end;
-		while ( (end = str.find(separator, start)) != std::string::npos )
-		{
-			parts.push_back(str.substr(start, end - start));
-			start = end + 1;
-		}
-		parts.push_back(str.substr(start));
-		return parts;
+		parts.push_back(str.substr(start, end - start));
+		start = end + 1;
 	}
-	std::string ServerP::Merge(const std::vector<std::string>& parts, const std::string& aggregator)
-	{
-		if ( parts.empty() )
-			return "";
-		std::string result = parts[0];
-		for ( size_t i = 1; i < parts.size(); ++i )
-			result += aggregator + parts[i];
-		return result;
-	}
-	std::string ServerP::ShuffleSentence(const std::string& sentence)
-	{
-		std::vector<std::string> words = Split(sentence, " ");
-		std::random_shuffle(words.begin(), words.end());
-		return Merge(words, " ");
-	}
+	parts.push_back(str.substr(start));
+	return parts;
+}
 
+string ServerP::Merge(const vector<string>& parts, const string& aggregator)
+{
+	if ( parts.empty() )
+		return "";
+	string result = parts[0];
+	for ( size_t i = 1; i < parts.size(); ++i )
+		result += aggregator + parts[i];
+	return result;
+}
+
+string ServerP::ShuffleSentence(const string& sentence)
+{
+	vector<string> words = Split(sentence, " ");
+	random_shuffle(words.begin(), words.end());
+	return Merge(words, " ");
+}
 
 struct Client {
 	SOCKET socket;
-	std::string ip;
+	string ip;
 	int port;
-	Client(SOCKET _socket, const std::string& _ip, int _port)
+	Client(SOCKET _socket, const string& _ip, int _port)
 		: socket(_socket)
 		, ip(_ip)
 		, port(_port)
@@ -144,8 +146,8 @@ bool ServerP::Server(int port)
 	if (res != 0)
 		return false;
 	SetNonBlocking(server);
-	std::cout << "Server demarre sur le port " << port << std::endl;
-	std::vector<Client> clients;
+	cout << "Server demarre sur le port " << port << endl;
+	vector<Client> clients;
 	for (;;)
 	{
 		for (;;)
@@ -160,27 +162,27 @@ bool ServerP::Server(int port)
 			socklen_t addrlen = sizeof(from);
 			if (getpeername(newClient, (sockaddr*)&from, &addrlen) != 0)
 			{
-				std::cout << "Nouveau client, Impossible de retrouver son IP : " << GetError() << " (deconnexion)" << std::endl;
+				cout << "Nouveau client, Impossible de retrouver son IP : " << GetError() << " (deconnexion)" << endl;
 				CloseSocket(newClient);
 				continue;
 			}
 			Client client(newClient, ConvertAddr(from), ntohs(from.sin_port));
-			std::cout << "Connexion de " << client.ip.c_str() << ":"<< client.port << std::endl;
+			cout << "Connexion de " << client.ip.c_str() << ":"<< client.port << endl;
 			SetNonBlocking(newClient);
 			clients.push_back(client);
 		}
-		std::vector<Client>::iterator client = clients.begin();
+		vector<Client>::iterator client = clients.begin();
 		while (client != clients.end())
 		{
-			std::string buffer;
+			string buffer;
 			if (Receive(client->socket, buffer))
 			{
 				if ( !buffer.empty() )
 				{
 // C'est ici qu'on gère la communication, à voir si on peux pas le séparer de la classe					
-					std::cout << "Recu de [" << client->ip.c_str() << ":" << client->port << "] : " << buffer << std::endl;
-					std::string reply = ShuffleSentence(buffer);
-					std::cout << "Reponse a [" << client->ip.c_str() << ":" << client->port << "] > " << reply << std::endl;
+					cout << "Recu de [" << client->ip.c_str() << ":" << client->port << "] : " << buffer << endl;
+					string reply = ShuffleSentence(buffer);
+					cout << "Reponse a [" << client->ip.c_str() << ":" << client->port << "] > " << reply << endl;
 					send(client->socket, reply.c_str(), reply.length(), 0);
 				}
 				++client;
@@ -188,7 +190,7 @@ bool ServerP::Server(int port)
 			else
 			{
 				client->Close();
-				std::cout << "[" << client->ip.c_str() << ":" << client->port << "] " << " Deconnexion" << std::endl;
+				cout << "[" << client->ip.c_str() << ":" << client->port << "] " << " Deconnexion" << endl;
 				client = clients.erase(client);
 			}
 		}

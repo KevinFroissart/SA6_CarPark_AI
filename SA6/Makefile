@@ -12,7 +12,7 @@ TARGET=bin/
 CPATH=src/
 HPATH=header/
 
-HEADERS=$(wildcard $(HPATH)*.h)
+HEADERS=$(wildcard $(HPATH)*.hpp)
 SOURCES=$(wildcard $(CPATH)*.cpp)
 OBJECTS = $(foreach source, $(SOURCES), obj/$(patsubst src/%.cpp,%.o,$(source)))
 BINARY = bin/$(EXE)

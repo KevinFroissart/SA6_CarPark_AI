@@ -1,5 +1,5 @@
-#ifndef TOOLBOX_H
-#define TOOLBOX_H
+#ifndef TOOLBOX_HPP
+#define TOOLBOX_HPP
 #include <iostream>
 #include <fstream>
 #include <vector>

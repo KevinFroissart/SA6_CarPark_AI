@@ -1,5 +1,5 @@
-#ifndef SERVERPARKING_H
-#define SERVERPARKING_H
+#ifndef SERVERPARKING_HPP
+#define SERVERPARKING_HPP
 #ifdef _WIN32
 #if _MSC_VER >= 1800
 #include <WS2tcpip.h>

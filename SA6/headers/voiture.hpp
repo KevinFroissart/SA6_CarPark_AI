@@ -1,5 +1,5 @@
-#ifndef VOITURE_H
-#define VOITURE_H
+#ifndef VOITURE_HPP
+#define VOITURE_HPP
 #include <iostream>
 #include <fstream>
 #include <vector>

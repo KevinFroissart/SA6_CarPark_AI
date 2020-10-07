@@ -1,6 +1,6 @@
 /**SA6 - Intelligent Car-Park**/
-#ifndef BOUSK_DVP_COURS_SOCKET_H
-#define BOUSK_DVP_COURS_SOCKET_H
+#ifndef BOUSK_DVP_COURS_SOCKET_HPP
+#define BOUSK_DVP_COURS_SOCKET_HPP
 
 #pragma once
 

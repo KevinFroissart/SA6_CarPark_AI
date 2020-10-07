@@ -1,5 +1,5 @@
-#ifndef PARKING_H
-#define PARKING_H
+#ifndef PARKING_HPP
+#define PARKING_HPP
 #include <iostream>
 #include <thread>
 #include <fstream>

@@ -1,6 +1,6 @@
-#include "../headers/parking.h"
-#include "../headers/ToolBox.h"
-#include "../headers/ServerParking.h"
+#include "../headers/parking.hpp"
+#include "../headers/ToolBox.hpp"
+#include "../headers/ServerParking.hpp"
 #include <sstream>
 #include <vector>
 #include <math.h>
