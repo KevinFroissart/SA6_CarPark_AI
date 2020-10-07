@@ -1,7 +1,6 @@
 /**SA6 - Intelligent Car-Park**/
 #include "../headers/ServerParking.h"
 
-
 int main()
 {
 	if(!ServerP::Start())

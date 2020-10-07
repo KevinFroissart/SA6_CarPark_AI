@@ -1,4 +1,4 @@
-#include "../headers/ToolBox.h"
+#include "../headers/ToolBox.hpp"
 
 ToolBox::ToolBox(){}
 

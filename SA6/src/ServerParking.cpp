@@ -1,8 +1,6 @@
 #include "../headers/ServerParking.hpp"
 
-using namespace std;
-
-	bool ServerP::Start()
+bool ServerP::Start()
 	{
 #ifdef _WIN32
 		WSAData wsaData;
@@ -43,12 +41,12 @@ using namespace std;
 #endif
 	}
 
-	string ServerP::ConvertAddr(const sockaddr_in& addr)
+	std::string ServerP::ConvertAddr(const sockaddr_in& addr)
 	{
 #if defined(_WIN32) && _MSC_VER >= 1800
 		char buff[32] = {0};
 		InetNtop(addr.sin_family, (void*)&(addr.sin_addr), buff, 31);
-		return string(buff, 32);
+		return std::string(buff, 32);
 #else
 		return inet_ntoa(addr.sin_addr);
 #endif
@@ -85,7 +83,6 @@ bool ServerP::Receive(SOCKET socket, string& _buffer)
 		return false;
 	}
 }
-
 
 vector<string> ServerP::Split(const string& str, const string& separator)
 {

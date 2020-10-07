@@ -1,12 +1,19 @@
-#include "../headers/voiture.h"
-#include "../headers/ToolBox.h"
-#include "../headers/Sockets.h"
-#include "../headers/TCPSocket.h"
+#include "../headers/voiture.hpp"
+#include "../headers/ToolBox.hpp"
+#include "../headers/Sockets.hpp"
+#include "../headers/TCPSocket.hpp"
 #include <sstream>
 #include <math.h>
 
 ToolBox tb;    
 
+/**
+ * Voiture Constructor, extracts information from a CSV file.
+ *
+ * @param id the id number of the car.
+ * @param filePath path of the CSV file.
+ * @return the object Voiture.
+ */
 Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
     string input = tb.CSVReader(v_path, v_id);
     stringstream input_stringstream(input);
@@ -22,21 +29,45 @@ Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
     initTab();
 }
 
+/**
+ * Voiture Constructor
+ *
+ * @param id the id number of the car.
+ * @param name the name of the car.
+ * @param marque the brand of the car.
+ * @param statut the car owner's status.
+ * @param handicap if the owner has a handicap.
+ * @param age the age of the car owner.
+ * @param heure the number of hour the owner is willing to park.
+ * @return the object Voiture.
+ */
 Voiture::Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure) : 
 v_id(id), v_name(name), v_marque(marque), v_statut(statut), v_handicap(handicap), v_age(age), v_heure(heure){
     v_prixBase = 2;
     initTab();
 }
 
+/**
+ * Voiture Destructor.
+ */
 Voiture::~Voiture(){
     //destructeur
 }
 
+/**
+ * Prints the car informations.
+ */
 void Voiture::printData(){
     cout<<"id: "<<v_id<<" | "<<v_name<<" | Marque: "<<v_marque <<" | Statut: "<<v_statut<<" | Handicap: "<<v_handicap<<" | age: "<<v_age<<" | heure: "<<v_heure<<endl;
     tb.floatTabToString(v_tab, ',');
 }
 
+/**
+ * Returns a tab of floats designed for socket communication
+ * and Parking management.
+ *
+ * @return float tab.
+ */
 vector<float> Voiture::initTab(){
     v_tab.push_back(v_id);
     v_tab.push_back(stoi(v_heure));
@@ -46,6 +77,15 @@ vector<float> Voiture::initTab(){
     return v_tab;
 } 
 
+/**
+ * Method that calculates the park price the
+ * car owner wants to pay.
+ *
+ * This method uses different data such as the owner status,
+ * if he has a handicap, his age and the time he wants to stay.
+ * 
+ * @return prix, the fiual price.
+ */
 float Voiture::calcul_prix(){
     vector <float> tab_facteurs;
     float prix = (float) v_prixBase;
@@ -69,6 +109,12 @@ float Voiture::calcul_prix(){
     return prix;
 }
 
+/**
+ * Method used to connect the car with a specific Parking using sockets.
+ *
+ * @param port the port of the Parking's server.
+ * @return the object Voiture.
+ */
 bool Voiture::communicateServer(int port)
 {
 	if(!Sockets::Start())
