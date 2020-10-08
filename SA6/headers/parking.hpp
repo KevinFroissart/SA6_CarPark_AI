@@ -13,6 +13,7 @@ class Parking{
         void printData();
         float calcul_prix(string tab[]);    //prend un tableau de donnée issues de la voiture, et calcule un prix un adapté, en prenant également en compte le remplissage
         int getPort();
+        string protocoleCommunication(string message);
 
     private:
         string s_port;

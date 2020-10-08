@@ -1,4 +1,5 @@
 #include "../headers/ServerParking.hpp"
+#include "../headers/parking.hpp"
 
 bool ServerP::Start()
 	{
@@ -127,7 +128,7 @@ struct Client {
 	void Close() { ServerP::CloseSocket(socket); socket = INVALID_SOCKET; }
 };
 
-bool ServerP::Server(int port)
+bool ServerP::Server(int port, Parking *parking)
 {
 	SOCKET server = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (server == INVALID_SOCKET)
@@ -178,7 +179,7 @@ bool ServerP::Server(int port)
 				{
 // C'est ici qu'on gère la communication, à voir si on peux pas le séparer de la classe					
 					cout << "Recu de [" << client->ip.c_str() << ":" << client->port << "] : " << buffer << endl;
-					string reply = ShuffleSentence(buffer);
+					string reply = parking->protocoleCommunication(buffer); //on pointe vers la fonction présente dans notre instance de parking
 					cout << "Reponse a [" << client->ip.c_str() << ":" << client->port << "] > " << reply << endl;
 					send(client->socket, reply.c_str(), reply.length(), 0);
 				}

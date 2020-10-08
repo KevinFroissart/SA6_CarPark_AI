@@ -100,6 +100,33 @@ int Parking::getPort() {
     return stoi(s_port);
 }
 
+//on fait appel au protocole directement dans la classe ServerPaking
+string Parking::protocoleCommunication(string message){
+    string res = "";
+    if(message == "Est-ce que vous avez de la place ?"){
+        if(s_remplissage >= s_capacite)
+            return "Non";
+        else
+            return "Oui";
+    }
+    if(message == ""){
+        return res;
+    }
+    if(message == ""){
+        return res;
+    }
+    if(message == ""){
+        return res;
+    }
+    if(message == ""){
+        return res;
+    }
+    if(message == ""){
+        return res;
+    }
+    return res;
+}
+
 bool Parking::demarerServer()
 {
 	if(!ServerP::Start())
@@ -110,7 +137,7 @@ bool Parking::demarerServer()
 	int port;
 	std::cout << "Port du serveur > ";
 	std::cin >> port;
-	if (!ServerP::Server(port))
+	if (!ServerP::Server(port, this)) // on envoie l'instance de notre parking au serveur pour pouvoir utiliser la méthode protocole depuis le ServerParking
 	{
 		std::cout << "Serveur termine avec l'erreur " << ServerP::GetError() << std::endl;
 	}

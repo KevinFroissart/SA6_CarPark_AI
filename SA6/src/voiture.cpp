@@ -1,7 +1,6 @@
 #include "../headers/voiture.hpp"
 #include "../headers/ToolBox.hpp"
 #include "../headers/Sockets.hpp"
-#include "../headers/TCPSocket.hpp"
 #include <sstream>
 #include <math.h>
 
@@ -113,10 +112,11 @@ float Voiture::calcul_prix(){
  * Method used to connect the car with a specific Parking using sockets.
  *
  * @param port the port of the Parking's server.
- * @return the object Voiture.
+ * @return false if the Voiture can't connect, true otherwise.
  */
-bool Voiture::communicateServer(int port)
+bool Voiture::connexionServer(int port)
 {
+    v_etape = 1; // à chaque connexion au server on remet l'étape du protocole à 1
 	if(!Sockets::Start())
 	{
 		cout << "Error starting sockets : " << Sockets::GetError() << std::endl;
@@ -128,22 +128,66 @@ bool Voiture::communicateServer(int port)
 	else
 	{
 		cout << v_name << " est connectée!" << endl;
-		string phrase = tb.floatTabToString(v_tab, ',');
-		if(client.Send(phrase.c_str(), phrase.length()) == SOCKET_ERROR)
-			cout << "Erreur envoi : " << Sockets::GetError() << endl;
-		else
-		{
-			char buffer[512] = {0};
-			int len = client.Receive(buffer, 512);
-			if(len == SOCKET_ERROR)
-				cout << "Erreur reception : " << Sockets::GetError() << endl;
-			else
-			{
-				string reply(buffer, len);
-				cout << "Reponse du serveur : " << reply << endl;
-			}
-		}
+		communicateWithParking(client, ""); //on démarre la conversation avec le serveur
 	}
 	Sockets::Release();
 	return true;
+}
+
+bool Voiture::communicateWithParking(TCPSocket client, string replyServer) { 
+    string phrase = protocoleCommunication(replyServer);
+
+    if(phrase == "stop"){ //Si le protocole nous renvoie stop, on coupe la communication avec le parking
+        cout << "Communication terminée";
+        return false;
+    }
+	if(client.Send(phrase.c_str(), phrase.length()) == SOCKET_ERROR){ //Ici on envoie le message au parking et on vérifie s'il n'y a pas d'erreur
+		cout << "Erreur envoi : " << Sockets::GetError() << endl;
+        return false;
+    }
+	else //Si le message a bien été envoyé on récupère la réponse ici
+	{
+		char buffer[512] = {0};
+		int len = client.Receive(buffer, 512);
+		if(len == SOCKET_ERROR)
+			cout << "Erreur reception : " << Sockets::GetError() << endl;
+		else
+		{
+			string reply(buffer, len);
+			cout << "Reponse du serveur : " << reply << endl;
+            communicateWithParking(client, reply); //on fait de la récurrence pour faire tourner le protocole
+		}
+	}
+    return true;    
+}
+
+string Voiture::protocoleCommunication(string message){
+    string res = "stop"; //si on est en dehors des étapes du protocole il y une erreur quelque part, on stop la communication
+    if(v_etape == 1){
+        //étape 1, La voiture et le parking n'ont encore jamais communiqué, je demande au parking s'il a de la place
+        v_etape++;
+        return "Est-ce que vous avez de la place ?";
+    }
+    if(v_etape == 2){
+        //étape 2, le parking me répond, s'il à de la place je lui envoie mes informations personnelles, sinon j'arrête la communication en envoyant "stop"
+        if(message == "Non")
+            return "stop";
+        else {
+            v_etape++;
+            return tb.floatTabToString(v_tab, ',');
+        }
+    }
+    if(message == ""){
+        v_etape++;
+        return res; //étape 3
+    }
+    if(message == ""){
+        v_etape++;
+        return res; //étape 4
+    }
+    if(message == ""){
+        v_etape++;
+        return res; //étape 5
+    }
+    return res;
 }

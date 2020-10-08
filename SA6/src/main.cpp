@@ -15,11 +15,11 @@ int main (void){
 
     Voiture * v1 = new Voiture(8, "voitures.csv");
     v1->printData();
-    v1->communicateServer(8080);
+    v1->connexionServer(8080);
 
     Voiture * v2 = new Voiture(12, "voitures.csv");
     v2->printData();
-    v2->communicateServer(8080);
+    v2->connexionServer(8080);
 
     //Parking * P1 = new Parking(0, 2, 10, "parking.csv");
     //P1->AfficherInfo();

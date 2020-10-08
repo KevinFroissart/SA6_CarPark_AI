@@ -31,6 +31,7 @@ typedef int socklen_t;
 #include <vector>
 #include <iostream>
 #include <algorithm> 
+#include "../headers/parking.hpp"
 
 using namespace std;
 
@@ -47,7 +48,7 @@ namespace ServerP
     string Merge(const vector<string>& parts, const string& aggregator);
     string ShuffleSentence(const string& sentence);
         
-    bool Server(int port);
+    bool Server(int port, Parking * parking);
 };
 
 #endif

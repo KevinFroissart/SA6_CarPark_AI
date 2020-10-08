@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include "../headers/TCPSocket.hpp"
 
 using namespace std;
 
@@ -13,9 +14,10 @@ class Voiture{
         ~Voiture();
         void printData();
         float calcul_prix();
-        bool communicateServer(int port);
+        bool connexionServer(int port);
 
     private:
+        int v_etape; //etape du protocole de communication
         float prixVoulu;
         int v_id;
         string v_path;   //chemin du csv dans lequel on récupère les informations de la voiture
@@ -32,6 +34,8 @@ class Voiture{
         void InterrogerParking(); //crée la requête dans le tampon pour interroger un parking
         bool EcouterReponseParking(); //se met à l'écoute d'une réponse du parking
         string tabToString(vector<float> tab, char delimiter);
+        string protocoleCommunication(string message);
+        bool communicateWithParking(TCPSocket client, string replyServer);
 };
 
 #endif
