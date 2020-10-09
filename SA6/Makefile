@@ -5,6 +5,7 @@ CFLAGS=-Wall -W -Werror -g
 
 LDFLAGS =
 LIBS =
+THREAD = -std=c++11 -pthread
 
 EXE=sa6.out
 
@@ -23,12 +24,11 @@ all: $(BINARY)
 
 clean: 
 	$(RM) $(OBJECTS) 
-	$(RM) Makefile.dep 
+	$(RM) makefile.dep 
 	$(RM) obj/?*.o # catch all renamed files
 	
 mrproper: clean 
-	$(RM) $(BINARY) 
-
+	$(RM) $(BINARY)
 rebuild: 
 	@make mrproper
 	@make
@@ -42,7 +42,7 @@ makefile.dep: $(SOURCES) $(HEADERS)
 	@for file in $(SOURCES); do echo "obj/`g++ $(CFLAGS) -MM $$file`" >> makefile.dep; done
 
 $(BINARY): $(OBJECTS)
-	$(LD) $(LDFLAGS) -std=c++11 -pthread -o $@ $^ $(LIBS)
+	$(LD) $(LDFLAGS) $(THREAD) -o $@ $^ $(LIBS)
 
 obj/%.o: src/%.cpp
 	$(CPP) $(CFLAGS) -o $@ -c $<
