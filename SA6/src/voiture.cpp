@@ -136,6 +136,13 @@ bool Voiture::connexionServer(int port)
 	return true;
 }
 
+/**
+ * Method used to send a string to the Parking using sockets
+ *
+ * @param client the socket used to send the message.
+ * @param replyServer the reply of the server, used for recursive purposes
+ * @return false there is there is any error or if the communication is over, true otherwise.
+ */
 bool Voiture::communicateWithParking(TCPSocket client, string replyServer) { 
     string phrase = protocoleCommunication(replyServer);
 
@@ -163,6 +170,13 @@ bool Voiture::communicateWithParking(TCPSocket client, string replyServer) {
     return true;    
 }
 
+/**
+ * Method used to chose which message the Voiture has to send depending
+ * on the state of the Protocol and the message recieved.
+ *
+ * @param message the message recieved from the server.
+ * @return the string that will be send to the server.
+ */
 string Voiture::protocoleCommunication(string message){
     string res = "stop"; //si on est en dehors des étapes du protocole il y une erreur quelque part, on stop la communication
     if(v_etape == 1){
