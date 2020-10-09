@@ -42,7 +42,7 @@ makefile.dep: $(SOURCES) $(HEADERS)
 	@for file in $(SOURCES); do echo "obj/`g++ $(CFLAGS) -MM $$file`" >> makefile.dep; done
 
 $(BINARY): $(OBJECTS)
-	$(LD) $(LDFLAGS) -o $@ $^ $(LIBS)
+	$(LD) $(LDFLAGS) -std=c++11 -pthread -o $@ $^ $(LIBS)
 
 obj/%.o: src/%.cpp
 	$(CPP) $(CFLAGS) -o $@ -c $<

@@ -123,8 +123,10 @@ bool Voiture::connexionServer(int port)
 		return false;
 	}
 	TCPSocket client;
-	if(!client.Connect("127.0.0.1", port))
+	if(!client.Connect("127.0.0.1", port)){
 		cout << "Impossible de se connecter au serveur [127.0.0.1:" << port << "] : " << Sockets::GetError() << endl;
+        return false;
+    }
 	else
 	{
 		cout << v_name << " est connectée!" << endl;

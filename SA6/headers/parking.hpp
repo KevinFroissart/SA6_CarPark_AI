@@ -14,6 +14,7 @@ class Parking{
         float calcul_prix(string tab[]);    //prend un tableau de donnée issues de la voiture, et calcule un prix un adapté, en prenant également en compte le remplissage
         int getPort();
         string protocoleCommunication(string message);
+        bool demarerServer();
 
     private:
         string s_port;
@@ -27,7 +28,6 @@ class Parking{
         void RajouterVoiture();
         float RepondreVoiture(string tab[]);                         //lorsque une requête voiture est reçu, va calculer un prix et retourner oui, non (si plein)
         float RepondreVoiture2(float prix_propose, string tab[]);    //si la 1ere offre a été refusé par la voiture, analyse la contre-offre de celle-ci
-        bool demarerServer();
 };
 
 #endif

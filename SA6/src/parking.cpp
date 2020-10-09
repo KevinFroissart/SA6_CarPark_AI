@@ -67,7 +67,7 @@ float Parking::calcul_prix(string tab[]){
                 * (nb_heures*0.7 + 0.3*(float)log(nb_heures))   // fois le nombre d'heures (et un logarithme)
                 * 1 + 0.75*((float)(stoi(s_remplissage)) /      //pondéré par le remplissage actuel du parking
                             (float)(stoi(s_capacite))));
-    cout<<"prix après réduction = "<<prix<<endl;
+    //cout<<"prix après réduction = "<<prix<<endl;
     return prix;
 }
 
@@ -134,13 +134,14 @@ bool Parking::demarerServer()
 		std::cout << "Erreur initialisation sockets : " << ServerP::GetError() << std::endl;
 		return -1;
 	}
-	int port;
-	std::cout << "Port du serveur > ";
-	std::cin >> port;
-	if (!ServerP::Server(port, this)) // on envoie l'instance de notre parking au serveur pour pouvoir utiliser la méthode protocole depuis le ServerParking
+	//int port;
+	std::cout << "Port du serveur > " + s_port << endl;
+	//std::cin >> port;
+	if (!ServerP::Server(stoi(s_port), this)) // on envoie l'instance de notre parking au serveur pour pouvoir utiliser la méthode protocole depuis le ServerParking
 	{
 		std::cout << "Serveur termine avec l'erreur " << ServerP::GetError() << std::endl;
 	}
 	ServerP::End();
+    cout << "Serveur terminé" << endl;
 	return 0;
 }
