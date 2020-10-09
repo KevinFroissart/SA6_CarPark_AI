@@ -48,6 +48,8 @@ int main (void){
     //v1->printData();
     v1->connexionServer(8080);
 
+    sleep(2);
+
     Voiture * v2 = new Voiture(12, "voitures.csv");
     //v2->printData();
     v2->connexionServer(8080);

@@ -140,7 +140,7 @@ bool Voiture::communicateWithParking(TCPSocket client, string replyServer) {
     string phrase = protocoleCommunication(replyServer);
 
     if(phrase == "stop"){ //Si le protocole nous renvoie stop, on coupe la communication avec le parking
-        cout << "Communication terminée";
+        cout << "Communication terminée" << endl << endl;
         return false;
     }
 	if(client.Send(phrase.c_str(), phrase.length()) == SOCKET_ERROR){ //Ici on envoie le message au parking et on vérifie s'il n'y a pas d'erreur
@@ -172,12 +172,14 @@ string Voiture::protocoleCommunication(string message){
     }
     if(v_etape == 2){
         //étape 2, le parking me répond, s'il à de la place je lui envoie mes informations personnelles, sinon j'arrête la communication en envoyant "stop"
-        if(message == "Non")
+        return "stop";
+        
+        /*if(message == "Non")
             return "stop";
         else {
             v_etape++;
             return tb.floatTabToString(v_tab, ',');
-        }
+        }*/
     }
     if(message == ""){
         v_etape++;
