@@ -5,6 +5,14 @@
 #include <vector>
 #include <math.h>
 
+/**
+ * @brief Construct a new Parking:: Parking object
+ * 
+ * @param id 
+ * @param defaultPrice 
+ * @param capacite_max 
+ * @param cheminFichier 
+ */
 Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFichier) : filePath(cheminFichier){
     s_prixBase = defaultPrice;
     s_idParking = id;
@@ -19,6 +27,12 @@ Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFich
         throw runtime_error("Could not open file");
 }
 
+/**
+ * @brief Construct a new Parking:: Parking object
+ * 
+ * @param id 
+ * @param cheminFichier 
+ */
 Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
     ToolBox tb;    
     string input = tb.CSVReader(filePath, id);
@@ -34,18 +48,38 @@ Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
     //demarerServer(); Ne peux pas marcher sans les threads
 }
 
+/**
+ * @brief Destroy the Parking:: Parking object
+ * 
+ */
 Parking::~Parking(){
 //destructeur
 }
 
+/**
+ * @brief 
+ * 
+ * @return true 
+ * @return false 
+ */
 bool Parking::EstRempli(){
     return (s_remplissage == s_capacite);
 }
 
+/**
+ * @brief 
+ * 
+ */
 void Parking::printData(){
     cout<<"id: "<<s_idParking<<" | prix de base: "<< s_prixBase<<" | remplissage actuel: "<<s_remplissage<<"/"<<s_capacite<< endl;
 }
 
+/**
+ * @brief 
+ * 
+ * @param tab 
+ * @return float 
+ */
 float Parking::calcul_prix(string tab[]){
     vector <float> tab_facteurs;
     float prix = (float) stoi(s_prixBase);
@@ -71,6 +105,12 @@ float Parking::calcul_prix(string tab[]){
     return prix;
 }
 
+/**
+ * @brief 
+ * 
+ * @param tab 
+ * @return float 
+ */
 float Parking::RepondreVoiture(string tab[]){
     if(s_remplissage<s_capacite){
         float prix = calcul_prix(tab);
@@ -83,6 +123,13 @@ float Parking::RepondreVoiture(string tab[]){
     }
 }
 
+/**
+ * @brief 
+ * 
+ * @param prix_propose 
+ * @param tab 
+ * @return float 
+ */
 float Parking::RepondreVoiture2(float prix_propose, string tab[]){
     float prix = calcul_prix(tab);
     if (prix_propose> (0.85 * prix)){
@@ -101,6 +148,12 @@ int Parking::getPort() {
 }
 
 //on fait appel au protocole directement dans la classe ServerPaking
+/**
+ * @brief 
+ * 
+ * @param message 
+ * @return string 
+ */
 string Parking::protocoleCommunication(string message){
     string res = "";
     if(message == "Est-ce que vous avez de la place ?"){
@@ -127,6 +180,12 @@ string Parking::protocoleCommunication(string message){
     return res;
 }
 
+/**
+ * @brief 
+ * 
+ * @return true 
+ * @return false 
+ */
 bool Parking::demarerServer()
 {
 	if(!ServerP::Start())

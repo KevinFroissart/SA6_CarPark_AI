@@ -3,7 +3,7 @@
 ToolBox::ToolBox(){}
 
 /**
- * Read a CSV file at a specific line.
+ * @brief Read a CSV file at a specific line.
  *
  * @param file the name of the CSV file.
  * @param id the line number containing the sought information.
@@ -26,7 +26,7 @@ string ToolBox::CSVReader(string file, int id){
 }
 
 /**
- * Write in a CSV file at a specific line.
+ * @brief Write in a CSV file at a specific line. Not done yet.
  *
  * @param file the name of the CSV file.
  * @param id the line number containing the sought information.
@@ -48,7 +48,7 @@ bool ToolBox::CSVWriter(string file){
 }
 
 /**
- * Convert a tab of floats into a single string.
+ * @brief Convert a tab of floats into a single string.
  *
  * @param tab the tab to convert.
  * @param delimiter the delimiter to be put between each tab element.

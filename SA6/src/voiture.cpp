@@ -7,7 +7,7 @@
 ToolBox tb;    
 
 /**
- * Voiture Constructor, extracts information from a CSV file.
+ * @brief Voiture Constructor, extracts information from a CSV file.
  *
  * @param id the id number of the car.
  * @param filePath path of the CSV file.
@@ -29,7 +29,7 @@ Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
 }
 
 /**
- * Voiture Constructor
+ * @brief Voiture Constructor
  *
  * @param id the id number of the car.
  * @param name the name of the car.
@@ -47,14 +47,14 @@ v_id(id), v_name(name), v_marque(marque), v_statut(statut), v_handicap(handicap)
 }
 
 /**
- * Voiture Destructor.
+ * @brief Voiture Destructor.
  */
 Voiture::~Voiture(){
     //destructeur
 }
 
 /**
- * Prints the car informations.
+ * @brief Prints the car informations.
  */
 void Voiture::printData(){
     cout<<"id: "<<v_id<<" | "<<v_name<<" | Marque: "<<v_marque <<" | Statut: "<<v_statut<<" | Handicap: "<<v_handicap<<" | age: "<<v_age<<" | heure: "<<v_heure<<endl;
@@ -62,7 +62,7 @@ void Voiture::printData(){
 }
 
 /**
- * Returns a tab of floats designed for socket communication
+ * @brief Returns a tab of floats designed for socket communication
  * and Parking management.
  *
  * @return float tab.
@@ -77,7 +77,7 @@ vector<float> Voiture::initTab(){
 } 
 
 /**
- * Method that calculates the park price the
+ * @brief Method that calculates the park price the
  * car owner wants to pay.
  *
  * This method uses different data such as the owner status,
@@ -109,7 +109,7 @@ float Voiture::calcul_prix(){
 }
 
 /**
- * Method used to connect the car with a specific Parking using sockets.
+ * @brief Method used to connect the car with a specific Parking using sockets.
  *
  * @param port the port of the Parking's server.
  * @return false if the Voiture can't connect, true otherwise.
@@ -137,7 +137,7 @@ bool Voiture::connexionServer(int port)
 }
 
 /**
- * Method used to send a string to the Parking using sockets
+ * @brief Method used to send a string to the Parking using sockets
  *
  * @param client the socket used to send the message.
  * @param replyServer the reply of the server, used for recursive purposes
@@ -168,10 +168,10 @@ bool Voiture::communicateWithParking(TCPSocket client, string replyServer) {
 		}
 	}
     return true;    
-}
+} 
 
 /**
- * Method used to chose which message the Voiture has to send depending
+ * @brief Method used to chose which message the Voiture has to send depending
  * on the state of the Protocol and the message recieved.
  *
  * @param message the message recieved from the server.

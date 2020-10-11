@@ -1,0 +1,98 @@
+\hypertarget{class_tool_box}{}\doxysection{Tool\+Box Class Reference}
+\label{class_tool_box}\index{ToolBox@{ToolBox}}
+
+
+Collaboration diagram for Tool\+Box\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_tool_box_a2dcc60d601f6460bc0c702db398e6279}{C\+S\+V\+Reader}} (string file, int id)
+\begin{DoxyCompactList}\small\item\em Read a C\+SV file at a specific line. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_tool_box_a367d73930064f727b8ea349c64511535}{C\+S\+V\+Writer}} (string file)
+\begin{DoxyCompactList}\small\item\em Write in a C\+SV file at a specific line. Not done yet. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_tool_box_a268881f9f0d13d7bf048b7c647376e65}{float\+Tab\+To\+String}} (vector$<$ float $>$ tab, char delimiter)
+\begin{DoxyCompactList}\small\item\em Convert a tab of floats into a single string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tool_box_a2dcc60d601f6460bc0c702db398e6279}\label{class_tool_box_a2dcc60d601f6460bc0c702db398e6279}} 
+\index{ToolBox@{ToolBox}!CSVReader@{CSVReader}}
+\index{CSVReader@{CSVReader}!ToolBox@{ToolBox}}
+\doxysubsubsection{\texorpdfstring{CSVReader()}{CSVReader()}}
+{\footnotesize\ttfamily string Tool\+Box\+::\+C\+S\+V\+Reader (\begin{DoxyParamCaption}\item[{string}]{file,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Read a C\+SV file at a specific line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & the name of the C\+SV file. \\
+\hline
+{\em id} & the line number containing the sought information. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & Thrown if {\ttfamily file} could not be opened. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+the line read in the C\+SV. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+% FIG 1
+\mbox{\Hypertarget{class_tool_box_a367d73930064f727b8ea349c64511535}\label{class_tool_box_a367d73930064f727b8ea349c64511535}} 
+\index{ToolBox@{ToolBox}!CSVWriter@{CSVWriter}}
+\index{CSVWriter@{CSVWriter}!ToolBox@{ToolBox}}
+\doxysubsubsection{\texorpdfstring{CSVWriter()}{CSVWriter()}}
+{\footnotesize\ttfamily bool Tool\+Box\+::\+C\+S\+V\+Writer (\begin{DoxyParamCaption}\item[{string}]{file }\end{DoxyParamCaption})}
+
+
+
+Write in a C\+SV file at a specific line. Not done yet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & the name of the C\+SV file. \\
+\hline
+{\em id} & the line number containing the sought information. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & Thrown if {\ttfamily file} could not be opened. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+true, false if nothing was written in the file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tool_box_a268881f9f0d13d7bf048b7c647376e65}\label{class_tool_box_a268881f9f0d13d7bf048b7c647376e65}} 
+\index{ToolBox@{ToolBox}!floatTabToString@{floatTabToString}}
+\index{floatTabToString@{floatTabToString}!ToolBox@{ToolBox}}
+\doxysubsubsection{\texorpdfstring{floatTabToString()}{floatTabToString()}}
+{\footnotesize\ttfamily string Tool\+Box\+::float\+Tab\+To\+String (\begin{DoxyParamCaption}\item[{vector$<$ float $>$}]{tab,  }\item[{char}]{delimiter }\end{DoxyParamCaption})}
+
+
+
+Convert a tab of floats into a single string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & the tab to convert. \\
+\hline
+{\em delimiter} & the delimiter to be put between each tab element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+res, the final string. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+% FIG 2
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+A6/headers/Tool\+Box.\+hpp\item 
+S\+A6/src/Tool\+Box.\+cpp\end{DoxyCompactItemize}
