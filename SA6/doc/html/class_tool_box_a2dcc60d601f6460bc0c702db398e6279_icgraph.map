@@ -1,0 +1,5 @@
+<map id="ToolBox::CSVReader" name="ToolBox::CSVReader">
+<area shape="rect" id="node1" title="Read a CSV file at a specific line." alt="" coords="172,31,317,57"/>
+<area shape="rect" id="node2" href="$class_parking.html#a300004ddbc70c562488cf3f933d5cfb3" title="Construct a new Parking:: Parking object." alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node3" href="$class_voiture.html#a9f8646dde1dd92d80cf56b975bba97c2" title="Voiture Constructor, extracts information from a CSV file." alt="" coords="9,56,121,83"/>
+</map>
