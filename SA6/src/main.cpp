@@ -30,7 +30,7 @@ int main (void){
     //Parking * P3 = new Parking(2, "parking.csv");
     //P3->printData();
 
-    //sleep(2);
+    sleep(2);
 
    /* vector<Parking> tab_parking;
     for (int i= 0; i<nb_parking; i++){
@@ -81,5 +81,6 @@ int main (void){
     delete v2;
     delete P2;
     //delete P3;
+        terminate();
     return 0;
 }
