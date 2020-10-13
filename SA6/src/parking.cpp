@@ -202,5 +202,5 @@ bool Parking::demarerServer()
 	}
 	ServerP::End();
     cout << "Serveur terminé" << endl;
-	return 0;
+	return true;
 }

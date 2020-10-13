@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include "../headers/TCPSocket.hpp"
+#include <thread>
 
 using namespace std;
 
@@ -36,6 +37,7 @@ class Voiture{
         string tabToString(vector<float> tab, char delimiter);
         string protocoleCommunication(string message);
         bool communicateWithParking(TCPSocket client, string replyServer);
+        thread t1;
 };
 
 #endif

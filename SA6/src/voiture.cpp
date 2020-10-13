@@ -136,6 +136,7 @@ bool Voiture::connexionServer(int port)
 	return true;
 }
 
+
 /**
  * @brief Method used to send a string to the Parking using sockets
  *

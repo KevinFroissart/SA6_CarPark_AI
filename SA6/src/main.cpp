@@ -13,6 +13,10 @@ void startServer(Parking * P){
     if(!P->demarerServer()) cout << "Le parking ne parviens pas à démarrer le serveur" << endl;
 }
 
+void connexionServer(Voiture * v, int port){
+    if(!v->connexionServer(port)) cout << "La voiture ne parviens pas à se connecter au serveur" << endl;
+}
+
 int main (void){
 
     //int nb_parking = 2;
@@ -20,11 +24,13 @@ int main (void){
     //P2->printData();
     cout<<endl<<"debug"<<endl<<endl;
     thread t1(startServer, ref(P2)); 
-   // cout<<"id du thread : "<<t1.get_id()<<endl;
+
+    //t1.join();
+    // cout<<"id du thread : "<<t1.get_id()<<endl;
     //Parking * P3 = new Parking(2, "parking.csv");
     //P3->printData();
 
-    sleep(2);
+    //sleep(2);
 
    /* vector<Parking> tab_parking;
     for (int i= 0; i<nb_parking; i++){
@@ -45,14 +51,20 @@ int main (void){
 
 
     Voiture * v1 = new Voiture(8, "voitures.csv");
-    //v1->printData();
-    v1->connexionServer(8080);
-
-    sleep(2);
-
     Voiture * v2 = new Voiture(12, "voitures.csv");
-    //v2->printData();
-    v2->connexionServer(8080);
+    
+    thread t2(connexionServer, v1, 8080);
+    thread t3(connexionServer, v2, 8080);
+
+    //t1.join();
+    t2.join();
+    t3.join();
+    
+    
+    //v1->connexionServer(8080);
+
+    //v2->connexionServer(8080);
+
 
     //Parking * P1 = new Parking(0, 2, 10, "parking.csv");
     //P1->AfficherInfo();
