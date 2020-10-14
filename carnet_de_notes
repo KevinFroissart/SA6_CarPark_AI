@@ -1,0 +1,18 @@
+Semaine 1 :
+    - Initialisation du projet
+    difficultés : 
+Semaine 2 : 
+    - classes modèles, lecture des CSV
+    difficultés : pas de méthode d'écriture trouvée
+Semaine 3 :
+    - Makefile auto, architecture du pojet, ajout des classes client/server
+    difficultés : 
+Semaine 4 :
+    - Fonctions calcul de prix, intégration du client et du serveur
+    difficultés : alléger la classe Server pour pourvoir l'intégrer plus facilement au projet
+Semaine 5 :
+    - Protocole de communication, communication fonctionnelle entre le parking et les voitures, fonctions avec thread
+    difficultés : impossible de communiquer avec le Parking sans threads, core dumped avec les threads, problème de destructeur
+Semaine 6 :
+
+    difficultés :
