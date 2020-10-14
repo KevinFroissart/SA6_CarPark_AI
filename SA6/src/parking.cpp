@@ -53,6 +53,8 @@ Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
  * 
  */
 Parking::~Parking(){
+    ServerP::End();
+    //terminate();
 //destructeur
 }
 
