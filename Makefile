@@ -1,4 +1,4 @@
-FOLDERS=SA6 Server
+FOLDERS=SA6
 .PHONY: all $(FOLDERS)
 all: $(FOLDERS)
 

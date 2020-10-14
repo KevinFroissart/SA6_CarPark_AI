@@ -1,5 +1,0 @@
-Le MainServeur permets de lancer le serveur sur écoute sur le port que l'on choisi. Il n'a besoin d'aucun autre fichier pour fonctionner
-
-Ensuite le client lui est lancé via Main.cpp, qui lui par contre a besoin des fichiers Sockets.cpp/hpp et TCPSockets.cpp/hpp
-
-Pour l'instant le client peut se connecter au serveur et lui envoyer un message qu'il va bien recevoir, puis la connection se coupe.
