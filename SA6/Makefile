@@ -8,19 +8,27 @@ LIBS =
 THREAD = -std=c++11 -pthread
 
 EXE=sa6.out
+DOX=../Doxyfile
 
 TARGET=bin/
 CPATH=src/
 HPATH=header/
+DOC=doc/
 
 HEADERS=$(wildcard $(HPATH)*.hpp)
 SOURCES=$(wildcard $(CPATH)*.cpp)
 OBJECTS = $(foreach source, $(SOURCES), obj/$(patsubst src/%.cpp,%.o,$(source)))
 BINARY = bin/$(EXE)
 
-.PHONY: all clean mrproper rebuild run
+.PHONY: all clean mrproper rebuild run doc cleandoc
 
 all: $(BINARY)
+
+doc:
+	@doxygen $(DOX)
+
+cleandoc:
+	find doc/ -type f ! -name '*.info' -delete
 
 clean: 
 	$(RM) $(OBJECTS) 
@@ -29,6 +37,7 @@ clean:
 	
 mrproper: clean 
 	$(RM) $(BINARY)
+ 
 rebuild: 
 	@make mrproper
 	@make

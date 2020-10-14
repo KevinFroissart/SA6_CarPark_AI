@@ -1,4 +1,4 @@
 <map id="TCPSocket::Connect" name="TCPSocket::Connect">
-<area shape="rect" id="node1" title="Connects an IP Adress to a specific port." alt="" coords="220,5,364,32"/>
-<area shape="rect" id="node2" href="$class_voiture.html#abbc7a9f5a9e05a92b75623ff87bee85c" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="5,5,172,32"/>
+<area shape="rect" id="node1" title="Connects an IP Adress to a specific port." alt="" coords="239,5,389,32"/>
+<area shape="rect" id="node2" href="$class_voiture.html#abbc7a9f5a9e05a92b75623ff87bee85c" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="5,5,191,32"/>
 </map>
