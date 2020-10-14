@@ -28,7 +28,7 @@ doc:
 	@doxygen $(DOX)
 
 cleandoc:
-	find doc/ -type f ! -name '*.info' -delete
+	find $(DOC) -type f ! -name '*.info' -delete
 
 clean: 
 	$(RM) $(OBJECTS) 
