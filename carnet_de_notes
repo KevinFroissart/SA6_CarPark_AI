@@ -14,5 +14,5 @@ Semaine 5 :
     - Protocole de communication, communication fonctionnelle entre le parking et les voitures, fonctions avec thread
     difficultés : impossible de communiquer avec le Parking sans threads, core dumped avec les threads, problème de destructeur
 Semaine 6 :
-
-    difficultés :
+    - Protocole de plus en plus complexe, tous les threads fonctionnent
+    difficultés : Etape du protocole propre au parking et non au client TCP -> ajout d'une "etape" dans la structure client TCP

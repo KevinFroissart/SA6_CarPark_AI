@@ -9,7 +9,7 @@ ToolBox::ToolBox(){}
  *
  * @param file the name of the CSV file.
  * @param id the line number containing the sought information.
- * @throw runtime_error Thrown if `file` could not be opened.
+ * @throw std::runtime_error Thrown if `file` could not be opened.
  * @return the line read in the CSV.
  */
 string ToolBox::CSVReader(string file, int id){
@@ -32,7 +32,7 @@ string ToolBox::CSVReader(string file, int id){
  *
  * @param file the name of the CSV file.
  * @param id the line number containing the sought information.
- * @throw runtime_error Thrown if `file` could not be opened.
+ * @throw std::runtime_error Thrown if `file` could not be opened.
  * @return true, false if nothing was written in the file.
  */
 bool ToolBox::CSVWriter(string file){
