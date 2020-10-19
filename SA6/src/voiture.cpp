@@ -185,28 +185,55 @@ string Voiture::protocoleCommunication(string message){
         v_etape++;
         return "Est-ce que vous avez de la place ?";
     }
+
     if(v_etape == 2){
         //étape 2, le parking me répond, s'il à de la place je lui envoie mes informations personnelles, sinon j'arrête la communication en envoyant "stop"
-        return "stop";
+        //return "stop";
         
-        /*if(message == "Non")
+        if(message == "Non")
             return "stop";
         else {
             v_etape++;
             return tb.floatTabToString(v_tab, ',');
-        }*/
+        }
     }
-    if(message == ""){
-        v_etape++;
-        return res; //étape 3
+
+    if(v_etape == 3){
+
+        if(stoi(message) <= v_prixBase){ // Si le prix renvoyé par le parking est inférieur ou égal au prix voulu par la voiture alors elle accepte
+            v_etape++;
+            return "Accepte";
+        }
+        else //Sinon on refuse pour tenter la négociation en proposant un prix
+        {
+            int prix = calcul_prix();
+            v_etape++;
+            return to_string(prix);
+        }
+        
     }
-    if(message == ""){
-        v_etape++;
-        return res; //étape 4
+
+    if (v_etape == 4)
+    {
+        if(message == "Reserve") //Si le serveur indique que la place a bien été réservée alors on termine la communication
+            return "stop";
+        else
+        {
+            int prix = calcul_prix();
+            if (stoi(message) <= prix) //Si le prix renvoyé est inférieur ou égal ou prix que la voiture veut alors elle accepte
+            {
+                v_etape++;
+                return "Accepte";
+            }
+            else //Sinon la voiture met fin à l'échange car il y a déjà eu une tentative de négociation
+            {
+                return "stop"; 
+            }
+            
+            
+        }
+        
     }
-    if(message == ""){
-        v_etape++;
-        return res; //étape 5
-    }
+
     return res;
 }

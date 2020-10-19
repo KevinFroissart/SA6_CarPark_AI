@@ -125,6 +125,7 @@ float Parking::RepondreVoiture(string tab[]){
     }
 }
 
+
 /**
  * @brief 
  * 
@@ -158,27 +159,28 @@ int Parking::getPort() {
  */
 string Parking::protocoleCommunication(string message){
     string res = "";
+    float price;
     if(message == "Est-ce que vous avez de la place ?"){
-        if(s_remplissage >= s_capacite)
+        if(s_remplissage >= s_capacite) // Vérifie si il reste de la place dans le parking, si non on arrete l'échange, si oui on continu
             return "Non";
         else
             return "Oui";
     }
-    if(message == ""){
-        return res;
+
+    string info_voiture = message; //On stock les info de la voiture pour les réutiliser plus tard si il y a negociation
+    price = RepondreVoiture(message); //Avec les info de la voiture on calcule le prix et on lui renvoie
+    return to_string(price);
+    
+    if(message == "Accepte"){ //Si la voiture accepte ce prix alors on lui reserve une place et on lui indique que c'est bon
+        //s_remplissage++;  A voir comment on peut augmenter de 1 le remplissage du parking (car c'est un string) et peut être enregistrer les info de la voiture dans le parking
+        return "Reserve";
     }
-    if(message == ""){
-        return res;
+    else //Si la voiture n'accepete pas alors elle nous renvoi son prix demandé dont on va se servir pour lui calculer un nouveau prix
+    {
+        price = RepondreVoiture2(stoi(message),info_voiture);
+        return to_string(price);
     }
-    if(message == ""){
-        return res;
-    }
-    if(message == ""){
-        return res;
-    }
-    if(message == ""){
-        return res;
-    }
+    
     return res;
 }
 
