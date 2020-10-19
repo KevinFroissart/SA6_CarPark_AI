@@ -120,6 +120,7 @@ struct Client {
 	SOCKET socket;
 	string ip;
 	int port;
+	int etape_client;
 	Client(SOCKET _socket, const string& _ip, int _port)
 		: socket(_socket)
 		, ip(_ip)
@@ -165,8 +166,9 @@ bool ServerP::Server(int port, Parking *parking)
 				continue;
 			}
 			Client client(newClient, ConvertAddr(from), ntohs(from.sin_port));
-			cout << "Connexion de " << client.ip.c_str() << ":"<< client.port << endl;
+			//cout << "Connexion de " << client.ip.c_str() << ":"<< client.port << endl;
 			SetNonBlocking(newClient);
+			client.etape_client = 1; // A chaque connexion l'etape client est a 1
 			clients.push_back(client);
 		}
 		vector<Client>::iterator client = clients.begin();
@@ -179,7 +181,7 @@ bool ServerP::Server(int port, Parking *parking)
 				{
 // C'est ici qu'on gère la communication, à voir si on peux pas le séparer de la classe					
 					cout << "Recu de [" << client->ip.c_str() << ":" << client->port << "] : " << buffer << endl;
-					string reply = parking->protocoleCommunication(buffer); //on pointe vers la fonction présente dans notre instance de parking
+					string reply = parking->protocoleCommunication(buffer, client->etape_client++); //on pointe vers la fonction présente dans notre instance de parking
 					cout << "Reponse a [" << client->ip.c_str() << ":" << client->port << "] > " << reply << endl;
 					send(client->socket, reply.c_str(), reply.length(), 0);
 				}

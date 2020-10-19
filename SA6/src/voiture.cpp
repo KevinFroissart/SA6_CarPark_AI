@@ -24,6 +24,7 @@ Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
     getline(input_stringstream, v_age, ',');
     getline(input_stringstream, v_heure, ',');
     v_prixBase = 2;
+    rechercheParking = true;
 
     initTab();
 }
@@ -43,6 +44,7 @@ Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
 Voiture::Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure) : 
 v_id(id), v_name(name), v_marque(marque), v_statut(statut), v_handicap(handicap), v_age(age), v_heure(heure){
     v_prixBase = 2;
+    rechercheParking = true;
     initTab();
 }
 
@@ -100,11 +102,9 @@ float Voiture::calcul_prix(){
     for(unsigned int i = 1; i<tab_facteurs.size(); i++){
         somme_facteur += tab_facteurs[i];
     }
-    cout<<"prix 1 = "<<prix<<endl;
 
     prix *= ((somme_facteur / (tab_facteurs.size()-1))        //moyenne des facteurs (compris entre 0 et 2) sauf la durée
                 * (nb_heures*0.7 + 0.3*(float)log(nb_heures)));   // fois le nombre d'heures (et un logarithme);
-    cout<<"prix après réduction = "<<prix<<endl;
     return prix;
 }
 
@@ -164,7 +164,6 @@ bool Voiture::communicateWithParking(TCPSocket client, string replyServer) {
 		else
 		{
 			string reply(buffer, len);
-			cout << "Reponse du serveur : " << reply << endl;
             communicateWithParking(client, reply); //on fait de la récurrence pour faire tourner le protocole
 		}
 	}
@@ -179,7 +178,6 @@ bool Voiture::communicateWithParking(TCPSocket client, string replyServer) {
  * @return the string that will be send to the server.
  */
 string Voiture::protocoleCommunication(string message){
-    string res = "stop"; //si on est en dehors des étapes du protocole il y une erreur quelque part, on stop la communication
     if(v_etape == 1){
         //étape 1, La voiture et le parking n'ont encore jamais communiqué, je demande au parking s'il a de la place
         v_etape++;
@@ -188,10 +186,7 @@ string Voiture::protocoleCommunication(string message){
 
     if(v_etape == 2){
         //étape 2, le parking me répond, s'il à de la place je lui envoie mes informations personnelles, sinon j'arrête la communication en envoyant "stop"
-        //return "stop";
-        
-        if(message == "Non")
-            return "stop";
+        if(message == "Non") return "stop";
         else {
             v_etape++;
             return tb.floatTabToString(v_tab, ',');
@@ -199,41 +194,21 @@ string Voiture::protocoleCommunication(string message){
     }
 
     if(v_etape == 3){
-
         if(stoi(message) <= v_prixBase){ // Si le prix renvoyé par le parking est inférieur ou égal au prix voulu par la voiture alors elle accepte
             v_etape++;
             return "Accepte";
         }
-        else //Sinon on refuse pour tenter la négociation en proposant un prix
-        {
+        else { //Sinon on refuse pour tenter la négociation en proposant un prix
             int prix = calcul_prix();
             v_etape++;
             return to_string(prix);
         }
-        
     }
 
-    if (v_etape == 4)
-    {
-        if(message == "Reserve") //Si le serveur indique que la place a bien été réservée alors on termine la communication
-            return "stop";
-        else
-        {
-            int prix = calcul_prix();
-            if (stoi(message) <= prix) //Si le prix renvoyé est inférieur ou égal ou prix que la voiture veut alors elle accepte
-            {
-                v_etape++;
-                return "Accepte";
-            }
-            else //Sinon la voiture met fin à l'échange car il y a déjà eu une tentative de négociation
-            {
-                return "stop"; 
-            }
-            
-            
-        }
-        
+    if (v_etape == 4) {
+        if(message == "Refusé") return "stop";
+        rechercheParking = false;
+        return "stop";
     }
-
-    return res;
+    return "stop";
 }

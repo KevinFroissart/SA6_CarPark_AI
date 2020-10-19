@@ -1,4 +1,6 @@
 #include "../headers/ToolBox.hpp"
+#include <sstream>
+#include <iterator>
 
 ToolBox::ToolBox(){}
 
@@ -7,7 +9,7 @@ ToolBox::ToolBox(){}
  *
  * @param file the name of the CSV file.
  * @param id the line number containing the sought information.
- * @throw std::runtime_error Thrown if `file` could not be opened.
+ * @throw runtime_error Thrown if `file` could not be opened.
  * @return the line read in the CSV.
  */
 string ToolBox::CSVReader(string file, int id){
@@ -30,7 +32,7 @@ string ToolBox::CSVReader(string file, int id){
  *
  * @param file the name of the CSV file.
  * @param id the line number containing the sought information.
- * @throw std::runtime_error Thrown if `file` could not be opened.
+ * @throw runtime_error Thrown if `file` could not be opened.
  * @return true, false if nothing was written in the file.
  */
 bool ToolBox::CSVWriter(string file){
@@ -62,4 +64,27 @@ string ToolBox::floatTabToString(vector<float> tab, char delimiter) {
         }
     }
     return res;
+}
+
+/**
+ * @brief Convert a string to a tab of strings
+ * 
+ * @param msg the string
+ * @param delimiter the delimiter
+ * @return vector<string> 
+ */
+vector<string> ToolBox::StringToTab(string msg, char delimiter){
+
+    vector<string> tab;    
+    string s = msg;
+
+    size_t pos = 0;
+    string token;
+    while ((pos = s.find(delimiter)) != string::npos) {
+        token = s.substr(0, pos);
+        tab.push_back(token);
+        s.erase(0, pos + 1);
+    }   
+    tab.push_back(s);
+    return tab;
 }

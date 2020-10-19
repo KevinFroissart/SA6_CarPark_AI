@@ -73,6 +73,7 @@ int main (void){
     delete tv3;
     delete v1;
     delete v2;
+    delete v3;
     delete P1;
     delete P2;
     return 0;

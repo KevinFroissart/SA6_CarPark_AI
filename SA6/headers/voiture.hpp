@@ -33,11 +33,9 @@ class Voiture{
         vector<float> initTab(); //méthode initialisant le tableau 'v_tab'
         bool rechercheParking;
         void InterrogerParking(); //crée la requête dans le tampon pour interroger un parking
-        bool EcouterReponseParking(); //se met à l'écoute d'une réponse du parking
         string tabToString(vector<float> tab, char delimiter);
         string protocoleCommunication(string message);
         bool communicateWithParking(TCPSocket client, string replyServer);
-        thread t1;
 };
 
 #endif

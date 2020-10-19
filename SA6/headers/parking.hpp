@@ -3,6 +3,7 @@
 #include <iostream>
 #include <thread>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 class Parking{
@@ -11,12 +12,14 @@ class Parking{
         Parking(int id, string cheminFichier);
         ~Parking();
         void printData();
-        float calcul_prix(string tab[]);    //prend un tableau de donnée issues de la voiture, et calcule un prix un adapté, en prenant également en compte le remplissage
+        float calcul_prix(vector<string> tab);    //prend un tableau de donnée issues de la voiture, et calcule un prix un adapté, en prenant également en compte le remplissage
         int getPort();
-        string protocoleCommunication(string message);
+        string protocoleCommunication(string message, int etape);
         bool demarerServer();
 
     private:
+        float s_prix;
+        string s_infoVoiture;
         string s_port;
         string s_prixBase;
         string s_idParking;
