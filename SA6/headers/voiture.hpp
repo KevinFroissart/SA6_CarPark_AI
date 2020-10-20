@@ -16,7 +16,8 @@ class Voiture{
         void printData();
         float calcul_prix();
         bool connexionServer(int port);
-
+        bool rechercheParking;
+        
     private:
         int v_etape; //etape du protocole de communication
         float prixVoulu;
@@ -31,7 +32,6 @@ class Voiture{
         int v_prixBase;
         vector<float> v_tab; //tableau de int contenant les informations à envoyer au parking
         vector<float> initTab(); //méthode initialisant le tableau 'v_tab'
-        bool rechercheParking;
         void InterrogerParking(); //crée la requête dans le tampon pour interroger un parking
         string tabToString(vector<float> tab, char delimiter);
         string protocoleCommunication(string message);

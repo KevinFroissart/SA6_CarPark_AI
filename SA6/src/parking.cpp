@@ -15,9 +15,8 @@
 Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFichier) : filePath(cheminFichier){
     s_prixBase = defaultPrice;
     s_idParking = id;
-    s_remplissage = '0';
+    s_remplissage = "0";
     s_capacite = capacite_max;
-
     ofstream File(filePath);
     if (File.is_open()){
         File<<s_idParking << "," << s_prixBase << "," << s_remplissage << "," << s_capacite <<"\n";
@@ -105,8 +104,8 @@ float Parking::calcul_prix(vector<string> tab){
 
     s_prix = s_prix * ((somme_facteur / (tab_facteurs.size()-1))        //moyenne des facteurs (compris entre 0 et 2) sauf la durée
                 * (nb_heures*0.7 + 0.3*(float)log(nb_heures))   // fois le nombre d'heures (et un logarithme)
-                * 1 + 0.75*(stof(s_remplissage) /      //pondéré par le remplissage actuel du parking
-                            stof(s_capacite)));
+                * 1 + 0.75*(((float) stoi(s_remplissage)) /      //pondéré par le remplissage actuel du parking
+                            ((float) stoi(s_capacite))));
     return s_prix;
 }
 
@@ -155,12 +154,13 @@ string Parking::protocoleCommunication(string message, int etape){
      
     if(etape == 3){
         if(message == "Accepte"){ //Si la voiture accepte ce prix alors on lui reserve une place et on lui indique que c'est bon
-            s_remplissage = "" + stoi(s_remplissage) + 1;
+            s_remplissage = to_string(stoi(s_remplissage) + 1);
+            cout << "remplissage : " << s_remplissage << endl;
             return "OK, place reservé";
         }
         else { //Si la voiture n'accepete pas alors elle nous renvoie son prix
             if(stof(message) > (0.85 * s_prix)){
-                s_remplissage = "" + stoi(s_remplissage) + 1;
+                s_remplissage = to_string(stoi(s_remplissage) + 1);
                 return "Accepte, place réservée";
             } 
             return "Refusé";
