@@ -86,30 +86,29 @@ int Parking::getPort() {
  */
 float Parking::calcul_prix(vector<string> tab){
     vector<float> tab_facteurs;
-    idVoiture.push_back(tab[0]);
-    // la 1ere case du vector est la durée
-    tab_facteurs.push_back(stof(tab[0]));              //facteur durée
-    float nb_heures = tab_facteurs[0]; 
 
+    idVoiture.push_back(tab[0]);
+    tab_facteurs.push_back(stof(tab[1])); //facteur durée
+
+    float nb_heures = tab_facteurs[0]; 
     float prix = stof(s_prixBase);
 
-    tab_facteurs.push_back(1 - 0.25 * stof(tab[1]));    //Facteur handicap
-    tab_facteurs.push_back(1 - 0.25 * stof(tab[2]));    //facteur age (jeune, adulte, vieux)
-    tab_facteurs.push_back(1 - 0.25 * stof(tab[3]));    //facteur statut social
+    tab_facteurs.push_back(1 - 0.25 * stof(tab[2]));    //Facteur handicap
+    tab_facteurs.push_back(1 - 0.25 * stof(tab[3]));    //facteur age (jeune, adulte, vieux)
+    tab_facteurs.push_back(1 - 0.25 * stof(tab[4]));    //facteur statut social
 
     float somme_facteur = 0;
     for(unsigned int i = 1; i<tab_facteurs.size(); i++){
         somme_facteur += tab_facteurs[i];
     }
 
-    somme_facteur /= tab_facteurs.size() - 1;
+    somme_facteur /= (tab_facteurs.size() - 1);
+   
+    prix *= somme_facteur;
+    prix *= 0.7 * nb_heures + 0.3 * (float) log(nb_heures);
+    prix *= 1 + 0.75 * (stof(s_remplissage) / stof(s_capacite));
 
-    s_prix = prix * somme_facteur                               //moyenne des facteurs (compris entre 0 et 2) sauf la durée
-            * (nb_heures*0.7 + 0.3*(float)log(nb_heures))       // fois le nombre d'heures (et un logarithme)
-            * 1 + 0.75*(stof(s_remplissage) / stof(s_capacite));//pondéré par le remplissage actuel du parking
-                           
-    cout << s_prix << endl;
-    return s_prix;
+    return s_prix = prix;
 }
 
 /**
