@@ -42,8 +42,6 @@ Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
     getline(input_stringstream, s_remplissage, ',');
     getline(input_stringstream, s_capacite, ',');
     getline(input_stringstream, s_port, ',');
-
-    //demarerServer(); Ne peux pas marcher sans les threads
 }
 
 /**
@@ -87,11 +85,13 @@ int Parking::getPort() {
  * @return float 
  */
 float Parking::calcul_prix(vector<string> tab){
-    vector <float> tab_facteurs;
-    s_prix = stof(s_prixBase);
+    vector<float> tab_facteurs;
+    idVoiture.push_back(tab[0]);
     // la 1ere case du vector est la durée
     tab_facteurs.push_back(stof(tab[0]));              //facteur durée
     float nb_heures = tab_facteurs[0]; 
+
+    float prix = stof(s_prixBase);
 
     tab_facteurs.push_back(1 - 0.25 * stof(tab[1]));    //Facteur handicap
     tab_facteurs.push_back(1 - 0.25 * stof(tab[2]));    //facteur age (jeune, adulte, vieux)
@@ -99,13 +99,16 @@ float Parking::calcul_prix(vector<string> tab){
 
     float somme_facteur = 0;
     for(unsigned int i = 1; i<tab_facteurs.size(); i++){
-        somme_facteur = somme_facteur + tab_facteurs[i];
+        somme_facteur += tab_facteurs[i];
     }
 
-    s_prix = s_prix * ((somme_facteur / (tab_facteurs.size()-1))        //moyenne des facteurs (compris entre 0 et 2) sauf la durée
-                * (nb_heures*0.7 + 0.3*(float)log(nb_heures))   // fois le nombre d'heures (et un logarithme)
-                * 1 + 0.75*(((float) stoi(s_remplissage)) /      //pondéré par le remplissage actuel du parking
-                            ((float) stoi(s_capacite))));
+    somme_facteur /= tab_facteurs.size() - 1;
+
+    s_prix = prix * somme_facteur                               //moyenne des facteurs (compris entre 0 et 2) sauf la durée
+            * (nb_heures*0.7 + 0.3*(float)log(nb_heures))       // fois le nombre d'heures (et un logarithme)
+            * 1 + 0.75*(stof(s_remplissage) / stof(s_capacite));//pondéré par le remplissage actuel du parking
+                           
+    cout << s_prix << endl;
     return s_prix;
 }
 
@@ -142,29 +145,35 @@ bool Parking::demarerServer(){
  */
 string Parking::protocoleCommunication(string message, int etape){
     ToolBox tb;
-    
     // Vérifie si il reste de la place dans le parking, si non on arrete l'échange, si oui on continu
-    
     if(etape == 1) return EstRempli() ? "Non" : "Oui";
     
     if(etape == 2){
         s_infoVoiture = message;        
         return to_string(calcul_prix(tb.StringToTab(message, ',')));
     }
-     
     if(etape == 3){
-        if(message == "Accepte"){ //Si la voiture accepte ce prix alors on lui reserve une place et on lui indique que c'est bon
-            s_remplissage = to_string(stoi(s_remplissage) + 1);
-            cout << "remplissage : " << s_remplissage << endl;
-            return "OK, place reservé";
-        }
+        //Si la voiture accepte ce prix alors on lui reserve une place et on lui indique que c'est bon
+        if(message == "Accepte")  return ajouterVoiture();
+           
         else { //Si la voiture n'accepete pas alors elle nous renvoie son prix
-            if(stof(message) > (0.85 * s_prix)){
-                s_remplissage = to_string(stoi(s_remplissage) + 1);
-                return "Accepte, place réservée";
-            } 
+            if(stof(message) > (0.85 * s_prix)) return ajouterVoiture();
             return "Refusé";
         }
     }
     return "stop";
+}
+
+/**
+ * @brief When a car is added, the whole process is done here.
+ * 
+ * @return a message fot the car
+ */
+string Parking::ajouterVoiture() {
+    ToolBox tb;
+    s_remplissage = to_string(stoi(s_remplissage) + 1);
+    cout << "remplissage : " << s_remplissage << endl;
+    tb.CSVWriterParkLogs("parkingLog.csv", idVoiture[0]);
+    idVoiture.erase(idVoiture.begin());
+    return "OK, place reservée";
 }

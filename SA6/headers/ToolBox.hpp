@@ -10,7 +10,7 @@ class ToolBox{
     public:
         ToolBox();
         string CSVReader(string file, int id);
-        bool CSVWriter(string file);
+        bool CSVWriterParkLogs(string file, string id);
         string floatTabToString(vector<float> tab, char delimiter);
         vector<string> StringToTab(string tab, char delimiter);
     private:

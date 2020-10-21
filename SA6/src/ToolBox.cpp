@@ -35,18 +35,37 @@ string ToolBox::CSVReader(string file, int id){
  * @throw std::runtime_error Thrown if `file` could not be opened.
  * @return true, false if nothing was written in the file.
  */
-bool ToolBox::CSVWriter(string file){
-    bool done = true;
+bool ToolBox::CSVWriterParkLogs(string file, string id){
+    
+    fstream filein(file);
+    ofstream fileout("updated" + file);
+    if(!filein.is_open() || !fileout.is_open()) throw runtime_error("Could not open file");
 
-    ofstream File(file);
-    if (File.is_open()){
-        
-        File.close();
-    }else{
-        done = false;
-        throw runtime_error("Could not open file");
+    string nbPassage = "0";
+    bool existe = false;
+
+    string tmp;
+    while(getline(filein, tmp)){
+        if(tmp.substr(0, tmp.find(",")) == id){
+            nbPassage = tmp.substr(tmp.find(",")+1, tmp.size());
+            tmp = id + "," + to_string(stoi(nbPassage) + 1);
+            cout << id << " et " << tmp << endl;
+            existe = true;
+        }
+        tmp += "\n";
+        fileout << tmp;
     }
-    return done;
+    
+    if(!existe) tmp += id + "," + nbPassage + "\n";
+    fileout << tmp;
+
+    string s_str = "updated" + file;
+    const char * oldname = s_str.c_str();
+	const char * newname = file.c_str();
+
+    if(remove(newname) != 0) perror("Error deleting file");
+    if(rename(oldname, newname) != 0) perror("Error renaming file");
+    return true;
 }
 
 /**
