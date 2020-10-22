@@ -103,7 +103,7 @@ float Voiture::calcul_prix(){
         somme_facteur += tab_facteurs[i];
     }
 
-    prix *= ((somme_facteur / (tab_facteurs.size()-1))        //moyenne des facteurs (compris entre 0 et 2) sauf la durée
+    prix *= 0.90*((somme_facteur / (tab_facteurs.size()-1))        //moyenne des facteurs (compris entre 0 et 2) sauf la durée
                 * (nb_heures*0.7 + 0.3*(float)log(nb_heures)));   // fois le nombre d'heures (et un logarithme);
     return prix;
 }

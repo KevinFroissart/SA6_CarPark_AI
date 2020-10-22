@@ -33,6 +33,7 @@ class Parking{
         float RepondreVoiture(string tab[]);                         //lorsque une requête voiture est reçu, va calculer un prix et retourner oui, non (si plein)
         float RepondreVoiture2(float prix_propose, string tab[]);    //si la 1ere offre a été refusé par la voiture, analyse la contre-offre de celle-ci
         string ajouterVoiture();
+        int readLog(int id);
 };
 
 #endif

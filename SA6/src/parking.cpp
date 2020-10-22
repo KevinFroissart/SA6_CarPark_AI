@@ -93,16 +93,19 @@ float Parking::calcul_prix(vector<string> tab){
     float nb_heures = tab_facteurs[0]; 
     float prix = stof(s_prixBase);
 
-    tab_facteurs.push_back(1 - 0.25 * stof(tab[2]));    //Facteur handicap
-    tab_facteurs.push_back(1 - 0.25 * stof(tab[3]));    //facteur age (jeune, adulte, vieux)
-    tab_facteurs.push_back(1 - 0.25 * stof(tab[4]));    //facteur statut social
+    //on passe les facteurs dans le vector courant. Et les normalisons (entre 0 et 1)
+    tab_facteurs.push_back(1 - 0.25 * stof(tab[2]));             //Facteur handicap
+    tab_facteurs.push_back(1 - 0.25 * stof(tab[3]));            //facteur age (jeune, adulte, vieux)
+    tab_facteurs.push_back(1 - 0.25 * stof(tab[4]));            //facteur statut social
+    tab_facteurs.push_back(1 - 0.25 * readLog(stof(tab[0])));   //client habitué?
 
     float somme_facteur = 0;
     for(unsigned int i = 1; i<tab_facteurs.size(); i++){
         somme_facteur += tab_facteurs[i];
     }
+    //la somme des scores de tous les facteurs. Compris entre 0 (aucune bonus) et nb_facteurs (tous les bonus à 1) donc
 
-    somme_facteur /= (tab_facteurs.size() - 1);
+    somme_facteur /= (tab_facteurs.size() - 1); //la moyenne des facteurs
    
     prix *= somme_facteur;
     prix *= 0.7 * nb_heures + 0.3 * (float) log(nb_heures);
@@ -175,4 +178,17 @@ string Parking::ajouterVoiture() {
     tb.CSVWriterParkLogs("parkingLog.csv", idVoiture[0]);
     idVoiture.erase(idVoiture.begin());
     return "OK, place reservée";
+}
+
+/**
+ * @brief collect the log of the car.
+ * 
+ * @return 0, 1, or 2 depending on how often the car visited the parking
+ */
+
+int Parking::readLog(int id){
+    ToolBox tb;
+    vector<string> string_passages = tb.StringToTab(tb.CSVReader("parkingLog.csv", id),',');
+    int nb_passages = stoi(string_passages[1]);
+    return (nb_passages<5 ? 0 : nb_passages>10 ? 2 :1) ;
 }
