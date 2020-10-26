@@ -30,7 +30,7 @@ int main (void){
 
     sleep(3);
 
-    int nb_voiture = 10;
+    int nb_voiture = 30;
     vector<Voiture *> listeVoiture;
 
     for(int i = 0; i < nb_voiture; i++){

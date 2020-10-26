@@ -35,28 +35,28 @@ string ToolBox::CSVReader(string file, int id){
  * @throw std::runtime_error Thrown if `file` could not be opened.
  * @return true, false if nothing was written in the file.
  */
-bool ToolBox::CSVWriterParkLogs(string file, string id){
+bool ToolBox::CSVWriterParkLogs(string file, string idVoiture){
     
     fstream filein(file);
     ofstream fileout("updated" + file);
     if(!filein.is_open() || !fileout.is_open()) throw runtime_error("Could not open file");
 
-    string nbPassage = "0";
+    string nbPassage = "1";
     bool existe = false;
 
     string tmp;
     while(getline(filein, tmp)){
-        if(tmp.substr(0, tmp.find(",")) == id){
+        if(tmp.substr(0, tmp.find(",")) == idVoiture){
             nbPassage = tmp.substr(tmp.find(",")+1, tmp.size());
-            tmp = id + "," + to_string(stoi(nbPassage) + 1);
-            cout << id << " et " << tmp << endl;
+            tmp = idVoiture + "," + to_string(stoi(nbPassage) + 1);
+            cout << idVoiture << " et " << tmp << endl;
             existe = true;
         }
         tmp += "\n";
         fileout << tmp;
     }
     
-    if(!existe) tmp += id + "," + nbPassage + "\n";
+    if(!existe) tmp += idVoiture + "," + nbPassage + "\n";
     fileout << tmp;
 
     string s_str = "updated" + file;
