@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['tcpsocket',['TCPSocket',['../class_t_c_p_socket.html',1,'TCPSocket'],['../class_t_c_p_socket.html#a7a50427a401d1a6f3209d51818bad901',1,'TCPSocket::TCPSocket()']]],
-  ['toolbox',['ToolBox',['../class_tool_box.html',1,'']]]
+  ['send_15',['Send',['../class_t_c_p_socket.html#acc5345a54a874aafb3389489f2c1c846',1,'TCPSocket']]],
+  ['sockets_16',['Sockets',['../namespace_sockets.html',1,'']]],
+  ['stringtotab_17',['StringToTab',['../class_tool_box.html#ae43383301f2a0fb0e9b130eff73751d3',1,'ToolBox']]]
 ];

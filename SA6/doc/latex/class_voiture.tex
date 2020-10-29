@@ -1,4 +1,4 @@
-\hypertarget{class_voiture}{}\section{Voiture Class Reference}
+\hypertarget{class_voiture}{}\doxysection{Voiture Class Reference}
 \label{class_voiture}\index{Voiture@{Voiture}}
 
 
@@ -10,7 +10,7 @@ Collaboration diagram for Voiture\+:
 \includegraphics[width=197pt]{class_voiture__coll__graph}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_voiture_a9f8646dde1dd92d80cf56b975bba97c2}{Voiture}} (int id, string file\+Path)
@@ -26,14 +26,22 @@ void \mbox{\hyperlink{class_voiture_a3d786c35df10757794b241134f5e2f2e}{print\+Da
 float \mbox{\hyperlink{class_voiture_a1cd531495d64c694292374d96724c654}{calcul\+\_\+prix}} ()
 \begin{DoxyCompactList}\small\item\em Method that calculates the park price the car owner wants to pay. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_voiture_abbc7a9f5a9e05a92b75623ff87bee85c}{connexion\+Server}} (int port)
-\begin{DoxyCompactList}\small\item\em Method used to connect the car with a specific \mbox{\hyperlink{class_parking}{Parking}} using sockets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Method used to connect the car with a specific \mbox{\hyperlink{class_parking}{Parking}} using sockets. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_voiture_a0d7ccac52a67547de28bc40763804315}{get\+ID}} ()
+\begin{DoxyCompactList}\small\item\em methoid that returns the ID of the \mbox{\hyperlink{class_voiture}{Voiture}} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_voiture_a4eeeed4e1cd55afa8fa7867c7597326d}\label{class_voiture_a4eeeed4e1cd55afa8fa7867c7597326d}} 
+bool {\bfseries recherche\+Parking}
+\end{DoxyCompactItemize}
 
 
-\subsection{Constructor \& Destructor Documentation}
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_voiture_a9f8646dde1dd92d80cf56b975bba97c2}\label{class_voiture_a9f8646dde1dd92d80cf56b975bba97c2}} 
 \index{Voiture@{Voiture}!Voiture@{Voiture}}
 \index{Voiture@{Voiture}!Voiture@{Voiture}}
-\subsubsection{\texorpdfstring{Voiture()}{Voiture()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{Voiture()}{Voiture()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Voiture\+::\+Voiture (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{file\+Path }\end{DoxyParamCaption})}
 
 
@@ -61,7 +69,7 @@ Here is the call graph for this function\+:
 \mbox{\Hypertarget{class_voiture_a77002698169f77149f6bd92f875b86cf}\label{class_voiture_a77002698169f77149f6bd92f875b86cf}} 
 \index{Voiture@{Voiture}!Voiture@{Voiture}}
 \index{Voiture@{Voiture}!Voiture@{Voiture}}
-\subsubsection{\texorpdfstring{Voiture()}{Voiture()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{\texorpdfstring{Voiture()}{Voiture()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Voiture\+::\+Voiture (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{name,  }\item[{string}]{marque,  }\item[{string}]{statut,  }\item[{string}]{handicap,  }\item[{string}]{age,  }\item[{string}]{heure }\end{DoxyParamCaption})}
 
 
@@ -90,11 +98,11 @@ the object \mbox{\hyperlink{class_voiture}{Voiture}}.
 \end{DoxyReturn}
 
 
-\subsection{Member Function Documentation}
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_voiture_a1cd531495d64c694292374d96724c654}\label{class_voiture_a1cd531495d64c694292374d96724c654}} 
-\index{Voiture@{Voiture}!calcul\+\_\+prix@{calcul\+\_\+prix}}
-\index{calcul\+\_\+prix@{calcul\+\_\+prix}!Voiture@{Voiture}}
-\subsubsection{\texorpdfstring{calcul\+\_\+prix()}{calcul\_prix()}}
+\index{Voiture@{Voiture}!calcul\_prix@{calcul\_prix}}
+\index{calcul\_prix@{calcul\_prix}!Voiture@{Voiture}}
+\doxysubsubsection{\texorpdfstring{calcul\_prix()}{calcul\_prix()}}
 {\footnotesize\ttfamily float Voiture\+::calcul\+\_\+prix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
@@ -107,9 +115,9 @@ This method uses different data such as the owner status, if he has a handicap, 
 prix, the fiual price. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_voiture_abbc7a9f5a9e05a92b75623ff87bee85c}\label{class_voiture_abbc7a9f5a9e05a92b75623ff87bee85c}} 
-\index{Voiture@{Voiture}!connexion\+Server@{connexion\+Server}}
-\index{connexion\+Server@{connexion\+Server}!Voiture@{Voiture}}
-\subsubsection{\texorpdfstring{connexion\+Server()}{connexionServer()}}
+\index{Voiture@{Voiture}!connexionServer@{connexionServer}}
+\index{connexionServer@{connexionServer}!Voiture@{Voiture}}
+\doxysubsubsection{\texorpdfstring{connexionServer()}{connexionServer()}}
 {\footnotesize\ttfamily bool Voiture\+::connexion\+Server (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption})}
 
 
@@ -132,6 +140,19 @@ Here is the call graph for this function\+:
 \includegraphics[width=350pt]{class_voiture_abbc7a9f5a9e05a92b75623ff87bee85c_cgraph}
 \end{center}
 \end{figure}
+\mbox{\Hypertarget{class_voiture_a0d7ccac52a67547de28bc40763804315}\label{class_voiture_a0d7ccac52a67547de28bc40763804315}} 
+\index{Voiture@{Voiture}!getID@{getID}}
+\index{getID@{getID}!Voiture@{Voiture}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily int Voiture\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+methoid that returns the ID of the \mbox{\hyperlink{class_voiture}{Voiture}} 
+
+\begin{DoxyReturn}{Returns}
+int the ID 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

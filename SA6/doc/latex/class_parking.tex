@@ -1,4 +1,4 @@
-\hypertarget{class_parking}{}\section{Parking Class Reference}
+\hypertarget{class_parking}{}\doxysection{Parking Class Reference}
 \label{class_parking}\index{Parking@{Parking}}
 
 
@@ -10,7 +10,7 @@ Collaboration diagram for Parking\+:
 \includegraphics[width=238pt]{class_parking__coll__graph}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_parking_a71be192e206305ba76ef2c96cd5bbe5a}{Parking}} (int id, float default\+Price, int capacite\+\_\+max, string chemin\+Fichier)
@@ -23,22 +23,21 @@ Collaboration diagram for Parking\+:
 \mbox{\Hypertarget{class_parking_acddc5b3da5d2769385affe3aad116cb3}\label{class_parking_acddc5b3da5d2769385affe3aad116cb3}} 
 void {\bfseries print\+Data} ()
 \item 
-float \mbox{\hyperlink{class_parking_a41df7b6f534723a56c36f7c06d336f1b}{calcul\+\_\+prix}} (string tab\mbox{[}$\,$\mbox{]})
+float \mbox{\hyperlink{class_parking_ab2849d60e8fad7c56c466d425647192b}{calcul\+\_\+prix}} (vector$<$ string $>$ tab)
 \item 
-\mbox{\Hypertarget{class_parking_a95abbf61891ce84164c19e642756b25b}\label{class_parking_a95abbf61891ce84164c19e642756b25b}} 
-int {\bfseries get\+Port} ()
-\item 
-string \mbox{\hyperlink{class_parking_a4b02969c773d1f1cbe8b895608124a49}{protocole\+Communication}} (string message)
+int \mbox{\hyperlink{class_parking_a95abbf61891ce84164c19e642756b25b}{get\+Port}} ()
+\begin{DoxyCompactList}\small\item\em method that return the port of the server. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_parking_a238a4ce4736adb41e6ba00345b4f1516}{protocole\+Communication}} (string message, int etape)
 \item 
 bool \mbox{\hyperlink{class_parking_a28bcb84c5a6f26d13646253fd69471dd}{demarer\+Server}} ()
 \end{DoxyCompactItemize}
 
 
-\subsection{Constructor \& Destructor Documentation}
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_parking_a71be192e206305ba76ef2c96cd5bbe5a}\label{class_parking_a71be192e206305ba76ef2c96cd5bbe5a}} 
 \index{Parking@{Parking}!Parking@{Parking}}
 \index{Parking@{Parking}!Parking@{Parking}}
-\subsubsection{\texorpdfstring{Parking()}{Parking()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{Parking()}{Parking()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Parking\+::\+Parking (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{float}]{default\+Price,  }\item[{int}]{capacite\+\_\+max,  }\item[{string}]{chemin\+Fichier }\end{DoxyParamCaption})}
 
 
@@ -59,7 +58,7 @@ Construct a new \mbox{\hyperlink{class_parking}{Parking}}\+:\+: \mbox{\hyperlink
 \mbox{\Hypertarget{class_parking_a300004ddbc70c562488cf3f933d5cfb3}\label{class_parking_a300004ddbc70c562488cf3f933d5cfb3}} 
 \index{Parking@{Parking}!Parking@{Parking}}
 \index{Parking@{Parking}!Parking@{Parking}}
-\subsubsection{\texorpdfstring{Parking()}{Parking()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{\texorpdfstring{Parking()}{Parking()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Parking\+::\+Parking (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{string}]{chemin\+Fichier }\end{DoxyParamCaption})}
 
 
@@ -83,12 +82,12 @@ Here is the call graph for this function\+:
 \end{figure}
 
 
-\subsection{Member Function Documentation}
-\mbox{\Hypertarget{class_parking_a41df7b6f534723a56c36f7c06d336f1b}\label{class_parking_a41df7b6f534723a56c36f7c06d336f1b}} 
-\index{Parking@{Parking}!calcul\+\_\+prix@{calcul\+\_\+prix}}
-\index{calcul\+\_\+prix@{calcul\+\_\+prix}!Parking@{Parking}}
-\subsubsection{\texorpdfstring{calcul\+\_\+prix()}{calcul\_prix()}}
-{\footnotesize\ttfamily float Parking\+::calcul\+\_\+prix (\begin{DoxyParamCaption}\item[{string}]{tab\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_parking_ab2849d60e8fad7c56c466d425647192b}\label{class_parking_ab2849d60e8fad7c56c466d425647192b}} 
+\index{Parking@{Parking}!calcul\_prix@{calcul\_prix}}
+\index{calcul\_prix@{calcul\_prix}!Parking@{Parking}}
+\doxysubsubsection{\texorpdfstring{calcul\_prix()}{calcul\_prix()}}
+{\footnotesize\ttfamily float Parking\+::calcul\+\_\+prix (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{tab }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -98,10 +97,18 @@ Here is the call graph for this function\+:
 \begin{DoxyReturn}{Returns}
 float 
 \end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_parking_ab2849d60e8fad7c56c466d425647192b_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{class_parking_a28bcb84c5a6f26d13646253fd69471dd}\label{class_parking_a28bcb84c5a6f26d13646253fd69471dd}} 
-\index{Parking@{Parking}!demarer\+Server@{demarer\+Server}}
-\index{demarer\+Server@{demarer\+Server}!Parking@{Parking}}
-\subsubsection{\texorpdfstring{demarer\+Server()}{demarerServer()}}
+\index{Parking@{Parking}!demarerServer@{demarerServer}}
+\index{demarerServer@{demarerServer}!Parking@{Parking}}
+\doxysubsubsection{\texorpdfstring{demarerServer()}{demarerServer()}}
 {\footnotesize\ttfamily bool Parking\+::demarer\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}
@@ -109,11 +116,24 @@ true
 
 false 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_parking_a4b02969c773d1f1cbe8b895608124a49}\label{class_parking_a4b02969c773d1f1cbe8b895608124a49}} 
-\index{Parking@{Parking}!protocole\+Communication@{protocole\+Communication}}
-\index{protocole\+Communication@{protocole\+Communication}!Parking@{Parking}}
-\subsubsection{\texorpdfstring{protocole\+Communication()}{protocoleCommunication()}}
-{\footnotesize\ttfamily string Parking\+::protocole\+Communication (\begin{DoxyParamCaption}\item[{string}]{message }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_parking_a95abbf61891ce84164c19e642756b25b}\label{class_parking_a95abbf61891ce84164c19e642756b25b}} 
+\index{Parking@{Parking}!getPort@{getPort}}
+\index{getPort@{getPort}!Parking@{Parking}}
+\doxysubsubsection{\texorpdfstring{getPort()}{getPort()}}
+{\footnotesize\ttfamily int Parking\+::get\+Port (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+method that return the port of the server. 
+
+\begin{DoxyReturn}{Returns}
+the port of the server. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_parking_a238a4ce4736adb41e6ba00345b4f1516}\label{class_parking_a238a4ce4736adb41e6ba00345b4f1516}} 
+\index{Parking@{Parking}!protocoleCommunication@{protocoleCommunication}}
+\index{protocoleCommunication@{protocoleCommunication}!Parking@{Parking}}
+\doxysubsubsection{\texorpdfstring{protocoleCommunication()}{protocoleCommunication()}}
+{\footnotesize\ttfamily string Parking\+::protocole\+Communication (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{int}]{etape }\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}{Parameters}
@@ -123,6 +143,14 @@ false
 \begin{DoxyReturn}{Returns}
 string 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_parking_a238a4ce4736adb41e6ba00345b4f1516_cgraph}
+\end{center}
+\end{figure}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
