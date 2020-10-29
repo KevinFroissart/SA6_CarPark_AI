@@ -6,6 +6,7 @@
 #include <thread>
 #include <pthread.h>
 #include <unistd.h>
+#include <time.h>
 using namespace std;
 
 void startServer(Parking * P){
@@ -32,9 +33,23 @@ int main (void){
 
     int nb_voiture = 30;
     vector<Voiture *> listeVoiture;
+    vector<Voiture *> listeVoitureTmp;
 
     for(int i = 0; i < nb_voiture; i++){
-        listeVoiture.push_back(new Voiture(i+1, "voitures.csv"));
+        listeVoitureTmp.push_back(new Voiture(i + 1, "voitures.csv"));
+    }
+
+    //Ajouter des voitures de manière aléatoire dans notre liste
+    while(listeVoiture.size() != (unsigned int) nb_voiture){
+        srand(time(NULL));
+        int voitureRand = rand() % (int) listeVoitureTmp.size();
+        
+        listeVoiture.push_back(new Voiture(listeVoitureTmp[voitureRand]->getID(), "voitures.csv"));
+        listeVoitureTmp.erase(listeVoitureTmp.begin() + voitureRand);
+    }
+
+    //Creer les threads pour chaque voitures
+    for(int i = 0; i < nb_voiture; i++){
         for(int j = 0; j < nb_parking && listeVoiture[i]->rechercheParking; j++){
             thread * tmp = new thread(connexionServer, listeVoiture[i], listeParking[j]->getPort());
             tmp->join();
@@ -48,9 +63,8 @@ int main (void){
         delete listeThreadParking[i];
         delete listeParking[i];
     }      
-    for(int i = 0; i < nb_voiture; i++){
-        delete listeVoiture[i];
+    for(Voiture* voiture : listeVoiture){
+        delete voiture;
     }
-
     return 0;
 }

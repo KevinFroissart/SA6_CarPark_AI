@@ -49,7 +49,6 @@ bool ToolBox::CSVWriterParkLogs(string file, string idVoiture){
         if(tmp.substr(0, tmp.find(",")) == idVoiture){
             nbPassage = tmp.substr(tmp.find(",")+1, tmp.size());
             tmp = idVoiture + "," + to_string(stoi(nbPassage) + 1);
-            cout << idVoiture << " et " << tmp << endl;
             existe = true;
         }
         tmp += "\n";

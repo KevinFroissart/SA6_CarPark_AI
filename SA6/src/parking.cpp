@@ -180,7 +180,6 @@ string Parking::protocoleCommunication(string message, int etape){
 string Parking::ajouterVoiture() {
     ToolBox tb;
     s_remplissage = to_string(stoi(s_remplissage) + 1);
-    cout << "remplissage : " << s_remplissage << endl;
     tb.CSVWriterParkLogs("parking" + s_idParking + "Log.csv", idVoiture[0]);
     idVoiture.erase(idVoiture.begin());
     return "OK, place reservée";

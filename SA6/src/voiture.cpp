@@ -79,6 +79,15 @@ vector<float> Voiture::initTab(){
 } 
 
 /**
+ * @brief methoid that returns the ID of the Voiture
+ * 
+ * @return int the ID 
+ */
+int Voiture::getID(){
+    return v_id;
+}
+
+/**
  * @brief Method that calculates the park price the
  * car owner wants to pay.
  *

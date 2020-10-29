@@ -17,6 +17,7 @@ class Voiture{
         float calcul_prix();
         bool connexionServer(int port);
         bool rechercheParking;
+        int getID();
         
     private:
         int v_etape; //etape du protocole de communication
