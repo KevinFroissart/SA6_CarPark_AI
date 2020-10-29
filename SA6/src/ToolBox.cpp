@@ -106,3 +106,69 @@ vector<string> ToolBox::StringToTab(string msg, char delimiter){
     tab.push_back(s);
     return tab;
 }
+
+
+/**
+ * @brief Sort a CSV file by ID
+ * 
+ * @param file the CSV file
+ * @param posId the position of the ID
+ * @throw std::runtime_error Thrown if `file` could not be opened.
+ * @return true if the operation was successful
+ * @return false if the operation wasn't successful
+ *//*
+bool ToolBox::LogSorter(string file){
+    bool success = true;
+    fstream filein(file);
+    ofstream fileout("sorted" + file);
+
+    if(!filein.is_open() || !fileout.is_open()) throw runtime_error("Could not open file");
+
+    string tmp;
+    vector<string> tab;
+    
+    for(int i = 0; i < getNbLines(file); i++){
+        tab.push_back("");
+    }
+
+    while(getline(filein, tmp)){
+        if(tmp.size() > 1){
+            int idx = stoi(tmp.substr(0, tmp.find(",")));
+            tab.insert(tab.begin() + idx, tmp);
+        }
+    }
+
+    for(string string : tab){
+        fileout << string + "\n";
+    }
+
+    string s_str = "sorted" + file;
+    const char * oldname = s_str.c_str();
+	const char * newname = file.c_str();
+
+    if(remove(newname) != 0) perror("Error deleting file");
+    if(rename(oldname, newname) != 0) perror("Error renaming file");
+
+    return success;
+}
+*/
+/**
+ * @brief Counts the number of line of a file
+ * 
+ * @param file 
+ * @return int 
+ */
+int ToolBox::getNbLines(string file){
+    fstream filein(file);
+    if(!filein.is_open()) throw runtime_error("Could not open file");
+    
+    int nb_line = 0;
+    string tmp;
+
+    while(getline(filein, tmp)){
+        ++nb_line;
+    }
+
+    filein.close();
+    return nb_line;
+}

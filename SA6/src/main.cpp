@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../headers/voiture.hpp"
 #include "../headers/parking.hpp"
+#include "../headers/ToolBox.hpp"
 #include <fstream>
 #include <string.h>
 #include <thread>
@@ -18,6 +19,8 @@ void connexionServer(Voiture * v, int port){
 }
 
 int main (void){
+
+    ToolBox tb;
 
     int nb_parking = 3;
     vector<Parking *> listeParking;

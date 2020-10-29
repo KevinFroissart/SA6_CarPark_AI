@@ -13,6 +13,8 @@ class ToolBox{
         bool CSVWriterParkLogs(string file, string idVoiture);
         string floatTabToString(vector<float> tab, char delimiter);
         vector<string> StringToTab(string tab, char delimiter);
+        bool LogSorter(string file);
+        int getNbLines(string file);
     private:
 };
 
