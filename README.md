@@ -4,12 +4,45 @@
 This project was made in collaboration with **Kévin FROISSART, Valentin GACHOD, Anton GASQUET and Samir AKNINE** of the University Claude Bernard Lyon 1 (FRANCE).
 
 ## Usage
+### Execute the program
 ```
 $ git clone https://github.com/KevinFroissart/SA6_CarPark_AI.git
-$ cd SA6_CarPark_Ai
-$ make
-$ ./SA6/bin/sa6.out
+$ cd SA6_CarPark_Ai/SA6
+$ make run
 ```
+
+##### Requirements :
+```
+GCC : sudo apt install build-essential
+or Clang : sudo apt install clang
+```
+
+
+### (re)Generate Documentation
+```
+$ cd SA6_CarPark_Ai/SA6
+$ make doc 
+```
+
+##### Requirements :
+```
+Graphviz : sudo apt install graphviz
+Doxygen : sudo apt install doxygen
+Java : sudo apt install default-jdk
+```
+
+Project layout
+--------------
+    SA6/
+    ├─ bin/             binaries
+    ├─ doc/             documentation
+    │  ├─ html/         html version
+    │  ├─ latex/        LaTeX version
+    │  ├─ rtf/          RTF version
+    │  └─ uml           uml
+    ├─ headers/         hpp headers
+    ├─ obj/             generated object files
+    └─ src/             application source code
 
 ## License
 The license used is **GNU GENERAL PUBLIC LICENSE v2**.
