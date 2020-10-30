@@ -22,15 +22,11 @@ class Parking {
     + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
     + Parking(int id, string cheminFichier)
     + ~Parking()
-    + void printData()
     + float calcul_prix(vector<string> tab)
     + int getPort()
     + string protocoleCommunication(string message, int etape)
     + bool demarerServer()
     - bool EstRempli()
-    - void RajouterVoiture()
-    - float RepondreVoiture(string tab[])
-    - float RepondreVoiture2(float prix_propose, string tab[])
     - string ajouterVoiture()
     - int readLog(int id)
 }
@@ -61,38 +57,41 @@ Class Voiture {
     - bool communicateWithParking(TCPSocket client, string replyServer)
 }
 
+package Réseau <<Rectangle>> {
+
 Class ServerParking {
-    + bool Start()
-	+ void End()
-    + int GetError()
-    + void CloseSocket(SOCKET s)
-    + bool SetNonBlocking(SOCKET s)
-    + string ConvertAddr(const sockaddr_in& addr)
     + bool Receive(SOCKET socket, string& _buffer)
     + bool Server(int port, Parking * parking)
 }
 
-Class TCPSocket {
+Class SocketVoiture {
     - SOCKET mSocket
 
-    + TCPSocket();
-	+ ~TCPSocket();
+    + SocketVoiture();
+	+ ~SocketVoiture();
 	+ bool Connect(const std::string& ipaddress, unsigned short port);
 	+ int Send(const char* data, unsigned int len);
 	+ int Receive(char* buffer, unsigned int len);		
 }
 
-Class Socket {
+Class Sockets {
     + bool Start();
 	+ void Release();
 	+ int GetError();
-	+ void CloseSocket(SOCKET socket);    
+	+ void CloseSocket(SOCKET socket);
+    + bool SetNonBlocking(SOCKET s)
+    + string ConvertAddr(const sockaddr_in& addr)    
+}
 }
 
 ToolBox <|-- Voiture : utilise <
 ToolBox <|-- Parking : utilise <
-ServerParking "1 " --* "1 " Parking : < possède
-Socket <..* TCPSocket : est composé de <
-Voiture *-- TCPSocket : possède >
+
+Parking "1 " *-- "1 " ServerParking : > possède
+Voiture *-- SocketVoiture : possède >
+
+SocketVoiture *..> Sockets : est composé de >
+ServerParking *..> Sockets : est composé de >
+
 
 @enduml
