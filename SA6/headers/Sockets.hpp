@@ -25,6 +25,8 @@ typedef int socklen_t;
 #include <netinet/in.h> // sockaddr_in, IPPROTO_TCP
 #include <arpa/inet.h> // hton*, ntoh*, inet_addr
 #include <unistd.h>  // close
+#include <fcntl.h>
+#include <string>
 #include <cerrno> // errno
 #define SOCKET int
 #define INVALID_SOCKET ((int)-1)

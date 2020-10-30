@@ -13,7 +13,6 @@ class Voiture{
         Voiture(int id, string filePath); //constructeur utilisant les informations du csv
         Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure); //constructeur utilisant les informations données en paramètre
         ~Voiture();
-        void printData();
         float calcul_prix();
         bool connexionServer(int port);
         bool rechercheParking;
@@ -33,8 +32,6 @@ class Voiture{
         int v_prixBase;
         vector<float> v_tab; //tableau de int contenant les informations à envoyer au parking
         vector<float> initTab(); //méthode initialisant le tableau 'v_tab'
-        void InterrogerParking(); //crée la requête dans le tampon pour interroger un parking
-        string tabToString(vector<float> tab, char delimiter);
         string protocoleCommunication(string message);
         bool communicateWithParking(TCPSocket client, string replyServer);
 };

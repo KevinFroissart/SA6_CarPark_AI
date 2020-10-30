@@ -56,14 +56,6 @@ Voiture::~Voiture(){
 }
 
 /**
- * @brief Prints the car informations.
- */
-void Voiture::printData(){
-    cout<<"id: "<<v_id<<" | "<<v_name<<" | Marque: "<<v_marque <<" | Statut: "<<v_statut<<" | Handicap: "<<v_handicap<<" | age: "<<v_age<<" | heure: "<<v_heure<<endl;
-    tb.floatTabToString(v_tab, ',');
-}
-
-/**
  * @brief Returns a tab of floats designed for socket communication
  * and Parking management.
  *

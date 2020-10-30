@@ -85,37 +85,6 @@ bool ServerP::Receive(SOCKET socket, string& _buffer)
 	}
 }
 
-vector<string> ServerP::Split(const string& str, const string& separator)
-{
-	vector<string> parts;
-	int start = 0;
-	size_t end;
-	while ( (end = str.find(separator, start)) != string::npos )
-	{
-		parts.push_back(str.substr(start, end - start));
-		start = end + 1;
-	}
-	parts.push_back(str.substr(start));
-	return parts;
-}
-
-string ServerP::Merge(const vector<string>& parts, const string& aggregator)
-{
-	if ( parts.empty() )
-		return "";
-	string result = parts[0];
-	for ( size_t i = 1; i < parts.size(); ++i )
-		result += aggregator + parts[i];
-	return result;
-}
-
-string ServerP::ShuffleSentence(const string& sentence)
-{
-	vector<string> words = Split(sentence, " ");
-	random_shuffle(words.begin(), words.end());
-	return Merge(words, " ");
-}
-
 struct Client {
 	SOCKET socket;
 	string ip;

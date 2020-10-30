@@ -44,10 +44,6 @@ namespace ServerP
     bool SetNonBlocking(SOCKET s);
     string ConvertAddr(const sockaddr_in& addr);
     bool Receive(SOCKET socket, string& _buffer);
-    vector<string> Split(const string& str, const string& separator);
-    string Merge(const vector<string>& parts, const string& aggregator);
-    string ShuffleSentence(const string& sentence);
-        
     bool Server(int port, Parking * parking);
 };
 

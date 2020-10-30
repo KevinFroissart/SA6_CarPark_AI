@@ -1,0 +1,96 @@
+@startuml
+class ToolBox {
+    + string CSVReader(string file, int id)
+    + bool CSVWriterParkLogs(string file, string idVoiture)
+    + string floatTabToString(vector<float> tab, char delimiter)
+    + vector<string> StringToTab(string tab, char delimiter)
+    + bool LogSorter(string file)
+    + int getNbLines(string file)
+}
+
+class Parking {
+    - vector<string> idVoiture
+    - float s_prix
+    - string s_infoVoiture
+    - string s_port
+    - string s_prixBase
+    - string s_idParking
+    - string s_remplissage
+    - string s_capacite
+    - string filePath
+    - int tab_current_car[]
+    + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
+    + Parking(int id, string cheminFichier)
+    + ~Parking()
+    + void printData()
+    + float calcul_prix(vector<string> tab)
+    + int getPort()
+    + string protocoleCommunication(string message, int etape)
+    + bool demarerServer()
+    - bool EstRempli()
+    - void RajouterVoiture()
+    - float RepondreVoiture(string tab[])
+    - float RepondreVoiture2(float prix_propose, string tab[])
+    - string ajouterVoiture()
+    - int readLog(int id)
+}
+
+Class Voiture {
+    - float prixVoulu
+    - int v_prixBase
+    - int v_etape
+    - int v_id
+    - string v_path
+    - string v_name
+    - string v_marque
+    - string v_statut
+    - string v_handicap
+    - string v_age
+    - string v_heure
+    - vector<float> v_tab
+    - bool rechercheParking
+
+    + Voiture(int id, string filePath)
+    + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
+    + ~Voiture()
+    + int getID()
+    + float calcul_prix()
+    + bool connexionServer(int port)
+    - vector<float> initTab()
+    - string protocoleCommunication(string message)
+    - bool communicateWithParking(TCPSocket client, string replyServer)
+}
+
+Class ServerParking {
+    + bool Start()
+	+ void End()
+    + int GetError()
+    + void CloseSocket(SOCKET s)
+    + bool SetNonBlocking(SOCKET s)
+    + string ConvertAddr(const sockaddr_in& addr)
+    + bool Receive(SOCKET socket, string& _buffer)
+    + bool Server(int port, Parking * parking)
+}
+
+Class TCPSocket {
+    - SOCKET mSocket
+
+    + TCPSocket();
+	+ ~TCPSocket();
+	+ bool Connect(const std::string& ipaddress, unsigned short port);
+	+ int Send(const char* data, unsigned int len);
+	+ int Receive(char* buffer, unsigned int len);		
+}
+
+Class Socket {
+    + bool Start();
+	+ void Release();
+	+ int GetError();
+	+ void CloseSocket(SOCKET socket);    
+}
+
+ToolBox <|-- Voiture
+ToolBox <|-- Parking
+ServerParking "1 " --* "1 " Parking
+
+@enduml
