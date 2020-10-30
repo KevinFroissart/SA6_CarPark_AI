@@ -1,4 +1,4 @@
 <map id="Voiture::connexionServer" name="Voiture::connexionServer">
 <area shape="rect" id="node1" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="5,5,191,32"/>
-<area shape="rect" id="node2" href="$class_t_c_p_socket.html#ac816c30175550d8d9a14c89c1c5ec8da" title="Connects an IP Adress to a specific port." alt="" coords="239,5,389,32"/>
+<area shape="rect" id="node2" href="$class_socket_voiture.html#ab3553b39cae65485b14547d3ca0b1dbb" title="Connects an IP Adress to a specific port." alt="" coords="239,5,411,32"/>
 </map>

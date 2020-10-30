@@ -4,7 +4,7 @@ LD=$(WRAPPER)
 CFLAGS=-Wall -W -Werror -g
 
 LDFLAGS =
-LIBS =
+LIBS = plantuml.jar
 THREAD = -std=c++11 -pthread
 
 EXE=sa6.out
@@ -20,15 +20,20 @@ SOURCES=$(wildcard $(CPATH)*.cpp)
 OBJECTS = $(foreach source, $(SOURCES), obj/$(patsubst src/%.cpp,%.o,$(source)))
 BINARY = bin/$(EXE)
 
-.PHONY: all clean mrproper rebuild run doc cleandoc
+.PHONY: all clean mrproper rebuild run doc cleandoc uml
 
 all: $(BINARY)
 
-doc:
+doc: uml
 	@doxygen $(DOX)
 
+uml:
+	java -jar $(DOC)$(LIBS) $(DOC)uml.txt 
+
+
 cleandoc:
-	find $(DOC) -type f ! -name '*.info' -delete
+	$(RM) -Rf $(DOC)html $(DOC)latex $(DOC)rtf $(DOC)uml.png
+	#find $(DOC) -type f ! -name '*.info' -delete
 
 clean: 
 	$(RM) $(OBJECTS) 

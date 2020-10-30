@@ -80,14 +80,14 @@ Collaboration diagram for ToolBox:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2dcc60d601f6460bc0c702db398e6279"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tool_box.html#a2dcc60d601f6460bc0c702db398e6279">CSVReader</a> (string file, int id)</td></tr>
-<tr class="memdesc:a2dcc60d601f6460bc0c702db398e6279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a CSV file at a specific line.  <a href="class_tool_box.html#a2dcc60d601f6460bc0c702db398e6279">More...</a><br /></td></tr>
+<tr class="memitem:a2dcc60d601f6460bc0c702db398e6279"><td class="memItemLeft" align="right" valign="top"><a id="a2dcc60d601f6460bc0c702db398e6279"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>CSVReader</b> (string file, int id)</td></tr>
 <tr class="separator:a2dcc60d601f6460bc0c702db398e6279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71d8e3e1a4436362c10d1d0df1077893"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tool_box.html#a71d8e3e1a4436362c10d1d0df1077893">CSVWriterParkLogs</a> (string file, string idVoiture)</td></tr>
 <tr class="memdesc:a71d8e3e1a4436362c10d1d0df1077893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write in a CSV file at a specific line. Not done yet.  <a href="class_tool_box.html#a71d8e3e1a4436362c10d1d0df1077893">More...</a><br /></td></tr>
 <tr class="separator:a71d8e3e1a4436362c10d1d0df1077893"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a268881f9f0d13d7bf048b7c647376e65"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tool_box.html#a268881f9f0d13d7bf048b7c647376e65">floatTabToString</a> (vector&lt; float &gt; tab, char delimiter)</td></tr>
-<tr class="memdesc:a268881f9f0d13d7bf048b7c647376e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a tab of floats into a single string.  <a href="class_tool_box.html#a268881f9f0d13d7bf048b7c647376e65">More...</a><br /></td></tr>
+<tr class="memitem:a268881f9f0d13d7bf048b7c647376e65"><td class="memItemLeft" align="right" valign="top"><a id="a268881f9f0d13d7bf048b7c647376e65"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>floatTabToString</b> (vector&lt; float &gt; tab, char delimiter)</td></tr>
 <tr class="separator:a268881f9f0d13d7bf048b7c647376e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae43383301f2a0fb0e9b130eff73751d3"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tool_box.html#ae43383301f2a0fb0e9b130eff73751d3">StringToTab</a> (string tab, char delimiter)</td></tr>
 <tr class="memdesc:ae43383301f2a0fb0e9b130eff73751d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a string to a tab of strings.  <a href="class_tool_box.html#ae43383301f2a0fb0e9b130eff73751d3">More...</a><br /></td></tr>
@@ -100,60 +100,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>LogSorter</b> (string
 <tr class="separator:a842622e5e6b2cfdf005bfb030837bcf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2dcc60d601f6460bc0c702db398e6279"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2dcc60d601f6460bc0c702db398e6279">&#9670;&nbsp;</a></span>CSVReader()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string ToolBox::CSVReader </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>file</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>id</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read a CSV file at a specific line. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">file</td><td>the name of the CSV file. </td></tr>
-    <tr><td class="paramname">id</td><td>the line number containing the sought information. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::runtime_error</td><td>Thrown if <code>file</code> could not be opened. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the line read in the CSV. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tool_box_a2dcc60d601f6460bc0c702db398e6279_icgraph.png" border="0" usemap="#class_tool_box_a2dcc60d601f6460bc0c702db398e6279_icgraph" alt=""/></div>
-<map name="class_tool_box_a2dcc60d601f6460bc0c702db398e6279_icgraph" id="class_tool_box_a2dcc60d601f6460bc0c702db398e6279_icgraph">
-<area shape="rect" title="Read a CSV file at a specific line." alt="" coords="180,31,333,57"/>
-<area shape="rect" href="class_parking.html#a300004ddbc70c562488cf3f933d5cfb3" title="Construct a new Parking:: Parking object." alt="" coords="5,5,132,32"/>
-<area shape="rect" href="class_voiture.html#a9f8646dde1dd92d80cf56b975bba97c2" title="Voiture Constructor, extracts information from a CSV file." alt="" coords="7,56,130,83"/>
-</map>
-</div>
-
-</div>
-</div>
 <a id="a71d8e3e1a4436362c10d1d0df1077893"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a71d8e3e1a4436362c10d1d0df1077893">&#9670;&nbsp;</a></span>CSVWriterParkLogs()</h2>
 
@@ -195,53 +141,6 @@ Here is the caller graph for this function:</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true, false if nothing was written in the file. </dd></dl>
-
-</div>
-</div>
-<a id="a268881f9f0d13d7bf048b7c647376e65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a268881f9f0d13d7bf048b7c647376e65">&#9670;&nbsp;</a></span>floatTabToString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">string ToolBox::floatTabToString </td>
-          <td>(</td>
-          <td class="paramtype">vector&lt; float &gt;&#160;</td>
-          <td class="paramname"><em>tab</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>delimiter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Convert a tab of floats into a single string. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tab</td><td>the tab to convert. </td></tr>
-    <tr><td class="paramname">delimiter</td><td>the delimiter to be put between each tab element. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>res, the final string. </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_tool_box_a268881f9f0d13d7bf048b7c647376e65_icgraph.png" border="0" usemap="#class_tool_box_a268881f9f0d13d7bf048b7c647376e65_icgraph" alt=""/></div>
-<map name="class_tool_box_a268881f9f0d13d7bf048b7c647376e65_icgraph" id="class_tool_box_a268881f9f0d13d7bf048b7c647376e65_icgraph">
-<area shape="rect" title="Convert a tab of floats into a single string." alt="" coords="191,5,375,32"/>
-<area shape="rect" href="class_voiture.html#a3d786c35df10757794b241134f5e2f2e" title="Prints the car informations." alt="" coords="5,5,143,32"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -337,6 +236,7 @@ Here is the caller graph for this function:</div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
+<li>doc/uml.txt</li>
 <li>headers/<a class="el" href="_tool_box_8hpp_source.html">ToolBox.hpp</a></li>
 <li>src/ToolBox.cpp</li>
 </ul>

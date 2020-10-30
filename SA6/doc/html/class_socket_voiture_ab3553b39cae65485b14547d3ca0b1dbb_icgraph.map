@@ -1,0 +1,4 @@
+<map id="SocketVoiture::Connect" name="SocketVoiture::Connect">
+<area shape="rect" id="node1" title="Connects an IP Adress to a specific port." alt="" coords="239,5,411,32"/>
+<area shape="rect" id="node2" href="$class_voiture.html#abbc7a9f5a9e05a92b75623ff87bee85c" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="5,5,191,32"/>
+</map>
