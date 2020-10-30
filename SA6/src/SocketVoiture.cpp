@@ -1,15 +1,12 @@
-/**SA6 - Intelligent Car-Park**/
-#include "../headers/TCPSocket.hpp"
-
+#include "../headers/SocketVoiture.hpp"
 #include <stdexcept>
 #include <sstream>
 
 /**
- * @brief Construct a new TCPSocket::TCPSocket object.
+ * @brief Construct a new SocketVoiture::SocketVoiture object.
  * 
  */
-TCPSocket::TCPSocket()
-{
+SocketVoiture::SocketVoiture() {
 	mSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (mSocket == INVALID_SOCKET)
 	{
@@ -20,11 +17,10 @@ TCPSocket::TCPSocket()
 }
 
 /**
- * @brief Destroy the TCPSocket::TCPSocket object.
+ * @brief Destroy the SocketVoiture::SocketVoiture object.
  * 
  */
-TCPSocket::~TCPSocket()
-{
+SocketVoiture::~SocketVoiture() {
 	Sockets::CloseSocket(mSocket);
 }
 
@@ -35,8 +31,7 @@ TCPSocket::~TCPSocket()
  * @param port 
  * @return true if the connection was succesfull, false otherwise.
  */
-bool TCPSocket::Connect(const std::string& ipaddress, unsigned short port)
-{
+bool SocketVoiture::Connect(const std::string& ipaddress, unsigned short port) {
 	sockaddr_in server;
 	inet_pton(AF_INET, ipaddress.c_str(), &server.sin_addr.s_addr);
 	server.sin_family = AF_INET;
@@ -51,8 +46,7 @@ bool TCPSocket::Connect(const std::string& ipaddress, unsigned short port)
  * @param len 
  * @return int 
  */
-int TCPSocket::Send(const char* data, unsigned int len)
-{
+int SocketVoiture::Send(const char* data, unsigned int len) {
 	return send(mSocket, data, len, 0);
 }
 
@@ -63,7 +57,6 @@ int TCPSocket::Send(const char* data, unsigned int len)
  * @param len 
  * @return int 
  */
-int TCPSocket::Receive(char* buffer, unsigned int len)
-{
+int SocketVoiture::Receive(char* buffer, unsigned int len) {
 	return recv(mSocket, buffer, len, 0);
 }

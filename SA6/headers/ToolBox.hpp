@@ -1,6 +1,7 @@
 #ifndef TOOLBOX_HPP
 #define TOOLBOX_HPP
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include <vector>
 

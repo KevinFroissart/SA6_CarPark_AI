@@ -2,9 +2,9 @@
 #define VOITURE_HPP
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
-#include "../headers/TCPSocket.hpp"
-#include <thread>
+#include "../headers/SocketVoiture.hpp"
 
 using namespace std;
 
@@ -33,7 +33,7 @@ class Voiture{
         vector<float> v_tab; //tableau de int contenant les informations à envoyer au parking
         vector<float> initTab(); //méthode initialisant le tableau 'v_tab'
         string protocoleCommunication(string message);
-        bool communicateWithParking(TCPSocket client, string replyServer);
+        bool communicateWithParking(SocketVoiture client, string replyServer);
 };
 
 #endif

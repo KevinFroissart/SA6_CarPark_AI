@@ -1,8 +1,6 @@
-#include <iostream>
-#include "../headers/voiture.hpp"
-#include "../headers/parking.hpp"
+#include "../headers/Voiture.hpp"
+#include "../headers/Parking.hpp"
 #include "../headers/ToolBox.hpp"
-#include <fstream>
 #include <string.h>
 #include <thread>
 #include <pthread.h>

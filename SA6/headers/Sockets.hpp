@@ -39,6 +39,8 @@ namespace Sockets
 	void Release();
 	int GetError();
 	void CloseSocket(SOCKET socket);
+	bool SetNonBlocking(SOCKET s);
+	std::string ConvertAddr(const sockaddr_in& addr);
 }
 
 #endif // BOUSK_DVP_COURS_SOCKET_H

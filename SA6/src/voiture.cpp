@@ -1,7 +1,6 @@
 #include "../headers/voiture.hpp"
 #include "../headers/ToolBox.hpp"
 #include "../headers/Sockets.hpp"
-#include <sstream>
 #include <math.h>
 
 ToolBox tb;    
@@ -123,7 +122,7 @@ bool Voiture::connexionServer(int port)
 		cout << "Error starting sockets : " << Sockets::GetError() << std::endl;
 		return false;
 	}
-	TCPSocket client;
+	SocketVoiture client;
 	if(!client.Connect("127.0.0.1", port)){
 		cout << "Impossible de se connecter au serveur [127.0.0.1:" << port << "] : " << Sockets::GetError() << endl;
         return false;
@@ -145,7 +144,7 @@ bool Voiture::connexionServer(int port)
  * @param replyServer the reply of the server, used for recursive purposes
  * @return false there is there is any error or if the communication is over, true otherwise.
  */
-bool Voiture::communicateWithParking(TCPSocket client, string replyServer) { 
+bool Voiture::communicateWithParking(SocketVoiture client, string replyServer) { 
     string phrase = protocoleCommunication(replyServer);
 
     if(phrase == "stop"){ //Si le protocole nous renvoie stop, on coupe la communication avec le parking

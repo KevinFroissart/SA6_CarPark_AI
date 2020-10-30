@@ -1,57 +1,5 @@
 #include "../headers/ServerParking.hpp"
-#include "../headers/parking.hpp"
-
-bool ServerP::Start()
-	{
-#ifdef _WIN32
-		WSAData wsaData;
-		return WSAStartup(MAKEWORD(2,2), &wsaData) == 0;
-#else
-		return true;
-#endif
-	}
-	void ServerP::End()
-	{
-#ifdef _WIN32
-		WSACleanup();
-#endif
-	}
-	int ServerP::GetError()
-	{
-#ifdef _WIN32
-		return WSAGetLastError();
-#else
-		return errno;
-#endif
-	}
-	void ServerP::CloseSocket(SOCKET s)
-	{
-#ifdef _WIN32
-		closesocket(s);
-#else
-		close(s);
-#endif
-	}
-	bool ServerP::SetNonBlocking(SOCKET s)
-	{
-#ifdef _WIN32
-		unsigned long iMode = 1;
-		return ioctlsocket(s, FIONBIO, &iMode) == 0;
-#else
-		return fcntl(s, F_SETFL, O_NONBLOCK) == 0;
-#endif
-	}
-
-	std::string ServerP::ConvertAddr(const sockaddr_in& addr)
-	{
-#if defined(_WIN32) && _MSC_VER >= 1800
-		char buff[32] = {0};
-		InetNtop(addr.sin_family, (void*)&(addr.sin_addr), buff, 31);
-		return std::string(buff, 32);
-#else
-		return inet_ntoa(addr.sin_addr);
-#endif
-	}
+#include "../headers/Parking.hpp"
 
 	namespace Errors
 	{
@@ -78,7 +26,7 @@ bool ServerP::Receive(SOCKET socket, string& _buffer)
 		return true;
 	else
 	{
-		int error = GetError();
+		int error = Sockets::GetError();
 		if ( error == Errors::WOULDBLOCK )
 			return true;
 		return false;
@@ -95,7 +43,7 @@ struct Client {
 		, ip(_ip)
 		, port(_port)
 	{}
-	void Close() { ServerP::CloseSocket(socket); socket = INVALID_SOCKET; }
+	void Close() { Sockets::CloseSocket(socket); socket = INVALID_SOCKET; }
 };
 
 bool ServerP::Server(int port, Parking *parking)
@@ -113,7 +61,7 @@ bool ServerP::Server(int port, Parking *parking)
 	res = listen(server, SOMAXCONN);
 	if (res != 0)
 		return false;
-	SetNonBlocking(server);
+	Sockets::SetNonBlocking(server);
 	cout << "Server demarre sur le port " << port << endl;
 	vector<Client> clients;
 	for (;;)
@@ -130,13 +78,13 @@ bool ServerP::Server(int port, Parking *parking)
 			socklen_t addrlen = sizeof(from);
 			if (getpeername(newClient, (sockaddr*)&from, &addrlen) != 0)
 			{
-				cout << "Nouveau client, Impossible de retrouver son IP : " << GetError() << " (deconnexion)" << endl;
-				CloseSocket(newClient);
+				cout << "Nouveau client, Impossible de retrouver son IP : " << Sockets::GetError() << " (deconnexion)" << endl;
+				Sockets::CloseSocket(newClient);
 				continue;
 			}
-			Client client(newClient, ConvertAddr(from), ntohs(from.sin_port));
+			Client client(newClient, Sockets::ConvertAddr(from), ntohs(from.sin_port));
 			//cout << "Connexion de " << client.ip.c_str() << ":"<< client.port << endl;
-			SetNonBlocking(newClient);
+			Sockets::SetNonBlocking(newClient);
 			client.etape_client = 1; // A chaque connexion l'etape client est a 1
 			clients.push_back(client);
 		}

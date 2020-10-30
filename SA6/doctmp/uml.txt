@@ -9,16 +9,16 @@ class ToolBox {
 }
 
 class Parking {
-    - vector<string> idVoiture
-    - float s_prix
-    - string s_infoVoiture
-    - string s_port
-    - string s_prixBase
-    - string s_idParking
-    - string s_remplissage
-    - string s_capacite
-    - string filePath
-    - int tab_current_car[]
+    - idVoiture : vector<string>
+    - s_prix : float
+    - s_infoVoiture : string
+    - s_port : string
+    - s_prixBase : string
+    - s_idParking : string
+    - s_remplissage : string
+    - s_capacite : string
+    - filePath : string
+    - tab_current_car[] : int
     + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
     + Parking(int id, string cheminFichier)
     + ~Parking()
@@ -89,8 +89,10 @@ Class Socket {
 	+ void CloseSocket(SOCKET socket);    
 }
 
-ToolBox <|-- Voiture
-ToolBox <|-- Parking
-ServerParking "1 " --* "1 " Parking
+ToolBox <|-- Voiture : utilise <
+ToolBox <|-- Parking : utilise <
+ServerParking "1 " --* "1 " Parking : < possède
+Socket <..* TCPSocket : est composé de <
+Voiture *-- TCPSocket : possède >
 
 @enduml

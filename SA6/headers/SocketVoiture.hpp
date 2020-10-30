@@ -1,18 +1,16 @@
 /**SA6 - Intelligent Car-Park**/
-#ifndef BOUSK_DVP_SOCKET_COURS_TCPSOCKET_HPP
-#define BOUSK_DVP_SOCKET_COURS_TCPSOCKET_HPP
+#ifndef BOUSK_DVP_SOCKET_COURS_SOCKETVOITURE_HPP
+#define BOUSK_DVP_SOCKET_COURS_SOCKETVOITURE_HPP
 
 #pragma once
 
 #include "Sockets.hpp"
 
-#include <string>
-
-class TCPSocket
+class SocketVoiture
 {
 	public:
-		TCPSocket();
-		~TCPSocket();
+		SocketVoiture();
+		~SocketVoiture();
 
 		bool Connect(const std::string& ipaddress, unsigned short port);
 		int Send(const char* data, unsigned int len);
@@ -23,4 +21,4 @@ class TCPSocket
 };
 
 
-#endif // BOUSK_DVP_SOCKET_COURS_TCPSOCKET_H
+#endif // BOUSK_DVP_SOCKET_COURS_SOCKETVOITURE_H

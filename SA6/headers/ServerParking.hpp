@@ -32,17 +32,12 @@ typedef int socklen_t;
 #include <iostream>
 #include <algorithm> 
 #include "../headers/parking.hpp"
+#include "../headers/Sockets.hpp"
 
 using namespace std;
 
 namespace ServerP
 {
-	bool Start();
-	void End();
-    int GetError();
-    void CloseSocket(SOCKET s);
-    bool SetNonBlocking(SOCKET s);
-    string ConvertAddr(const sockaddr_in& addr);
     bool Receive(SOCKET socket, string& _buffer);
     bool Server(int port, Parking * parking);
 };

@@ -1,7 +1,6 @@
 #include "../headers/parking.hpp"
 #include "../headers/ToolBox.hpp"
 #include "../headers/ServerParking.hpp"
-#include <sstream>
 #include <math.h>
 
 /**
@@ -54,7 +53,7 @@ Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
  * @brief Destroy the Parking:: Parking object
  */
 Parking::~Parking(){
-    ServerP::End();
+    Sockets::Release();
 }
 
 /**
@@ -65,14 +64,6 @@ Parking::~Parking(){
  */
 bool Parking::EstRempli(){
     return (s_remplissage == s_capacite);
-}
-
-/**
- * @brief 
- * 
- */
-void Parking::printData(){
-    cout<<"id: "<<s_idParking<<" | prix de base: "<< s_prixBase<<" | remplissage actuel: "<<s_remplissage<<"/"<<s_capacite<< endl;
 }
 
 /**
@@ -127,9 +118,9 @@ float Parking::calcul_prix(vector<string> tab){
  * @return false 
  */
 bool Parking::demarerServer(){
-	if(!ServerP::Start())
+	if(!Sockets::Start())
 	{
-		std::cout << "Erreur initialisation sockets : " << ServerP::GetError() << std::endl;
+		std::cout << "Erreur initialisation sockets : " << Sockets::GetError() << std::endl;
 		return -1;
 	}
 	//int port;
@@ -137,9 +128,9 @@ bool Parking::demarerServer(){
 	//std::cin >> port;
 	if (!ServerP::Server(stoi(s_port), this)) // on envoie l'instance de notre parking au serveur pour pouvoir utiliser la méthode protocole depuis le ServerParking
 	{
-		std::cout << "Serveur termine avec l'erreur " << ServerP::GetError() << std::endl;
+		std::cout << "Serveur termine avec l'erreur " << Sockets::GetError() << std::endl;
 	}
-	ServerP::End();
+	Sockets::Release();
     cout << "Serveur terminé" << endl;
 	return true;
 }
