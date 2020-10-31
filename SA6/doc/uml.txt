@@ -1,97 +1,101 @@
 @startuml
-class ToolBox {
-    + string CSVReader(string file, int id)
-    + bool CSVWriterParkLogs(string file, string idVoiture)
-    + string floatTabToString(vector<float> tab, char delimiter)
-    + vector<string> StringToTab(string tab, char delimiter)
-    + bool LogSorter(string file)
-    + int getNbLines(string file)
+
+package SA6 {
+
+    class ToolBox {
+        + string CSVReader(string file, int id)
+        + bool CSVWriterParkLogs(string file, string idVoiture)
+        + string floatTabToString(vector<float> tab, char delimiter)
+        + vector<string> StringToTab(string tab, char delimiter)
+        + bool LogSorter(string file)
+        + int getNbLines(string file)
+    }
+
+    class Parking {
+        - vector<string> idVoiture
+        - float s_prix
+        - string s_infoVoiture
+        - string s_port
+        - string s_prixBase
+        - string s_idParking
+        - string s_remplissage
+        - string s_capacite
+        - string filePath
+        - int tab_current_car[]
+        + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
+        + Parking(int id, string cheminFichier)
+        + ~Parking()
+        + float calcul_prix(vector<string> tab)
+        + int getPort()
+        + string protocoleCommunication(string message, int etape)
+        + bool demarerServer()
+        - bool EstRempli()
+        - string ajouterVoiture()
+        - int readLog(int id)
+    }
+
+    Class Voiture {
+        - float prixVoulu
+        - int v_prixBase
+        - int v_etape
+        - int v_id
+        - string v_path
+        - string v_name
+        - string v_marque
+        - string v_statut
+        - string v_handicap
+        - string v_age
+        - string v_heure
+        - vector<float> v_tab
+        - bool rechercheParking
+
+        + Voiture(int id, string filePath)
+        + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
+        + ~Voiture()
+        + int getID()
+        + float calcul_prix()
+        + bool connexionServer(int port)
+        - vector<float> initTab()
+        - string protocoleCommunication(string message)
+        - bool communicateWithParking(SocketVoiture client, string replyServer)
+    }
+
+    package Réseau <<Rectangle>> {
+
+        Class ServerParking {
+            + bool Receive(SOCKET socket, string& _buffer)
+            + bool Server(int port, Parking * parking)
+        }
+
+        Class SocketVoiture {
+            - SOCKET mSocket
+
+            + SocketVoiture();
+            + ~SocketVoiture();
+            + bool Connect(const std::string& ipaddress, unsigned short port);
+            + int Send(const char* data, unsigned int len);
+            + int Receive(char* buffer, unsigned int len);		
+        }
+
+        Class Sockets {
+            + bool Start();
+            + void Release();
+            + int GetError();
+            + void CloseSocket(SOCKET socket);
+            + bool SetNonBlocking(SOCKET s)
+            + string ConvertAddr(const sockaddr_in& addr)    
+        }
+    }
 }
 
-class Parking {
-    - idVoiture : vector<string>
-    - s_prix : float
-    - s_infoVoiture : string
-    - s_port : string
-    - s_prixBase : string
-    - s_idParking : string
-    - s_remplissage : string
-    - s_capacite : string
-    - filePath : string
-    - tab_current_car[] : int
-    + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
-    + Parking(int id, string cheminFichier)
-    + ~Parking()
-    + float calcul_prix(vector<string> tab)
-    + int getPort()
-    + string protocoleCommunication(string message, int etape)
-    + bool demarerServer()
-    - bool EstRempli()
-    - string ajouterVoiture()
-    - int readLog(int id)
-}
+ToolBox --o Voiture : utilise <
+ToolBox --o Parking : utilise <
 
-Class Voiture {
-    - float prixVoulu
-    - int v_prixBase
-    - int v_etape
-    - int v_id
-    - string v_path
-    - string v_name
-    - string v_marque
-    - string v_statut
-    - string v_handicap
-    - string v_age
-    - string v_heure
-    - vector<float> v_tab
-    - bool rechercheParking
+Parking "1 " *-- "1  " ServerParking : > possède
+Voiture "1  " *-- "1 " SocketVoiture : possède >
 
-    + Voiture(int id, string filePath)
-    + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
-    + ~Voiture()
-    + int getID()
-    + float calcul_prix()
-    + bool connexionServer(int port)
-    - vector<float> initTab()
-    - string protocoleCommunication(string message)
-    - bool communicateWithParking(TCPSocket client, string replyServer)
-}
-
-package Réseau <<Rectangle>> {
-
-Class ServerParking {
-    + bool Receive(SOCKET socket, string& _buffer)
-    + bool Server(int port, Parking * parking)
-}
-
-Class SocketVoiture {
-    - SOCKET mSocket
-
-    + SocketVoiture();
-	+ ~SocketVoiture();
-	+ bool Connect(const std::string& ipaddress, unsigned short port);
-	+ int Send(const char* data, unsigned int len);
-	+ int Receive(char* buffer, unsigned int len);		
-}
-
-Class Sockets {
-    + bool Start();
-	+ void Release();
-	+ int GetError();
-	+ void CloseSocket(SOCKET socket);
-    + bool SetNonBlocking(SOCKET s)
-    + string ConvertAddr(const sockaddr_in& addr)    
-}
-}
-
-ToolBox <|-- Voiture : utilise <
-ToolBox <|-- Parking : utilise <
-
-Parking "1 " *-- "1 " ServerParking : > possède
-Voiture *-- SocketVoiture : possède >
-
-SocketVoiture *..> Sockets : est composé de >
-ServerParking *..> Sockets : est composé de >
+SocketVoiture "0..1     " o-- "1" Sockets : est composé de >
+ServerParking "0..1  " o-- "1..*    " Sockets : est composé de >
 
 
 @enduml
