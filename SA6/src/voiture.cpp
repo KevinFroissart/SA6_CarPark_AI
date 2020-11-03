@@ -3,8 +3,6 @@
 #include "../headers/Sockets.hpp"
 #include <math.h>
 
-ToolBox tb;    
-
 /**
  * @brief Voiture Constructor, extracts information from a CSV file.
  *
@@ -13,7 +11,7 @@ ToolBox tb;
  * @return the object Voiture.
  */
 Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
-    string input = tb.CSVReader(v_path, v_id);
+    string input = tb::CSVReader(v_path, v_id);
     stringstream input_stringstream(input);
 
     getline(input_stringstream, v_name, ',');
@@ -189,7 +187,7 @@ string Voiture::protocoleCommunication(string message){
         if(message == "Non") return "stop";
         else {
             v_etape++;
-            return tb.floatTabToString(v_tab, ',');
+            return tb::floatTabToString(v_tab, ',');
         }
     }
 

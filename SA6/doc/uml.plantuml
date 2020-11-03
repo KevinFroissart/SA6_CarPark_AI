@@ -2,16 +2,18 @@
 
 package SA6 {
 
-    class ToolBox {
+    package ns_tb {
+        class ToolBox {
 
-        + std::string CSVReader(string file, int id)
-        + bool CSVWriterParkLogs(string file, string idVoiture)
-        + string floatTabToString(vector<float> tab, char delimiter)
-        + vector<string> StringToTab(string tab, char delimiter)
-        + bool LogSorter(string file)
-        + int getNbLines(string file)
+            + std::string CSVReader(string file, int id)
+            + bool CSVWriterParkLogs(string file, string idVoiture)
+            + string floatTabToString(vector<float> tab, char delimiter)
+            + vector<string> StringToTab(string tab, char delimiter)
+            + bool LogSorter(string file)
+            + int getNbLines(string file)
+        }
     }
-
+    
     class Parking {
         - vector<string> idVoiture
         - float s_prix
@@ -97,8 +99,8 @@ package SA6 {
     }
 }
 
-ToolBox --o Voiture : utilise <
-ToolBox --o Parking : utilise <
+ToolBox --o Voiture
+ToolBox --o Parking
 
 Parking "1 " *-- "1  " ServerParking : > possède
 Voiture "1  " *-- "1 " SocketVoiture : possède >

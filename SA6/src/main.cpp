@@ -18,8 +18,6 @@ void connexionServer(Voiture * v, int port){
 
 int main (void){
 
-    ToolBox tb;
-
     int nb_parking = 3;
     vector<Parking *> listeParking;
     vector<thread *> listeThreadParking;

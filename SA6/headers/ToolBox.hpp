@@ -5,18 +5,15 @@
 #include <fstream>
 #include <vector>
 
-using namespace std;
+#pragma once
 
-class ToolBox{
-    public:
-        ToolBox();
-        string CSVReader(string file, int id);
-        bool CSVWriterParkLogs(string file, string idVoiture);
-        string floatTabToString(vector<float> tab, char delimiter);
-        vector<string> StringToTab(string tab, char delimiter);
-        bool LogSorter(string file);
-        int getNbLines(string file);
-    private:
-};
+namespace tb {
+    std::string CSVReader(std::string file, int id);
+    bool CSVWriterParkLogs(std::string file, std::string idVoiture);
+    std::string floatTabToString(std::vector<float> tab, char delimiter);
+    std::vector<std::string> StringToTab(std::string tab, char delimiter);
+    bool LogSorter(std::string file);
+    int getNbLines(std::string file);    
+}
 
 #endif

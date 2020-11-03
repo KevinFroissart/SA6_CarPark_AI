@@ -31,9 +31,7 @@ Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFich
  * @param cheminFichier 
  */
 Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
-    ToolBox tb;    
-    string input = tb.CSVReader(filePath, id);
-
+    string input = tb::CSVReader(filePath, id);
     stringstream input_stringstream(input);
 
     getline(input_stringstream, s_idParking, ',');
@@ -143,13 +141,12 @@ bool Parking::demarerServer(){
  * @return string 
  */
 string Parking::protocoleCommunication(string message, int etape){
-    ToolBox tb;
     // Vérifie si il reste de la place dans le parking, si non on arrete l'échange, si oui on continu
     if(etape == 1) return EstRempli() ? "Non" : "Oui";
     
     if(etape == 2){
         s_infoVoiture = message;        
-        return to_string(calcul_prix(tb.StringToTab(message, ',')));
+        return to_string(calcul_prix(tb::StringToTab(message, ',')));
     }
     if(etape == 3){
         //Si la voiture accepte ce prix alors on lui reserve une place et on lui indique que c'est bon
@@ -169,9 +166,8 @@ string Parking::protocoleCommunication(string message, int etape){
  * @return a message fot the car
  */
 string Parking::ajouterVoiture() {
-    ToolBox tb;
     s_remplissage = to_string(stoi(s_remplissage) + 1);
-    tb.CSVWriterParkLogs("parking" + s_idParking + "Log.csv", idVoiture[0]);
+    tb::CSVWriterParkLogs("parking" + s_idParking + "Log.csv", idVoiture[0]);
     idVoiture.erase(idVoiture.begin());
     return "OK, place reservée";
 }
@@ -183,8 +179,7 @@ string Parking::ajouterVoiture() {
  */
 
 int Parking::readLog(int id){
-    ToolBox tb;
-    vector<string> string_passages = tb.StringToTab(tb.CSVReader("parking" + s_idParking + "Log.csv", id),',');
+    vector<string> string_passages = tb::StringToTab(tb::CSVReader("parking" + s_idParking + "Log.csv", id),',');
     int nb_passages = 0;
     if(string_passages.size() >= 1) string_passages[1];
     return nb_passages<5 ? 0 : nb_passages>10 ? 2 : 1;
