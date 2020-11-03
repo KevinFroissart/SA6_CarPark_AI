@@ -28,8 +28,7 @@ doc: uml
 	@doxygen $(DOX)
 
 uml:
-	java -jar $(DOC)$(LIBS) $(DOC)uml.txt 
-
+	java -jar $(DOC)$(LIBS) $(DOC)?*.plantuml 
 
 cleandoc:
 	$(RM) -Rf $(DOC)html $(DOC)latex $(DOC)rtf $(DOC)uml.png

@@ -1,9 +1,10 @@
-@startuml
+@startuml SA6_uml
 
 package SA6 {
 
     class ToolBox {
-        + string CSVReader(string file, int id)
+
+        + std::string CSVReader(string file, int id)
         + bool CSVWriterParkLogs(string file, string idVoiture)
         + string floatTabToString(vector<float> tab, char delimiter)
         + vector<string> StringToTab(string tab, char delimiter)
@@ -22,6 +23,7 @@ package SA6 {
         - string s_capacite
         - string filePath
         - int tab_current_car[]
+
         + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
         + Parking(int id, string cheminFichier)
         + ~Parking()
@@ -62,9 +64,12 @@ package SA6 {
 
     package Réseau <<Rectangle>> {
 
-        Class ServerParking {
-            + bool Receive(SOCKET socket, string& _buffer)
-            + bool Server(int port, Parking * parking)
+        package ns_server {
+            Class ServerParking {
+
+                + bool Receive(SOCKET socket, string& _buffer)
+                + bool Server(int port, Parking * parking)
+            }
         }
 
         Class SocketVoiture {
@@ -77,13 +82,17 @@ package SA6 {
             + int Receive(char* buffer, unsigned int len);		
         }
 
-        Class Sockets {
-            + bool Start();
-            + void Release();
-            + int GetError();
-            + void CloseSocket(SOCKET socket);
-            + bool SetNonBlocking(SOCKET s)
-            + string ConvertAddr(const sockaddr_in& addr)    
+        package ns_sockets{
+
+            Class Sockets {
+
+                + bool Start();
+                + void Release();
+                + int GetError();
+                + void CloseSocket(SOCKET socket);
+                + bool SetNonBlocking(SOCKET s)
+                + string ConvertAddr(const sockaddr_in& addr)    
+            }
         }
     }
 }
@@ -94,8 +103,8 @@ ToolBox --o Parking : utilise <
 Parking "1 " *-- "1  " ServerParking : > possède
 Voiture "1  " *-- "1 " SocketVoiture : possède >
 
-SocketVoiture "0..1     " o-- "1" Sockets : est composé de >
-ServerParking "0..1  " o-- "1..*    " Sockets : est composé de >
+SocketVoiture o-- Sockets
+ServerParking o-- Sockets
 
 
 @enduml

@@ -2,8 +2,7 @@
 \label{class_tool_box}\index{ToolBox@{ToolBox}}
 
 
-Collaboration diagram for Tool\+Box\+:
-\nopagebreak
+Collaboration diagram for Tool\+Box\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -13,14 +12,12 @@ Collaboration diagram for Tool\+Box\+:
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_tool_box_a2dcc60d601f6460bc0c702db398e6279}\label{class_tool_box_a2dcc60d601f6460bc0c702db398e6279}} 
-string {\bfseries C\+S\+V\+Reader} (string file, int id)
-\item 
+string \mbox{\hyperlink{class_tool_box_a2dcc60d601f6460bc0c702db398e6279}{C\+S\+V\+Reader}} (string file, int id)
+\begin{DoxyCompactList}\small\item\em Read a C\+SV file at a specific line. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_tool_box_a71d8e3e1a4436362c10d1d0df1077893}{C\+S\+V\+Writer\+Park\+Logs}} (string file, string id\+Voiture)
 \begin{DoxyCompactList}\small\item\em Write in a C\+SV file at a specific line. Not done yet. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_tool_box_a268881f9f0d13d7bf048b7c647376e65}\label{class_tool_box_a268881f9f0d13d7bf048b7c647376e65}} 
-string {\bfseries float\+Tab\+To\+String} (vector$<$ float $>$ tab, char delimiter)
-\item 
+string \mbox{\hyperlink{class_tool_box_a268881f9f0d13d7bf048b7c647376e65}{float\+Tab\+To\+String}} (vector$<$ float $>$ tab, char delimiter)
+\begin{DoxyCompactList}\small\item\em Convert a tab of floats into a single string. \end{DoxyCompactList}\item 
 vector$<$ string $>$ \mbox{\hyperlink{class_tool_box_ae43383301f2a0fb0e9b130eff73751d3}{String\+To\+Tab}} (string tab, char delimiter)
 \begin{DoxyCompactList}\small\item\em Convert a string to a tab of strings. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_tool_box_ae4cf09fc3ad120d68b517e63d02c0f08}\label{class_tool_box_ae4cf09fc3ad120d68b517e63d02c0f08}} 
@@ -31,6 +28,39 @@ int \mbox{\hyperlink{class_tool_box_a842622e5e6b2cfdf005bfb030837bcf5}{get\+Nb\+
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tool_box_a2dcc60d601f6460bc0c702db398e6279}\label{class_tool_box_a2dcc60d601f6460bc0c702db398e6279}} 
+\index{ToolBox@{ToolBox}!CSVReader@{CSVReader}}
+\index{CSVReader@{CSVReader}!ToolBox@{ToolBox}}
+\doxysubsubsection{\texorpdfstring{CSVReader()}{CSVReader()}}
+{\footnotesize\ttfamily string Tool\+Box\+::\+C\+S\+V\+Reader (\begin{DoxyParamCaption}\item[{string}]{file,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Read a C\+SV file at a specific line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & the name of the C\+SV file. \\
+\hline
+{\em id} & the line number containing the sought information. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & Thrown if {\ttfamily file} could not be opened. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+the line read in the C\+SV. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=326pt]{class_tool_box_a2dcc60d601f6460bc0c702db398e6279_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{class_tool_box_a71d8e3e1a4436362c10d1d0df1077893}\label{class_tool_box_a71d8e3e1a4436362c10d1d0df1077893}} 
 \index{ToolBox@{ToolBox}!CSVWriterParkLogs@{CSVWriterParkLogs}}
 \index{CSVWriterParkLogs@{CSVWriterParkLogs}!ToolBox@{ToolBox}}
@@ -55,6 +85,26 @@ Write in a C\+SV file at a specific line. Not done yet.
 \end{DoxyExceptions}
 \begin{DoxyReturn}{Returns}
 true, false if nothing was written in the file. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tool_box_a268881f9f0d13d7bf048b7c647376e65}\label{class_tool_box_a268881f9f0d13d7bf048b7c647376e65}} 
+\index{ToolBox@{ToolBox}!floatTabToString@{floatTabToString}}
+\index{floatTabToString@{floatTabToString}!ToolBox@{ToolBox}}
+\doxysubsubsection{\texorpdfstring{floatTabToString()}{floatTabToString()}}
+{\footnotesize\ttfamily string Tool\+Box\+::float\+Tab\+To\+String (\begin{DoxyParamCaption}\item[{vector$<$ float $>$}]{tab,  }\item[{char}]{delimiter }\end{DoxyParamCaption})}
+
+
+
+Convert a tab of floats into a single string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tab} & the tab to convert. \\
+\hline
+{\em delimiter} & the delimiter to be put between each tab element. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+res, the final string. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_tool_box_a842622e5e6b2cfdf005bfb030837bcf5}\label{class_tool_box_a842622e5e6b2cfdf005bfb030837bcf5}} 
 \index{ToolBox@{ToolBox}!getNbLines@{getNbLines}}
@@ -113,8 +163,7 @@ Convert a string to a tab of strings.
 \begin{DoxyReturn}{Returns}
 vector$<$string$>$ 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -125,6 +174,5 @@ Here is the caller graph for this function\+:
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-doc/uml.\+txt\item 
 headers/Tool\+Box.\+hpp\item 
 src/Tool\+Box.\+cpp\end{DoxyCompactItemize}
