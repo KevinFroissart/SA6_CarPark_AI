@@ -14,12 +14,12 @@ Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
     string input = tb::CSVReader(v_path, v_id);
     stringstream input_stringstream(input);
 
-    getline(input_stringstream, v_name, ',');
-    getline(input_stringstream, v_marque, ',');
-    getline(input_stringstream, v_statut, ',');
-    getline(input_stringstream, v_handicap, ',');
-    getline(input_stringstream, v_age, ',');
-    getline(input_stringstream, v_heure, ',');
+    getline(input_stringstream, v_voitureData[0], ','); //name
+    getline(input_stringstream, v_voitureData[1], ','); //marque
+    getline(input_stringstream, v_voitureData[2], ','); //statut
+    getline(input_stringstream, v_voitureData[3], ','); //handicap
+    getline(input_stringstream, v_voitureData[4], ','); //age
+    getline(input_stringstream, v_voitureData[5], ','); //heure
     v_prixBase = 2;
     rechercheParking = true;
 
@@ -38,10 +38,17 @@ Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
  * @param heure the number of hour the owner is willing to park.
  * @return the object Voiture.
  */
-Voiture::Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure) : 
-v_id(id), v_name(name), v_marque(marque), v_statut(statut), v_handicap(handicap), v_age(age), v_heure(heure){
+Voiture::Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure) {
+    v_id = id;
+    v_voitureData[0] = name;
+    v_voitureData[1] = marque;
+    v_voitureData[2] = statut;
+    v_voitureData[3] = handicap;
+    v_voitureData[4] = age;
+    v_voitureData[5] = heure;
     v_prixBase = 2;
     rechercheParking = true;
+    
     initTab();
 }
 
@@ -60,10 +67,10 @@ Voiture::~Voiture(){
  */
 vector<float> Voiture::initTab(){
     v_tab.push_back(v_id);
-    v_tab.push_back(stoi(v_heure));
-    v_tab.push_back(v_handicap == "oui" ? 1 : 0); // si Vrai = 1 sinon = 0
-    v_tab.push_back(stoi(v_age) < 60 ? stoi(v_age) < 25 ? 1 : 0 : 2); //age > 60 = 2 | age < 25 = 1 sinon 0
-    v_tab.push_back(v_statut == "salarié" ? 1 : v_statut == " patron" ? 0 : 2); //salarié = 1 | patron = 2 sinon 0
+    v_tab.push_back(stoi(v_voitureData[5]));
+    v_tab.push_back(v_voitureData[3] == "oui" ? 1 : 0); // si Vrai = 1 sinon = 0
+    v_tab.push_back(stoi(v_voitureData[4]) < 60 ? stoi(v_voitureData[4]) < 25 ? 1 : 0 : 2); //age > 60 = 2 | age < 25 = 1 sinon 0
+    v_tab.push_back(v_voitureData[2] == "salarié" ? 1 : v_voitureData[2] == " patron" ? 0 : 2); //salarié = 1 | patron = 2 sinon 0
     return v_tab;
 } 
 
@@ -83,7 +90,7 @@ int Voiture::getID(){
  * This method uses different data such as the owner status,
  * if he has a handicap, his age and the time he wants to stay.
  * 
- * @return prix, the fiual price.
+ * @return prix, the calculated price.
  */
 float Voiture::calcul_prix(){
     vector <float> tab_facteurs;
@@ -127,7 +134,7 @@ bool Voiture::connexionServer(int port)
     }
 	else
 	{
-		cout << v_name << " est connectée!" << endl;
+		cout << v_voitureData[0] << " est connectée!" << endl;
 		communicateWithParking(client, ""); //on démarre la conversation avec le serveur
 	}
 	Sockets::Release();

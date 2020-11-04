@@ -12,13 +12,13 @@
  * @param cheminFichier 
  */
 Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFichier) : filePath(cheminFichier){
-    s_prixBase = defaultPrice;
-    s_idParking = id;
-    s_remplissage = "0";
-    s_capacite = capacite_max;
+    s_parkingData[1] = defaultPrice;
+    s_parkingData[0] = id;
+    s_parkingData[2] = "0";
+    s_parkingData[3] = capacite_max;
     ofstream File(filePath);
     if (File.is_open()){
-        File<<s_idParking << "," << s_prixBase << "," << s_remplissage << "," << s_capacite <<"\n";
+        File<<s_parkingData[0] << "," << s_parkingData[1] << "," << s_parkingData[2] << "," << s_parkingData[3] <<"\n";
         File.close();
     } else
         throw runtime_error("Could not open file");
@@ -34,14 +34,14 @@ Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
     string input = tb::CSVReader(filePath, id);
     stringstream input_stringstream(input);
 
-    getline(input_stringstream, s_idParking, ',');
-    getline(input_stringstream, s_prixBase, ',');
-    getline(input_stringstream, s_remplissage, ',');
-    getline(input_stringstream, s_capacite, ',');
-    getline(input_stringstream, s_port, ',');
-    fstream existe("parking" + s_idParking + "Log.csv");
+    getline(input_stringstream, s_parkingData[0], ','); //id
+    getline(input_stringstream, s_parkingData[1], ','); //prix
+    getline(input_stringstream, s_parkingData[2], ','); //remplissage
+    getline(input_stringstream, s_parkingData[3], ','); //capacite
+    getline(input_stringstream, s_parkingData[4], ','); //port
+    fstream existe("parking" + s_parkingData[0] + "Log.csv");
     if(!existe.is_open()){
-        ofstream createLog("parking" + s_idParking + "Log.csv");
+        ofstream createLog("parking" + s_parkingData[0] + "Log.csv");
         createLog.close();
     } else existe.close();
     
@@ -61,7 +61,7 @@ Parking::~Parking(){
  * @return false 
  */
 bool Parking::EstRempli(){
-    return (s_remplissage == s_capacite);
+    return (s_parkingData[2] == s_parkingData[3]);
 }
 
 /**
@@ -70,7 +70,7 @@ bool Parking::EstRempli(){
  * @return the port of the server.
  */
 int Parking::getPort() {
-    return stoi(s_port);
+    return stoi(s_parkingData[4]);
 }
 
 /**
@@ -86,7 +86,7 @@ float Parking::calcul_prix(vector<string> tab){
     tab_facteurs.push_back(stof(tab[1])); //facteur durée
 
     float nb_heures = tab_facteurs[0]; 
-    float prix = stof(s_prixBase);
+    float prix = stof(s_parkingData[1]);
 
     //on passe les facteurs dans le vector courant. Et les normalisons (entre 0 et 1)
     tab_facteurs.push_back(1 - 0.25 * stof(tab[2]));             //Facteur handicap
@@ -104,7 +104,7 @@ float Parking::calcul_prix(vector<string> tab){
    
     prix *= somme_facteur;
     prix *= 0.7 * nb_heures + 0.3 * (float) log(nb_heures);
-    prix *= 1 + 0.75 * (stof(s_remplissage) / stof(s_capacite));
+    prix *= 1 + 0.75 * (stof(s_parkingData[2]) / stof(s_parkingData[3]));
 
     return s_prix = prix;
 }
@@ -122,9 +122,9 @@ bool Parking::demarerServer(){
 		return -1;
 	}
 	//int port;
-	std::cout << "Port du serveur > " + s_port << endl;
+	std::cout << "Port du serveur > " + s_parkingData[4] << endl;
 	//std::cin >> port;
-	if (!ServerP::Server(stoi(s_port), this)) // on envoie l'instance de notre parking au serveur pour pouvoir utiliser la méthode protocole depuis le ServerParking
+	if (!ServerP::Server(stoi(s_parkingData[4]), this)) // on envoie l'instance de notre parking au serveur pour pouvoir utiliser la méthode protocole depuis le ServerParking
 	{
 		std::cout << "Serveur termine avec l'erreur " << Sockets::GetError() << std::endl;
 	}
@@ -166,8 +166,8 @@ string Parking::protocoleCommunication(string message, int etape){
  * @return a message fot the car
  */
 string Parking::ajouterVoiture() {
-    s_remplissage = to_string(stoi(s_remplissage) + 1);
-    tb::CSVWriterParkLogs("parking" + s_idParking + "Log.csv", idVoiture[0]);
+    s_parkingData[2] = to_string(stoi(s_parkingData[2]) + 1);
+    tb::CSVWriterParkLogs("parking" + s_parkingData[0] + "Log.csv", idVoiture[0]);
     idVoiture.erase(idVoiture.begin());
     return "OK, place reservée";
 }
@@ -179,7 +179,7 @@ string Parking::ajouterVoiture() {
  */
 
 int Parking::readLog(int id){
-    vector<string> string_passages = tb::StringToTab(tb::CSVReader("parking" + s_idParking + "Log.csv", id),',');
+    vector<string> string_passages = tb::StringToTab(tb::CSVReader("parking" + s_parkingData[0] + "Log.csv", id),',');
     int nb_passages = 0;
     if(string_passages.size() >= 1) string_passages[1];
     return nb_passages<5 ? 0 : nb_passages>10 ? 2 : 1;

@@ -4,7 +4,6 @@ package SA6 {
 
     package ns_tb {
         class ToolBox {
-
             + std::string CSVReader(string file, int id)
             + bool CSVWriterParkLogs(string file, string idVoiture)
             + string floatTabToString(vector<float> tab, char delimiter)
@@ -15,50 +14,39 @@ package SA6 {
     }
     
     class Parking {
-        - vector<string> idVoiture
-        - float s_prix
-        - string s_infoVoiture
-        - string s_port
-        - string s_prixBase
-        - string s_idParking
-        - string s_remplissage
-        - string s_capacite
-        - string filePath
-        - int tab_current_car[]
+        - float s_prix;
+        - string filePath;
+        - string s_infoVoiture;
+        - string s_parkingData[5];
+        - vector<string> idVoiture;
 
         + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
         + Parking(int id, string cheminFichier)
         + ~Parking()
-        + float calcul_prix(vector<string> tab)
         + int getPort()
-        + string protocoleCommunication(string message, int etape)
         + bool demarerServer()
-        - bool EstRempli()
-        - string ajouterVoiture()
-        - int readLog(int id)
+        + string protocoleCommunication(string message, int etape)
+        - bool EstRempli();
+        - int readLog(int id);
+        - string ajouterVoiture();
+        - float calcul_prix(vector<string> tab);
     }
 
     Class Voiture {
-        - float prixVoulu
-        - int v_prixBase
-        - int v_etape
-        - int v_id
-        - string v_path
-        - string v_name
-        - string v_marque
-        - string v_statut
-        - string v_handicap
-        - string v_age
-        - string v_heure
-        - vector<float> v_tab
-        - bool rechercheParking
-
-        + Voiture(int id, string filePath)
+        - int v_etape;
+        - int v_id;
+        - int v_prixBase;
+        - float prixVoulu;
+        - string v_path;
+        - string v_voitureData[6];
+        - vector<float> v_tab;
+        
         + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
+        + Voiture(int id, string filePath)
         + ~Voiture()
         + int getID()
-        + float calcul_prix()
         + bool connexionServer(int port)
+        - float calcul_prix()
         - vector<float> initTab()
         - string protocoleCommunication(string message)
         - bool communicateWithParking(SocketVoiture client, string replyServer)
@@ -68,7 +56,6 @@ package SA6 {
 
         package ns_server {
             Class ServerParking {
-
                 + bool Receive(SOCKET socket, string& _buffer)
                 + bool Server(int port, Parking * parking)
             }

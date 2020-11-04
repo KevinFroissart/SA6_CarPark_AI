@@ -13,24 +13,20 @@ class Voiture{
         Voiture(int id, string filePath); //constructeur utilisant les informations du csv
         Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure); //constructeur utilisant les informations données en paramètre
         ~Voiture();
-        float calcul_prix();
-        bool connexionServer(int port);
-        bool rechercheParking;
         int getID();
+        bool rechercheParking;
+        bool connexionServer(int port);
         
     private:
         int v_etape; //etape du protocole de communication
-        float prixVoulu;
         int v_id;
-        string v_path;   //chemin du csv dans lequel on récupère les informations de la voiture
-        string v_name; //nom de la voiture (optionel)
-        string v_marque; //marque de la voiture
-        string v_statut; //statut social
-        string v_handicap;
-        string v_age;
-        string v_heure; //durée demandée pour le stationement
         int v_prixBase;
+        float prixVoulu;
+        string v_path;   //chemin du csv dans lequel on récupère les informations de la voiture
+        string v_voitureData[6]; //tableau contenant les infos de la voiture
         vector<float> v_tab; //tableau de int contenant les informations à envoyer au parking
+
+        float calcul_prix();
         vector<float> initTab(); //méthode initialisant le tableau 'v_tab'
         string protocoleCommunication(string message);
         bool communicateWithParking(SocketVoiture client, string replyServer);

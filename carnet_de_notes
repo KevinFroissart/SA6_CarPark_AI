@@ -18,8 +18,9 @@ Semaine 6 :
     difficultés : Etape du protocole propre au parking et non au client TCP -> ajout d'une "etape" dans la structure client TCP
 Semaine 7 :
     - Ajout de voitures de manière aléatoire
-    - Tri des Logs pour les rendre plus visible
+    - Transformation de ToolBox en namespace
     - Génération d'uml avec plantuml
     - update readme
+    - optimisation des classes Voiture et Parking, réduction des attributs
     difficultés :
 Semaine 8 :

@@ -96,9 +96,8 @@ bool ServerP::Server(int port, Parking *parking)
 			{
 				if ( !buffer.empty() )
 				{
-// C'est ici qu'on gère la communication, à voir si on peux pas le séparer de la classe					
 					cout << "Recu de [" << client->ip.c_str() << ":" << client->port << "] : " << buffer << endl;
-					string reply = parking->protocoleCommunication(buffer, client->etape_client++); //on pointe vers la fonction présente dans notre instance de parking
+					string reply = parking->protocoleCommunication(buffer, client->etape_client++);
 					cout << "Reponse a [" << client->ip.c_str() << ":" << client->port << "] > " << reply << endl;
 					send(client->socket, reply.c_str(), reply.length(), 0);
 				}
