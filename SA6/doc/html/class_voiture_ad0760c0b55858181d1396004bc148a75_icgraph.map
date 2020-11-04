@@ -1,0 +1,4 @@
+<map id="Voiture::initTab" name="Voiture::initTab">
+<area shape="rect" id="node1" title="Returns a tab of floats designed for socket communication and Parking management." alt="" coords="176,5,295,32"/>
+<area shape="rect" id="node2" href="$class_voiture.html#a9f8646dde1dd92d80cf56b975bba97c2" title="Voiture Constructor, extracts information from a CSV file." alt="" coords="5,5,128,32"/>
+</map>

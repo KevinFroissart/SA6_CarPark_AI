@@ -1,0 +1,4 @@
+<map id="ServerP::Receive" name="ServerP::Receive">
+<area shape="rect" id="node1" title="Method that checks if data was sent through a socket." alt="" coords="5,5,137,32"/>
+<area shape="rect" id="node2" href="$namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89" title=" " alt="" coords="185,5,320,32"/>
+</map>

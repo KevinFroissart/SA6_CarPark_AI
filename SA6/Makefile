@@ -31,7 +31,7 @@ uml:
 	java -jar $(DOC)$(LIBS) $(DOC)?*.plantuml 
 
 cleandoc:
-	$(RM) -Rf $(DOC)html $(DOC)latex $(DOC)rtf $(DOC)?*.png
+	$(RM) -Rf $(DOC)html $(DOC)rtf $(DOC)?*.png
 	#find $(DOC) -type f ! -name '*.info' -delete
 
 clean: 

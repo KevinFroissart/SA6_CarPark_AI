@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['voiture_12',['Voiture',['../class_voiture.html',1,'Voiture'],['../class_voiture.html#a9f8646dde1dd92d80cf56b975bba97c2',1,'Voiture::Voiture(int id, string filePath)'],['../class_voiture.html#a77002698169f77149f6bd92f875b86cf',1,'Voiture::Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)']]]
+  ['geterror_17',['GetError',['../namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89',1,'Sockets']]],
+  ['getid_18',['getID',['../class_voiture.html#a0d7ccac52a67547de28bc40763804315',1,'Voiture']]],
+  ['getnblines_19',['getNbLines',['../namespacetb.html#ae87f28b9ab99acf8d83d17de474f47e7',1,'tb']]],
+  ['getport_20',['getPort',['../class_parking.html#a95abbf61891ce84164c19e642756b25b',1,'Parking']]]
 ];

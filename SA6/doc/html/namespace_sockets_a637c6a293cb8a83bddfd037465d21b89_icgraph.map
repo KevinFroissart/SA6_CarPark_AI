@@ -1,0 +1,12 @@
+<map id="Sockets::GetError" name="Sockets::GetError">
+<area shape="rect" id="node1" title=" " alt="" coords="999,147,1133,174"/>
+<area shape="rect" id="node2" href="$class_voiture.html#ac4c44298731385957152cf73cc691892" title="Method used to send a string to the Parking using sockets." alt="" coords="749,5,944,47"/>
+<area shape="rect" id="node3" href="$class_voiture.html#abbc7a9f5a9e05a92b75623ff87bee85c" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="509,71,695,98"/>
+<area shape="rect" id="node6" href="$class_parking.html#a28bcb84c5a6f26d13646253fd69471dd" title=" " alt="" coords="287,122,461,149"/>
+<area shape="rect" id="node8" href="$namespace_server_p.html#ae77799260544f81c00027f54e58b6cf7" title="Method that checks if data was sent through a socket." alt="" coords="781,173,913,199"/>
+<area shape="rect" id="node9" href="$namespace_server_p.html#a0ca8fc21869d5851d3f443ab98ad61c2" title="Method that starts a server a communicate with a list of related sockets." alt="" coords="541,173,663,199"/>
+<area shape="rect" id="node10" href="$class_socket_voiture.html#a802b7b3fca7b337bf62568a11163d6c5" title="Construct a new SocketVoiture::SocketVoiture object." alt="" coords="743,274,951,301"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#af4c6ef73cab1343e59be7d94b10f7cf2" title=" " alt="" coords="108,71,239,98"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,97,60,123"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#a40f844fb99335a27ed43122c6e2c3532" title=" " alt="" coords="126,122,221,149"/>
+</map>

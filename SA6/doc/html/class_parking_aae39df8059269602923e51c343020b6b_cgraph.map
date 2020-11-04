@@ -1,0 +1,4 @@
+<map id="Parking::ajouterVoiture" name="Parking::ajouterVoiture">
+<area shape="rect" id="node1" title="When a car is added, the whole process is done here." alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node2" href="$namespacetb.html#a81ea29e42263a4426ce3abb01d4e94c6" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="224,5,391,32"/>
+</map>

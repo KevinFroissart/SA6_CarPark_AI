@@ -28,7 +28,7 @@ int main (void){
         listeThreadParking[i]->detach();
     }
 
-    sleep(3);
+    sleep(5);
 
     int nb_voiture = 30;
     vector<Voiture *> listeVoiture;

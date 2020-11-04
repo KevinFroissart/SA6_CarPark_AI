@@ -2,8 +2,6 @@
 #ifndef BOUSK_DVP_SOCKET_COURS_SOCKETVOITURE_HPP
 #define BOUSK_DVP_SOCKET_COURS_SOCKETVOITURE_HPP
 
-#pragma once
-
 #include "Sockets.hpp"
 
 class SocketVoiture

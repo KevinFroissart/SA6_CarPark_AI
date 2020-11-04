@@ -1,0 +1,19 @@
+<map id="Parking::demarerServer" name="Parking::demarerServer">
+<area shape="rect" id="node1" title=" " alt="" coords="5,86,180,113"/>
+<area shape="rect" id="node2" href="$namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89" title=" " alt="" coords="717,10,851,37"/>
+<area shape="rect" id="node3" href="$namespace_sockets.html#a92596c80f2c7e8918d9671750aaf9930" title=" " alt="" coords="228,61,360,88"/>
+<area shape="rect" id="node4" href="$namespace_server_p.html#a0ca8fc21869d5851d3f443ab98ad61c2" title="Method that starts a server a communicate with a list of related sockets." alt="" coords="233,112,355,138"/>
+<area shape="rect" id="node17" href="$namespace_sockets.html#abd487b24f7668b197a0b244273ec004f" title=" " alt="" coords="239,162,349,189"/>
+<area shape="rect" id="node5" href="$namespace_sockets.html#a07716654e6742f2a2dc74bb460c60dd4" title=" " alt="" coords="450,61,609,88"/>
+<area shape="rect" id="node6" href="$namespace_sockets.html#a055fd82bb22b774ec00c5ed3042bc3f2" title=" " alt="" coords="449,112,610,138"/>
+<area shape="rect" id="node7" href="$class_parking.html#a238a4ce4736adb41e6ba00345b4f1516" title=" " alt="" coords="408,213,651,240"/>
+<area shape="rect" id="node15" href="$namespace_server_p.html#ae77799260544f81c00027f54e58b6cf7" title="Method that checks if data was sent through a socket." alt="" coords="463,162,595,189"/>
+<area shape="rect" id="node16" href="$namespace_sockets.html#a7d8739228c55a2e3f10aae7d41098b14" title=" " alt="" coords="438,264,621,290"/>
+<area shape="rect" id="node8" href="$class_parking.html#aae39df8059269602923e51c343020b6b" title="When a car is added, the whole process is done here." alt="" coords="699,137,869,164"/>
+<area shape="rect" id="node10" href="$class_parking.html#ab2849d60e8fad7c56c466d425647192b" title=" " alt="" coords="710,188,858,214"/>
+<area shape="rect" id="node13" href="$namespacetb.html#a7c0df73fca85c8f6319e5ee4928fab06" title="Convert a string to a tab of strings." alt="" coords="1132,238,1249,265"/>
+<area shape="rect" id="node14" href="$class_parking.html#a73ce30bf810609a773227e4c5cc32462" title=" " alt="" coords="712,289,856,316"/>
+<area shape="rect" id="node9" href="$namespacetb.html#a81ea29e42263a4426ce3abb01d4e94c6" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="917,137,1084,164"/>
+<area shape="rect" id="node11" href="$class_parking.html#acb18aa4aac836d2ae5f17a67c29040bc" title="collect the log of the car." alt="" coords="935,188,1066,214"/>
+<area shape="rect" id="node12" href="$namespacetb.html#a0081b40bffde606234a14b31afbf9194" title="Read a CSV file at a specific line." alt="" coords="1133,188,1248,214"/>
+</map>

@@ -70,7 +70,7 @@ $(function() {
 <div class="title">Sockets.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<a href="_sockets_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef BOUSK_DVP_COURS_SOCKET_HPP</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define BOUSK_DVP_COURS_SOCKET_HPP</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
@@ -99,24 +99,31 @@ $(function() {
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;fcntl.h&gt;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;cerrno&gt;</span> <span class="comment">// errno</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define SOCKET int</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define INVALID_SOCKET ((int)-1)</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define SOCKET_ERROR (int(-1))</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="_sockets_8hpp.html#aff55fe551a9992a54ec54621c524d0a4">   31</a></span>&#160;<span class="preprocessor">#define SOCKET int</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="_sockets_8hpp.html#a26769957ec1a2beaf223f33b66ee64ab">   32</a></span>&#160;<span class="preprocessor">#define INVALID_SOCKET ((int)-1)</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="_sockets_8hpp.html#a633b0396ff93d336a088412a190a5072">   33</a></span>&#160;<span class="preprocessor">#define SOCKET_ERROR (int(-1))</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespace_sockets.html">   36</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_sockets.html">Sockets</a></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> Start();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> Release();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">int</span> GetError();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> CloseSocket(SOCKET socket);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">bool</span> SetNonBlocking(SOCKET s);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::string ConvertAddr(<span class="keyword">const</span> sockaddr_in&amp; addr);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespace_sockets.html#abd487b24f7668b197a0b244273ec004f">Start</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_sockets.html#a92596c80f2c7e8918d9671750aaf9930">Release</a>();</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89">GetError</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespace_sockets.html#a07716654e6742f2a2dc74bb460c60dd4">CloseSocket</a>(<a class="code" href="_sockets_8hpp.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> socket);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespace_sockets.html#a7d8739228c55a2e3f10aae7d41098b14">SetNonBlocking</a>(<a class="code" href="_sockets_8hpp.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a> s);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::string <a class="code" href="namespace_sockets.html#a055fd82bb22b774ec00c5ed3042bc3f2">ConvertAddr</a>(<span class="keyword">const</span> sockaddr_in&amp; addr);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif // BOUSK_DVP_COURS_SOCKET_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespace_sockets_html_a07716654e6742f2a2dc74bb460c60dd4"><div class="ttname"><a href="namespace_sockets.html#a07716654e6742f2a2dc74bb460c60dd4">Sockets::CloseSocket</a></div><div class="ttdeci">void CloseSocket(SOCKET socket)</div><div class="ttdef"><b>Definition:</b> Sockets.cpp:29</div></div>
+<div class="ttc" id="anamespace_sockets_html_a637c6a293cb8a83bddfd037465d21b89"><div class="ttname"><a href="namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89">Sockets::GetError</a></div><div class="ttdeci">int GetError()</div><div class="ttdef"><b>Definition:</b> Sockets.cpp:21</div></div>
+<div class="ttc" id="a_sockets_8hpp_html_aff55fe551a9992a54ec54621c524d0a4"><div class="ttname"><a href="_sockets_8hpp.html#aff55fe551a9992a54ec54621c524d0a4">SOCKET</a></div><div class="ttdeci">#define SOCKET</div><div class="ttdef"><b>Definition:</b> Sockets.hpp:31</div></div>
+<div class="ttc" id="anamespace_sockets_html_a92596c80f2c7e8918d9671750aaf9930"><div class="ttname"><a href="namespace_sockets.html#a92596c80f2c7e8918d9671750aaf9930">Sockets::Release</a></div><div class="ttdeci">void Release()</div><div class="ttdef"><b>Definition:</b> Sockets.cpp:15</div></div>
+<div class="ttc" id="anamespace_sockets_html_a055fd82bb22b774ec00c5ed3042bc3f2"><div class="ttname"><a href="namespace_sockets.html#a055fd82bb22b774ec00c5ed3042bc3f2">Sockets::ConvertAddr</a></div><div class="ttdeci">std::string ConvertAddr(const sockaddr_in &amp;addr)</div><div class="ttdef"><b>Definition:</b> Sockets.cpp:46</div></div>
+<div class="ttc" id="anamespace_sockets_html_a7d8739228c55a2e3f10aae7d41098b14"><div class="ttname"><a href="namespace_sockets.html#a7d8739228c55a2e3f10aae7d41098b14">Sockets::SetNonBlocking</a></div><div class="ttdeci">bool SetNonBlocking(SOCKET s)</div><div class="ttdef"><b>Definition:</b> Sockets.cpp:37</div></div>
 <div class="ttc" id="anamespace_sockets_html"><div class="ttname"><a href="namespace_sockets.html">Sockets</a></div><div class="ttdef"><b>Definition:</b> Sockets.hpp:36</div></div>
+<div class="ttc" id="anamespace_sockets_html_abd487b24f7668b197a0b244273ec004f"><div class="ttname"><a href="namespace_sockets.html#abd487b24f7668b197a0b244273ec004f">Sockets::Start</a></div><div class="ttdeci">bool Start()</div><div class="ttdef"><b>Definition:</b> Sockets.cpp:6</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

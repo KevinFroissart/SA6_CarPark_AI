@@ -14,11 +14,11 @@ package SA6 {
     }
     
     class Parking {
-        - float s_prix;
-        - string filePath;
-        - string s_infoVoiture;
-        - string s_parkingData[5];
-        - vector<string> idVoiture;
+        - float s_prix
+        - string filePath
+        - string s_infoVoiture
+        - string s_parkingData[5]
+        - vector<string> idVoiture
 
         + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
         + Parking(int id, string cheminFichier)
@@ -26,21 +26,21 @@ package SA6 {
         + int getPort()
         + bool demarerServer()
         + string protocoleCommunication(string message, int etape)
-        - bool EstRempli();
-        - int readLog(int id);
-        - string ajouterVoiture();
-        - float calcul_prix(vector<string> tab);
+        - bool EstRempli()
+        - int readLog(int id)
+        - string ajouterVoiture()
+        - float calcul_prix(vector<string> tab)
     }
 
     Class Voiture {
-        - int v_etape;
-        - int v_id;
-        - int v_prixBase;
-        - float prixVoulu;
-        - string v_path;
-        - string v_voitureData[6];
-        - vector<float> v_tab;
-        
+        - int v_etape
+        - int v_id
+        - int v_prixBase
+        - float prixVoulu
+        - string v_path
+        - string v_voitureData[6]
+        - vector<float> v_tab
+
         + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
         + Voiture(int id, string filePath)
         + ~Voiture()
@@ -59,26 +59,42 @@ package SA6 {
                 + bool Receive(SOCKET socket, string& _buffer)
                 + bool Server(int port, Parking * parking)
             }
+
+            package ns_errors {
+                Class Errors {
+
+                }
+            }
+
+            Class Client << struct >> {
+                + SOCKET socket
+	            + string ip
+	            + int port
+	            + int etape_client
+
+	            + Client(SOCKET _socket, const string& _ip, int _port)
+                + void Close()
+            }
         }
 
         Class SocketVoiture {
             - SOCKET mSocket
 
-            + SocketVoiture();
-            + ~SocketVoiture();
-            + bool Connect(const std::string& ipaddress, unsigned short port);
-            + int Send(const char* data, unsigned int len);
-            + int Receive(char* buffer, unsigned int len);		
+            + SocketVoiture()
+            + ~SocketVoiture()
+            + bool Connect(const std::string& ipaddress, unsigned short port)
+            + int Send(const char* data, unsigned int len)
+            + int Receive(char* buffer, unsigned int len);	
         }
 
         package ns_sockets{
 
             Class Sockets {
 
-                + bool Start();
-                + void Release();
-                + int GetError();
-                + void CloseSocket(SOCKET socket);
+                + bool Start()
+                + void Release()
+                + int GetError()
+                + void CloseSocket(SOCKET socket)
                 + bool SetNonBlocking(SOCKET s)
                 + string ConvertAddr(const sockaddr_in& addr)    
             }
