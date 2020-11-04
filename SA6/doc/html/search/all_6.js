@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['send_14',['Send',['../class_socket_voiture.html#a474e340fb03ec04c18aa5e6109f9740d',1,'SocketVoiture']]],
-  ['sockets_15',['Sockets',['../namespace_sockets.html',1,'']]],
-  ['socketvoiture_16',['SocketVoiture',['../class_socket_voiture.html',1,'SocketVoiture'],['../class_socket_voiture.html#a802b7b3fca7b337bf62568a11163d6c5',1,'SocketVoiture::SocketVoiture()']]],
-  ['stringtotab_17',['StringToTab',['../class_tool_box.html#ae43383301f2a0fb0e9b130eff73751d3',1,'ToolBox']]]
+  ['voiture_12',['Voiture',['../class_voiture.html',1,'Voiture'],['../class_voiture.html#a9f8646dde1dd92d80cf56b975bba97c2',1,'Voiture::Voiture(int id, string filePath)'],['../class_voiture.html#a77002698169f77149f6bd92f875b86cf',1,'Voiture::Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)']]]
 ];
