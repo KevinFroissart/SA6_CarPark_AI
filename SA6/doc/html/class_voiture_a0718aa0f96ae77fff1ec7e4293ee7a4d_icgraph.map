@@ -1,7 +1,7 @@
 <map id="Voiture::protocoleCommunication" name="Voiture::protocoleCommunication">
 <area shape="rect" id="node1" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="763,13,1003,39"/>
 <area shape="rect" id="node2" href="$class_voiture.html#ac4c44298731385957152cf73cc691892" title="Method used to send a string to the Parking using sockets." alt="" coords="520,5,715,47"/>
-<area shape="rect" id="node3" href="$class_voiture.html#abbc7a9f5a9e05a92b75623ff87bee85c" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="287,13,472,39"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#af4c6ef73cab1343e59be7d94b10f7cf2" title=" " alt="" coords="108,13,239,39"/>
+<area shape="rect" id="node3" href="$class_voiture.html#adc4d753778f824d3975e653a1ccfa74b" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="287,13,472,39"/>
+<area shape="rect" id="node4" href="$main_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title=" " alt="" coords="108,13,239,39"/>
 <area shape="rect" id="node5" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,13,60,39"/>
 </map>

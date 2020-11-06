@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_153',['Type',['../namespace_server_p_1_1_errors.html#a2b5a1aad0bbf479f9d06f8b77b4bb26d',1,'ServerP::Errors']]]
+  ['type_155',['Type',['../namespace_server_p_1_1_errors.html#a2b5a1aad0bbf479f9d06f8b77b4bb26d',1,'ServerP::Errors']]]
 ];
