@@ -1,7 +1,6 @@
 #ifndef PARKING_HPP
 #define PARKING_HPP
 #include <iostream>
-#include <thread>
 #include <fstream>
 #include <vector>
 using namespace std;
@@ -11,6 +10,7 @@ class Parking{
         Parking(int id, float defaultPrice, int capacite_max, string cheminFichier);
         Parking(int id, string cheminFichier);
         ~Parking();
+        int getId();
         int getPort();
         bool demarerServer();
         string protocoleCommunication(string message, int etape);

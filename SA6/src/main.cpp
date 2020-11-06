@@ -12,8 +12,8 @@ void startServer(Parking * P){
     if(!P->demarerServer()) cout << "Le parking ne parviens pas à démarrer le serveur" << endl;
 }
 
-void connexionServer(Voiture * v, int port){
-    if(!v->connexionServer(port)) cout << "La voiture ne parviens pas à se connecter au serveur" << endl;
+void connexionServer(Voiture * v, int port, int id){
+    if(!v->connexionServer(port, id)) cout << "La voiture ne parviens pas à se connecter au serveur" << endl;
 }
 
 int main (void){
@@ -50,7 +50,7 @@ int main (void){
     //Creer les threads pour chaque voitures
     for(int i = 0; i < nb_voiture; i++){
         for(int j = 0; j < nb_parking && listeVoiture[i]->rechercheParking; j++){
-            thread * tmp = new thread(connexionServer, listeVoiture[i], listeParking[j]->getPort());
+            thread * tmp = new thread(connexionServer, listeVoiture[i], listeParking[j]->getPort(), listeParking[j]->getId());
             tmp->join();
             delete tmp;
         }

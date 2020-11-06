@@ -34,7 +34,7 @@ namespace tb {
      * @throw std::runtime_error Thrown if `file` could not be opened.
      * @return true, false if nothing was written in the file.
      */
-    bool CSVWriterParkLogs(std::string path, std::string file, std::string idVoiture){
+    bool CSVWriterParkLogs(std::string path, std::string file, std::string id){
         
         std::ifstream filein(path + file);
         std::ofstream fileout(path + "updated" + file);
@@ -45,16 +45,16 @@ namespace tb {
 
         std::string tmp;
         while(std::getline(filein, tmp)){
-            if(tmp.substr(0, tmp.find(",")) == idVoiture){
+            if(tmp.substr(0, tmp.find(",")) == id){
                 nbPassage = tmp.substr(tmp.find(",")+1, tmp.size());
-                tmp = idVoiture + "," + std::to_string(stoi(nbPassage) + 1);
+                tmp = id + "," + std::to_string(stoi(nbPassage) + 1);
                 existe = true;
             }
             tmp += "\n";
             fileout << tmp;
         }
         
-        if(!existe) tmp += idVoiture + "," + nbPassage + "\n";
+        if(!existe) tmp += id + "," + nbPassage + "\n";
         fileout << tmp;
 
         std::string s_str = path;

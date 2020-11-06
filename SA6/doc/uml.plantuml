@@ -24,6 +24,7 @@ package SA6 {
         + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
         + Parking(int id, string cheminFichier)
         + ~Parking()
+        + int getId()
         + int getPort()
         + bool demarerServer()
         + string protocoleCommunication(string message, int etape)
@@ -36,8 +37,10 @@ package SA6 {
     Class Voiture {
         - int v_etape
         - int v_id
+        - int idParking
         - int v_prixBase
         - float prixVoulu
+        - string logPath
         - string v_path
         - string v_voitureData[6]
         - vector<float> v_tab
@@ -45,8 +48,8 @@ package SA6 {
         + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
         + Voiture(int id, string filePath)
         + ~Voiture()
-        + int getID()
-        + bool connexionServer(int port)
+        + int getId()
+        + bool connexionServer(int port, int id)
         - float calcul_prix()
         - vector<float> initTab()
         - string protocoleCommunication(string message)

@@ -23,6 +23,13 @@ Voiture::Voiture(int id, string filePath) : v_id(id), v_path(filePath){
     v_prixBase = 2;
     rechercheParking = true;
 
+    logPath = "CSV/Voiture/voiture" + to_string(v_id) + "Log.csv";
+    fstream existe(logPath);
+    if(!existe.is_open()){
+        ofstream createLog(logPath);
+        createLog.close();
+    } else existe.close();
+
     initTab();
 }
 
@@ -49,6 +56,13 @@ Voiture::Voiture(int id, string name, string marque, string statut, string handi
     v_prixBase = 2;
     rechercheParking = true;
     
+    logPath = "CSV/Voiture/voiture" + to_string(v_id) + "Log.csv";
+    fstream existe(logPath);
+    if(!existe.is_open()){
+        ofstream createLog(logPath);
+        createLog.close();
+    } else existe.close();
+
     initTab();
 }
 
@@ -117,10 +131,12 @@ float Voiture::calcul_prix(){
  * @brief Method used to connect the car with a specific Parking using sockets.
  *
  * @param port the port of the Parking's server.
+ * @param id the parking's id.
  * @return false if the Voiture can't connect, true otherwise.
  */
-bool Voiture::connexionServer(int port)
+bool Voiture::connexionServer(int port, int id)
 {
+    idParking = id;
     v_etape = 1; // à chaque connexion au server on remet l'étape du protocole à 1
 	if(!Sockets::Start())
 	{
@@ -201,6 +217,7 @@ string Voiture::protocoleCommunication(string message){
     if(v_etape == 3){
         if(stoi(message) <= v_prixBase){ // Si le prix renvoyé par le parking est inférieur ou égal au prix voulu par la voiture alors elle accepte
             v_etape++;
+            tb::CSVWriterParkLogs("CSV/Voiture/", "voiture" + to_string(v_id) + "Log.csv", to_string(idParking));
             return "Accepte";
         }
         else { //Sinon on refuse pour tenter la négociation en proposant un prix
@@ -212,6 +229,7 @@ string Voiture::protocoleCommunication(string message){
 
     if (v_etape == 4) {
         if(message == "Refusé") return "stop";
+
         rechercheParking = false;
         return "stop";
     }

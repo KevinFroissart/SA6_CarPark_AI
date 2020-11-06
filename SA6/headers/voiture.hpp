@@ -15,13 +15,15 @@ class Voiture{
         ~Voiture();
         int getID();
         bool rechercheParking;
-        bool connexionServer(int port);
+        bool connexionServer(int port, int id);
         
     private:
         int v_etape; //etape du protocole de communication
-        int v_id;
+        int v_id; //id de la voiture
+        int idParking;
         int v_prixBase;
         float prixVoulu;
+        string logPath; //chemin du csv dans lequel on stock les l'historique de la voiture
         string v_path;   //chemin du csv dans lequel on récupère les informations de la voiture
         string v_voitureData[6]; //tableau contenant les infos de la voiture
         vector<float> v_tab; //tableau de int contenant les informations à envoyer au parking
