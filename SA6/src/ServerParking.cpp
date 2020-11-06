@@ -13,7 +13,7 @@ namespace ServerP {
 			WOULDBLOCK = EWOULDBLOCK,
 			#endif
 		};
-	}
+	};
 
 	struct Client {
 		SOCKET socket;
