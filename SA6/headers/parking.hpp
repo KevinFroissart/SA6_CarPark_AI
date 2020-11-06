@@ -17,6 +17,7 @@ class Parking{
 
     private:
         float s_prix;
+        string logPath;
         string filePath;
         string s_infoVoiture;
         string s_parkingData[5];

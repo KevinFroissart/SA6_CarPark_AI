@@ -39,9 +39,10 @@ Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier){
     getline(input_stringstream, s_parkingData[2], ','); //remplissage
     getline(input_stringstream, s_parkingData[3], ','); //capacite
     getline(input_stringstream, s_parkingData[4], ','); //port
-    fstream existe("parking" + s_parkingData[0] + "Log.csv");
+    logPath = "CSV/Parking/parking" + s_parkingData[0] + "Log.csv";
+    fstream existe(logPath);
     if(!existe.is_open()){
-        ofstream createLog("parking" + s_parkingData[0] + "Log.csv");
+        ofstream createLog(logPath);
         createLog.close();
     } else existe.close();
     
@@ -167,7 +168,7 @@ string Parking::protocoleCommunication(string message, int etape){
  */
 string Parking::ajouterVoiture() {
     s_parkingData[2] = to_string(stoi(s_parkingData[2]) + 1);
-    tb::CSVWriterParkLogs("parking" + s_parkingData[0] + "Log.csv", idVoiture[0]);
+    tb::CSVWriterParkLogs("CSV/Parking/", "parking" + s_parkingData[0] + "Log.csv", idVoiture[0]);
     idVoiture.erase(idVoiture.begin());
     return "OK, place reservée";
 }
@@ -179,7 +180,7 @@ string Parking::ajouterVoiture() {
  */
 
 int Parking::readLog(int id){
-    vector<string> string_passages = tb::StringToTab(tb::CSVReader("parking" + s_parkingData[0] + "Log.csv", id),',');
+    vector<string> string_passages = tb::StringToTab(tb::CSVReader(logPath, id),',');
     int nb_passages = 0;
     if(string_passages.size() >= 1) string_passages[1];
     return nb_passages<5 ? 0 : nb_passages>10 ? 2 : 1;

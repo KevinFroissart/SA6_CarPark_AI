@@ -28,15 +28,16 @@ namespace tb {
     /**
      * @brief Write in a CSV file at a specific line. Not done yet.
      *
+     * @param path the file path
      * @param file the name of the CSV file.
      * @param id the line number containing the sought information.
      * @throw std::runtime_error Thrown if `file` could not be opened.
      * @return true, false if nothing was written in the file.
      */
-    bool CSVWriterParkLogs(std::string file, std::string idVoiture){
+    bool CSVWriterParkLogs(std::string path, std::string file, std::string idVoiture){
         
-        std::fstream filein(file);
-        std::ofstream fileout("updated" + file);
+        std::ifstream filein(path + file);
+        std::ofstream fileout(path + "updated" + file);
         if(!filein.is_open() || !fileout.is_open()) throw std::runtime_error("Could not open file");
 
         std::string nbPassage = "1";
@@ -56,9 +57,11 @@ namespace tb {
         if(!existe) tmp += idVoiture + "," + nbPassage + "\n";
         fileout << tmp;
 
-        std::string s_str = "updated" + file;
+        std::string s_str = path;
+        s_str += "updated" + file;
+        std::string n_str = path + file;
         const char * oldname = s_str.c_str();
-        const char * newname = file.c_str();
+        const char * newname = n_str.c_str();
 
         if(remove(newname) != 0) perror("Error deleting file");
         if(rename(oldname, newname) != 0) perror("Error renaming file");

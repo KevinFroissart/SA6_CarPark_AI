@@ -9,7 +9,7 @@
 
 namespace tb {
     std::string CSVReader(std::string file, int id);
-    bool CSVWriterParkLogs(std::string file, std::string idVoiture);
+    bool CSVWriterParkLogs(std::string path, std::string file, std::string idVoiture);
     std::string floatTabToString(std::vector<float> tab, char delimiter);
     std::vector<std::string> StringToTab(std::string tab, char delimiter);
     bool LogSorter(std::string file);
