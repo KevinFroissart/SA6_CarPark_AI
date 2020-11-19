@@ -15,6 +15,7 @@ package SA6 {
     
     class Parking {
         - float s_prix
+        - float s_caisse
         - string logPath
         - string filePath
         - string s_infoVoiture
@@ -26,6 +27,7 @@ package SA6 {
         + ~Parking()
         + int getId()
         + int getPort()
+        + float caisseTotal()
         + bool demarerServer()
         + string protocoleCommunication(string message, int etape)
         - bool EstRempli()

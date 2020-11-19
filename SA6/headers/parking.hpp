@@ -12,11 +12,13 @@ class Parking{
         ~Parking();
         int getId();
         int getPort();
+        float caisseTotal();
         bool demarerServer();
         string protocoleCommunication(string message, int etape);
 
     private:
         float s_prix;
+        float s_caisse;
         string logPath;
         string filePath;
         string s_infoVoiture;

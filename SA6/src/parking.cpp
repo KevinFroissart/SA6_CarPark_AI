@@ -151,19 +151,26 @@ bool Parking::demarerServer(){
  * @return string 
  */
 string Parking::protocoleCommunication(string message, int etape){
+    float prix_propose = 0;
     // Vérifie si il reste de la place dans le parking, si non on arrete l'échange, si oui on continu
     if(etape == 1) return EstRempli() ? "Non" : "Oui";
     
     if(etape == 2){
-        s_infoVoiture = message;        
-        return to_string(calcul_prix(tb::StringToTab(message, ',')));
+        s_infoVoiture = message;
+        prix_propose = calcul_prix(tb::StringToTab(message, ','));        
+        return to_string(prix_propose);
     }
     if(etape == 3){
         //Si la voiture accepte ce prix alors on lui reserve une place et on lui indique que c'est bon
-        if(message == "Accepte")  return ajouterVoiture();
-           
-        else { //Si la voiture n'accepete pas alors elle nous renvoie son prix
-            if(stof(message) > (0.65 * s_prix)) return ajouterVoiture();
+        if(message == "Accepte"){
+            s_caisse += prix_propose;
+            return ajouterVoiture();
+        }   
+        else { //Si la voiture n'accepte pas alors elle nous renvoie son prix
+            if(stof(message) > (0.65 * s_prix)){
+                s_caisse += stof(message);
+                return ajouterVoiture();
+            } 
             return "Refusé";
         }
     }
@@ -193,4 +200,8 @@ int Parking::readLog(int id){
     int nb_passages = 0;
     if(string_passages.size() >= 1) string_passages[1];
     return nb_passages<5 ? 0 : nb_passages>10 ? 2 : 1;
+}
+
+float Parking::caisseTotal(){
+    return s_caisse;
 }
