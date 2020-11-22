@@ -35,7 +35,8 @@ bin/sa6
 # IDE
 .vscode
 .vs
-.idea  
+.idea
+*.pro.user  
 
 # Make
 *.dep
