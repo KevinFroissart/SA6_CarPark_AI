@@ -40,7 +40,7 @@ namespace Sockets
 	int GetError();
 	void CloseSocket(SOCKET socket);
 	bool SetNonBlocking(SOCKET s);
-	std::string ConvertAddr(const sockaddr_in& addr);
+    std::string ConvertAddr(const sockaddr_in& addr);
 }
 
 #endif // BOUSK_DVP_COURS_SOCKET_H

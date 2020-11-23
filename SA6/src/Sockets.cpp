@@ -1,6 +1,6 @@
 /**SA6 - Intelligent Car-Park**/
 #include "../headers/Sockets.hpp"
-
+#include <string>
 namespace Sockets
 {
 	bool Start()
@@ -48,7 +48,7 @@ namespace Sockets
 #if defined(_WIN32) && _MSC_VER >= 1800
 		char buff[32] = {0};
 		InetNtop(addr.sin_family, (void*)&(addr.sin_addr), buff, 31);
-		return std::string(buff, 32);
+        return string(buff, 32);
 #else
 		return inet_ntoa(addr.sin_addr);
 #endif
