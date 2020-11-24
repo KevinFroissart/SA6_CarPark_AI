@@ -4,7 +4,8 @@ LD=$(WRAPPER)
 CFLAGS=-Wall -W -Werror -g
 
 LDFLAGS =
-LIBS = plantuml.jar
+LIBS = plantuml.jar*
+LBLIBS = -lsfml-graphics -lsfml-window -lsfml-system
 THREAD = -std=c++11 -pthread
 
 EXE=sa6.out

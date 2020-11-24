@@ -35,12 +35,14 @@ Project layout
 --------------
     SA6/
     ├─ bin/             binaries
+    ├─ CSV/             CSV files
     ├─ doc/             documentation
     │  ├─ html/         html version
     │  ├─ latex/        LaTeX version
     │  ├─ rtf/          RTF version
     │  └─ uml           uml
     ├─ headers/         hpp headers
+    ├─ lib/             libs required
     ├─ obj/             generated object files
     └─ src/             application source code
 

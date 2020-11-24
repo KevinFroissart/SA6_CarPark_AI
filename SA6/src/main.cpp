@@ -1,6 +1,7 @@
 #include "../headers/Voiture.hpp"
 #include "../headers/Parking.hpp"
 #include "../headers/ToolBox.hpp"
+#include <SFML/Window.hpp>
 #include <string.h>
 #include <thread>
 #include <pthread.h>
