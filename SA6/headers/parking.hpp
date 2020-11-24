@@ -15,6 +15,8 @@ class Parking{
         float caisseTotal();
         bool demarerServer();
         string protocoleCommunication(string message, int etape);
+        string getCapaciteTotale();
+        string getRemplissage();
 
     private:
         float s_prix;

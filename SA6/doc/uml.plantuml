@@ -29,6 +29,8 @@ package SA6 {
         + int getPort()
         + float caisseTotal()
         + bool demarerServer()
+        + string getRemplissage()
+        + string getCapaciteTotale()
         + string protocoleCommunication(string message, int etape)
         - bool EstRempli()
         - int readLog(int id)
