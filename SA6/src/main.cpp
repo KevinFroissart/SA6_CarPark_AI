@@ -27,7 +27,7 @@ int main (void){
     }
 
     sf::RenderWindow window;
-    window.create(sf::VideoMode(1000, 1000), "SA6 Parking Manager");
+    window.create(sf::VideoMode(1000, 450), "SA6 Parking Manager");
 
     sf::Event event;
 
@@ -59,13 +59,18 @@ int main (void){
             if (!font.loadFromFile("arial.ttf"))
                 return EXIT_FAILURE;
             
-            window.clear();
+            window.clear(sf::Color(210,210,210,255)); //gris
 
             for(int i = 0; i < main_b->m_nbParking; i++){
                 sf::Text text("Parking " + to_string(i+1), font, 50);
+                text.setFillColor(sf::Color::Black);
                 int y = i*50;
                 text.move(0.f, y);
                 
+                sf::Text label_progress(main_b->m_listeParking[i]->getRemplissage() + "/" + to_string(tab_capacite[i]), font, 50);
+                label_progress.move(650.f, y);
+                label_progress.setFillColor(sf::Color::Black);
+
                 int length = 300;
                 int width = 50;
                 float progress_scale = length/tab_capacite[i];
@@ -73,21 +78,21 @@ int main (void){
                 sf::RectangleShape ProgressBackground;
                 ProgressBackground.setFillColor(sf::Color::White);
                 ProgressBackground.setOutlineThickness(2);
-                ProgressBackground.setOutlineColor(sf::Color::Red);
+                ProgressBackground.setOutlineColor(sf::Color::Black);
                 ProgressBackground.setSize(sf::Vector2f(length, width));
                 ProgressBackground.move(300.f, y);
 
                 sf::RectangleShape ProgressBar;
                 ProgressBar.setFillColor(sf::Color::Red);
                 ProgressBar.setOutlineThickness(2);
-                ProgressBar.setOutlineColor(sf::Color::Red);
-                //cout << stoi(main_b->m_listeParking[i]->getRemplissage())  << " / " << length << endl;
+                ProgressBar.setOutlineColor(sf::Color::Black);
                 ProgressBar.setSize(sf::Vector2f(stoi(main_b->m_listeParking[i]->getRemplissage()) * progress_scale, width));
                 ProgressBar.move(300.f, y);
 
                 window.draw(ProgressBackground);
                 window.draw(ProgressBar);
-                window.draw(text);  
+                window.draw(text);
+                window.draw(label_progress);  
             }
 
             window.display(); 
