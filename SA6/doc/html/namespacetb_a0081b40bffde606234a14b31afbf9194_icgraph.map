@@ -1,4 +1,12 @@
 <map id="tb::CSVReader" name="tb::CSVReader">
-<area shape="rect" id="node1" title="Read a CSV file at a specific line." alt="" coords="176,5,291,32"/>
-<area shape="rect" id="node2" href="$class_voiture.html#a9f8646dde1dd92d80cf56b975bba97c2" title="Voiture Constructor, extracts information from a CSV file." alt="" coords="5,5,128,32"/>
+<area shape="rect" id="node1" title="Read a CSV file at a specific line." alt="" coords="1309,56,1424,83"/>
+<area shape="rect" id="node2" href="$class_parking.html#a300004ddbc70c562488cf3f933d5cfb3" title="Construct a new Parking:: Parking object." alt="" coords="1133,5,1259,32"/>
+<area shape="rect" id="node3" href="$class_parking.html#acb18aa4aac836d2ae5f17a67c29040bc" title="collect the log of the car." alt="" coords="1131,56,1261,83"/>
+<area shape="rect" id="node10" href="$class_voiture.html#a9f8646dde1dd92d80cf56b975bba97c2" title="Voiture Constructor, extracts information from a CSV file." alt="" coords="1135,107,1257,133"/>
+<area shape="rect" id="node4" href="$class_parking.html#ab2849d60e8fad7c56c466d425647192b" title=" " alt="" coords="935,56,1083,83"/>
+<area shape="rect" id="node5" href="$class_parking.html#a238a4ce4736adb41e6ba00345b4f1516" title=" " alt="" coords="644,56,887,83"/>
+<area shape="rect" id="node6" href="$namespace_server_p.html#a0ca8fc21869d5851d3f443ab98ad61c2" title="Method that starts a server a communicate with a list of related sockets." alt="" coords="473,56,596,83"/>
+<area shape="rect" id="node7" href="$class_parking.html#a28bcb84c5a6f26d13646253fd69471dd" title=" " alt="" coords="251,56,425,83"/>
+<area shape="rect" id="node8" href="$main_8cpp.html#a40f844fb99335a27ed43122c6e2c3532" title=" " alt="" coords="108,56,203,83"/>
+<area shape="rect" id="node9" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,56,60,83"/>
 </map>
