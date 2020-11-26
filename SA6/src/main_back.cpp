@@ -63,6 +63,7 @@ int Main_back::process (){
         for(int j = 0; j < m_nbParking && m_listeVoiture[i]->rechercheParking; j++){
             thread * tmp = new thread(connexionServer, m_listeVoiture[i], m_listeParking[j]->getPort(), m_listeParking[j]->getId());
             tmp->join();
+            usleep(700);
             delete tmp;
         }
         cout << (m_listeVoiture[i]->rechercheParking ? "La voiture n'as pas trouvé de parking" : "La voiture a trouvé un parking");
