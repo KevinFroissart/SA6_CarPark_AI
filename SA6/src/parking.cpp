@@ -205,3 +205,11 @@ int Parking::readLog(int id){
 float Parking::caisseTotal(){
     return s_caisse;
 }
+
+string Parking::getCapaciteTotale(){
+    return s_parkingData[3];
+}
+
+string Parking::getRemplissage(){
+    return s_parkingData[2];
+}

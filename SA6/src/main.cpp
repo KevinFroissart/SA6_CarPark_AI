@@ -1,7 +1,8 @@
 #include "../headers/Voiture.hpp"
 #include "../headers/Parking.hpp"
 #include "../headers/ToolBox.hpp"
-#include <SFML/Window.hpp>
+#include "../headers/main_back.hpp"
+#include <SFML/Graphics.hpp>
 #include <string.h>
 #include <thread>
 #include <pthread.h>
@@ -9,62 +10,94 @@
 #include <time.h>
 using namespace std;
 
-void startServer(Parking * P){
-    if(!P->demarerServer()) cout << "Le parking ne parviens pas à démarrer le serveur" << endl;
-}
-
-void connexionServer(Voiture * v, int port, int id){
-    if(!v->connexionServer(port, id)) cout << "La voiture ne parviens pas à se connecter au serveur" << endl;
+void back_end_process(Main_back * mb){
+    mb->process();
 }
 
 int main (void){
 
-    int nb_parking = 3;
-    vector<Parking *> listeParking;
-    vector<thread *> listeThreadParking;
+    Main_back * main_b = new Main_back();
 
-    for(int i = 0; i < nb_parking; i++){
-        listeParking.push_back(new Parking(i+1, "parking.csv"));  
-        listeThreadParking.push_back(new thread(startServer, listeParking[i]));
-        listeThreadParking[i]->detach();
+    thread * back_thread = new thread(back_end_process, main_b);
+    back_thread->detach();
+
+    int tab_capacite[main_b->m_nbParking];
+    for(int i = 0; i < main_b->m_nbParking; i++){
+        tab_capacite[i] = stoi(main_b->m_listeParking[i]->getCapaciteTotale());
     }
 
-    sleep(5);
+    sf::RenderWindow window;
+    window.create(sf::VideoMode(1000, 450), "SA6 Parking Manager");
 
-    int nb_voiture = 30;
-    vector<Voiture *> listeVoiture;
-    vector<Voiture *> listeVoitureTmp;
+    sf::Event event;
 
-    for(int i = 0; i < nb_voiture; i++){
-        listeVoitureTmp.push_back(new Voiture(i + 1, "voitures.csv"));
-    }
+    while(window.isOpen()){
+        bool closed = false;
+        while(window.pollEvent(event)){
 
-    //Ajouter des voitures de manière aléatoire dans notre liste
-    while(listeVoiture.size() != (unsigned int) nb_voiture){
-        srand(time(NULL));
-        int voitureRand = rand() % (int) listeVoitureTmp.size();
-        
-        listeVoiture.push_back(new Voiture(listeVoitureTmp[voitureRand]->getID(), "voitures.csv"));
-        listeVoitureTmp.erase(listeVoitureTmp.begin() + voitureRand);
-    }
-
-    //Creer les threads pour chaque voitures
-    for(int i = 0; i < nb_voiture; i++){
-        for(int j = 0; j < nb_parking && listeVoiture[i]->rechercheParking; j++){
-            thread * tmp = new thread(connexionServer, listeVoiture[i], listeParking[j]->getPort(), listeParking[j]->getId());
-            tmp->join();
-            delete tmp;
+            switch (event.type){
+                case sf::Event::Closed:
+                    window.close();
+                    main_b->~Main_back(); 
+                    closed = true;
+                    break;
+                case sf::Event::KeyPressed :
+                    if(event.key.code == sf::Keyboard::Q){
+                        window.close();  
+                        main_b->~Main_back();
+                        closed = true;
+                    } 
+                    break;
+                default:
+                    break;
+            }
         }
-        cout << (listeVoiture[i]->rechercheParking ? "La voiture n'as pas trouvé de parking" : "La voiture a trouvé un parking");
-        cout << endl;
+
+        if(!closed){
+            
+            sf::Font font;
+            if (!font.loadFromFile("arial.ttf"))
+                return EXIT_FAILURE;
+            
+            window.clear(sf::Color(210,210,210,255)); //gris
+
+            for(int i = 0; i < main_b->m_nbParking; i++){
+                sf::Text text("Parking " + to_string(i+1), font, 50);
+                text.setFillColor(sf::Color::Black);
+                int y = i*50;
+                text.move(0.f, y);
+                
+                sf::Text label_progress(main_b->m_listeParking[i]->getRemplissage() + "/" + to_string(tab_capacite[i]), font, 50);
+                label_progress.move(650.f, y);
+                label_progress.setFillColor(sf::Color::Black);
+
+                int length = 300;
+                int width = 50;
+                float progress_scale = length/tab_capacite[i];
+
+                sf::RectangleShape ProgressBackground;
+                ProgressBackground.setFillColor(sf::Color::White);
+                ProgressBackground.setOutlineThickness(2);
+                ProgressBackground.setOutlineColor(sf::Color::Black);
+                ProgressBackground.setSize(sf::Vector2f(length, width));
+                ProgressBackground.move(300.f, y);
+
+                sf::RectangleShape ProgressBar;
+                ProgressBar.setFillColor(sf::Color::Red);
+                ProgressBar.setOutlineThickness(2);
+                ProgressBar.setOutlineColor(sf::Color::Black);
+                ProgressBar.setSize(sf::Vector2f(stoi(main_b->m_listeParking[i]->getRemplissage()) * progress_scale, width));
+                ProgressBar.move(300.f, y);
+
+                window.draw(ProgressBackground);
+                window.draw(ProgressBar);
+                window.draw(text);
+                window.draw(label_progress);  
+            }
+
+            window.display(); 
+        }       
     }
 
-    for(int i = 0; i < nb_parking; i++){
-        delete listeThreadParking[i];
-        delete listeParking[i];
-    }      
-    for(Voiture* voiture : listeVoiture){
-        delete voiture;
-    }
     return 0;
 }

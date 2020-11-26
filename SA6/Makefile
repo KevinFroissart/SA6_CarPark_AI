@@ -56,7 +56,7 @@ makefile.dep: $(SOURCES) $(HEADERS)
 	@for file in $(SOURCES); do echo "obj/`g++ $(CFLAGS) -MM $$file`" >> makefile.dep; done
 
 $(BINARY): $(OBJECTS)
-	$(LD) $(LDFLAGS) $(THREAD) -o $@ $^
+	$(LD) $(LDFLAGS) $(THREAD) -o $@ $^ $(LBLIBS)
 
 obj/%.o: src/%.cpp
 	$(CPP) $(CFLAGS) -o $@ -c $<
