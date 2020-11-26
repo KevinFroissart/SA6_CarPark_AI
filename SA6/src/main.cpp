@@ -1,5 +1,5 @@
-#include "../headers/Voiture.hpp"
-#include "../headers/Parking.hpp"
+#include "../headers/voiture.hpp"
+#include "../headers/parking.hpp"
 #include "../headers/ToolBox.hpp"
 #include "../headers/main_back.hpp"
 #include <SFML/Graphics.hpp>

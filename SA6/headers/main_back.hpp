@@ -1,7 +1,7 @@
 #ifndef MAIN_BACK_HPP
 #define MAIN_BACK_HPP
-#include "../headers/Voiture.hpp"
-#include "../headers/Parking.hpp"
+#include "../headers/voiture.hpp"
+#include "../headers/parking.hpp"
 #include "../headers/ToolBox.hpp"
 #include <string.h>
 #include <thread>
