@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <map>
 using namespace std;
 
 class Parking{
@@ -17,10 +18,13 @@ class Parking{
         string protocoleCommunication(string message, int etape);
         string getCapaciteTotale();
         string getRemplissage();
+        map<string, string> discussionVoiture;
 
     private:
+        map<string, string>::iterator itr;
         float s_prix;
         float s_caisse;
+        string id_voiture;
         string logPath;
         string filePath;
         string s_infoVoiture;

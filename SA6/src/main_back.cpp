@@ -69,6 +69,10 @@ int Main_back::process (){
         cout << (m_listeVoiture[i]->rechercheParking ? "La voiture n'as pas trouvé de parking" : "La voiture a trouvé un parking");
         cout << endl;
     }
+    // voici comment obtenir l'historique des messages du parking 1 et de la voiture 1
+    map<string, string>::iterator itr;
+    itr = m_listeParking[0]->discussionVoiture.find("1");
+    cout << itr->second << endl;
     
     for(Voiture* voiture : m_listeVoiture){
         delete voiture;
