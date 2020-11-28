@@ -2,114 +2,144 @@
 
 package SA6 {
 
-    package ns_tb {
-        class ToolBox {
-            + std::string CSVReader(string file, int id)
-            + bool CSVWriterParkLogs(string path, string file, string idVoiture)
-            + string floatTabToString(vector<float> tab, char delimiter)
-            + vector<string> StringToTab(string tab, char delimiter)
-            + bool LogSorter(string file)
-            + int getNbLines(string file)
+    package front_end {
+        class main {}
+    }
+
+    class SFML {}
+
+    package back_end {
+
+        class main_back {
+            + int m_nbParking
+            + int m_nbVoiture
+            + vector<Parking *> m_listeParking
+            + map<int, map<int, string>> conversation
+            + map<int, float> caisseParking
+            - vector<thread *> m_listeThreadParking
+            - vector<Voiture *> m_listeVoiture
+            - vector<Voiture *> m_listeVoitureTmp
+
+            + Main_back();
+            + ~Main_back();
+            + int process();
         }
-    }
-    
-    class Parking {
-        - float s_prix
-        - float s_caisse
-        - string logPath
-        - string filePath
-        - string s_infoVoiture
-        - string s_parkingData[5]
-        - vector<string> idVoiture
 
-        + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
-        + Parking(int id, string cheminFichier)
-        + ~Parking()
-        + int getId()
-        + int getPort()
-        + float caisseTotal()
-        + bool demarerServer()
-        + string getRemplissage()
-        + string getCapaciteTotale()
-        + string protocoleCommunication(string message, int etape)
-        - bool EstRempli()
-        - int readLog(int id)
-        - string ajouterVoiture()
-        - float calcul_prix(vector<string> tab)
-    }
-
-    Class Voiture {
-        - int v_etape
-        - int v_id
-        - int idParking
-        - int v_prixBase
-        - float prixVoulu
-        - string logPath
-        - string v_path
-        - string v_voitureData[6]
-        - vector<float> v_tab
-
-        + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
-        + Voiture(int id, string filePath)
-        + ~Voiture()
-        + int getId()
-        + bool connexionServer(int port, int id)
-        - float calcul_prix()
-        - vector<float> initTab()
-        - string protocoleCommunication(string message)
-        - bool communicateWithParking(SocketVoiture client, string replyServer)
-    }
-
-    package Réseau <<Rectangle>> {
-
-        package ns_server {
-            Class ServerParking {
-                + bool Receive(SOCKET socket, string& _buffer)
-                + bool Server(int port, Parking * parking)
+        package ns_tb {
+            class ToolBox {
+                + std::string CSVReader(string file, int id)
+                + bool CSVWriterParkLogs(string path, string file, string idVoiture)
+                + string floatTabToString(vector<float> tab, char delimiter)
+                + vector<string> StringToTab(string tab, char delimiter)
+                + bool LogSorter(string file)
+                + int getNbLines(string file)
             }
+        }
+        
+        class Parking {
+            - float s_prix
+            - float s_caisse
+            - string logPath
+            - string filePath
+            - string s_infoVoiture
+            - string s_parkingData[5]
+            - vector<string> idVoiture
 
-            package ns_errors {
-                enum Errors {
-                    WSAEWOULDBLOCK
-                    EWOULDBLOCK
+            + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
+            + Parking(int id, string cheminFichier)
+            + ~Parking()
+            + int getId()
+            + int getPort()
+            + float caisseTotal()
+            + bool demarerServer()
+            + string getRemplissage()
+            + string getCapaciteTotale()
+            + string protocoleCommunication(string message, int etape)
+            - bool EstRempli()
+            - int readLog(int id)
+            - string ajouterVoiture()
+            - float calcul_prix(vector<string> tab)
+        }
+
+        Class Voiture {
+            - int v_etape
+            - int v_id
+            - int idParking
+            - int v_prixBase
+            - float prixVoulu
+            - string logPath
+            - string v_path
+            - string v_voitureData[6]
+            - vector<float> v_tab
+
+            + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
+            + Voiture(int id, string filePath)
+            + ~Voiture()
+            + int getId()
+            + bool connexionServer(int port, int id)
+            - float calcul_prix()
+            - vector<float> initTab()
+            - string protocoleCommunication(string message)
+            - bool communicateWithParking(SocketVoiture client, string replyServer)
+        }
+
+        package Réseau <<Rectangle>> {
+
+            package ns_server {
+                Class ServerParking {
+                    + bool Receive(SOCKET socket, string& _buffer)
+                    + bool Server(int port, Parking * parking)
+                }
+
+                package ns_errors {
+                    enum Errors {
+                        WSAEWOULDBLOCK
+                        EWOULDBLOCK
+                    }
+                }
+
+                Class Client << struct >> {
+                    + SOCKET socket
+                    + string ip
+                    + int port
+                    + int etape_client
+
+                    + Client(SOCKET _socket, const string& _ip, int _port)
+                    + void Close()
                 }
             }
 
-            Class Client << struct >> {
-                + SOCKET socket
-	            + string ip
-	            + int port
-	            + int etape_client
+            Class SocketVoiture {
+                - SOCKET mSocket
 
-	            + Client(SOCKET _socket, const string& _ip, int _port)
-                + void Close()
+                + SocketVoiture()
+                + ~SocketVoiture()
+                + bool Connect(const std::string& ipaddress, unsigned short port)
+                + int Send(const char* data, unsigned int len)
+                + int Receive(char* buffer, unsigned int len);	
             }
-        }
 
-        Class SocketVoiture {
-            - SOCKET mSocket
+            package ns_sockets{
 
-            + SocketVoiture()
-            + ~SocketVoiture()
-            + bool Connect(const std::string& ipaddress, unsigned short port)
-            + int Send(const char* data, unsigned int len)
-            + int Receive(char* buffer, unsigned int len);	
-        }
+                Class Sockets {
 
-        package ns_sockets{
-
-            Class Sockets {
-
-                + bool Start()
-                + void Release()
-                + int GetError()
-                + void CloseSocket(SOCKET socket)
-                + bool SetNonBlocking(SOCKET s)
-                + string ConvertAddr(const sockaddr_in& addr)    
+                    + bool Start()
+                    + void Release()
+                    + int GetError()
+                    + void CloseSocket(SOCKET socket)
+                    + bool SetNonBlocking(SOCKET s)
+                    + string ConvertAddr(const sockaddr_in& addr)    
+                }
             }
         }
     }
 }
+
+main .right.> SFML
+main -down-  "1 " main_back
+
+main_back *-- "n" Voiture
+main_back *-- "n " Parking
 
 ToolBox --o Voiture
 ToolBox --o Parking
