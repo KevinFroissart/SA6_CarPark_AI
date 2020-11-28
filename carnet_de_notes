@@ -26,3 +26,10 @@ Semaine 7 :
 Semaine 8 :
     - Qt (Anton)
     - SFML - progress bar
+    difficultés : impossible d'importer le projet dans Qt sans changer tout le code,
+    essaie sur sfml, impossible d'afficher le gui car wsl -> solution utiliser XcXsrv Windows server pour forward l'affichage X11 sur windows.
+    Difficulter à faire tourner le code ET le gui en même temps -> créer une classe à part pour le gui et faire tourner le code dans un thread
+Semaine 9 :
+    - Affichage de la caisse en direct
+    - stockage des conversation dans une map
+    difficultés: acceder aux données du parking -> copie d'information via des maps et maps de maps dans le main.
