@@ -64,15 +64,23 @@ int Main_back::process (){
             thread * tmp = new thread(connexionServer, m_listeVoiture[i], m_listeParking[j]->getPort(), m_listeParking[j]->getId());
             tmp->join();
             usleep(700);
+
+            map<string, string>::iterator itr;
+            if((itr = m_listeParking[j]->discussionVoiture.find(to_string(i))) != m_listeParking[j]->discussionVoiture.end())
+                conversation[j].insert(make_pair(i, itr->second));   
+                
+            map<int, float>::iterator itr2;
+            if(caisseParking.find(j) == caisseParking.end()){
+                caisseParking.insert(make_pair(j, m_listeParking[j]->caisseTotal()));
+            } else {
+                itr2 = caisseParking.find(j);
+                itr2->second = m_listeParking[j]->caisseTotal();
+            }
             delete tmp;
         }
         cout << (m_listeVoiture[i]->rechercheParking ? "La voiture n'as pas trouvé de parking" : "La voiture a trouvé un parking");
         cout << endl;
     }
-    // voici comment obtenir l'historique des messages du parking 1 et de la voiture 1
-    map<string, string>::iterator itr;
-    itr = m_listeParking[0]->discussionVoiture.find("1");
-    cout << itr->second << endl;
     
     for(Voiture* voiture : m_listeVoiture){
         delete voiture;

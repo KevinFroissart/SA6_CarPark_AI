@@ -14,6 +14,14 @@ void back_end_process(Main_back * mb){
     mb->process();
 }
 
+string round(float var) { 
+    char str[40];  
+    sprintf(str, "%.2f", var); 
+    sscanf(str, "%f", &var);  
+  
+    return str;  
+}
+
 int main (void){
 
     Main_back * main_b = new Main_back();
@@ -71,6 +79,15 @@ int main (void){
                 label_progress.move(650.f, y);
                 label_progress.setFillColor(sf::Color::Black);
 
+                map<int, float>::iterator itr;
+                float caisse = 0;
+                if((itr = main_b->caisseParking.find(i)) != main_b->caisseParking.end())
+                    caisse = itr->second;
+                
+                sf::Text label_caisse(round(caisse) + "e", font, 50);
+                label_caisse.move(790.f, y);
+                label_caisse.setFillColor(sf::Color::Black);
+
                 int length = 300;
                 int width = 50;
                 float progress_scale = length/tab_capacite[i];
@@ -92,7 +109,8 @@ int main (void){
                 window.draw(ProgressBackground);
                 window.draw(ProgressBar);
                 window.draw(text);
-                window.draw(label_progress);  
+                window.draw(label_progress); 
+                window.draw(label_caisse);
             }
 
             window.display(); 

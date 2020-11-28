@@ -8,6 +8,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <time.h>
+#include <map>
 
 using namespace std;
 
@@ -19,6 +20,9 @@ class Main_back{
         int m_nbVoiture;
         int process();
         vector<Parking *> m_listeParking;
+        map<int, map<int, string>> conversation;
+        map<int, float> caisseParking;
+
     private:
         vector<thread *> m_listeThreadParking;
         vector<Voiture *> m_listeVoiture;
