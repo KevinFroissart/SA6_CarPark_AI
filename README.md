@@ -15,6 +15,7 @@ $ make run
 ```
 GCC : sudo apt install build-essential
 or Clang : sudo apt install clang
+SFML : sudo apt-get install libsfml-dev
 ```
 
 
