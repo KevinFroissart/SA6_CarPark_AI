@@ -1,9 +1,12 @@
 <map id="Sockets::Release" name="Sockets::Release">
-<area shape="rect" id="node1" title=" " alt="" coords="520,56,652,83"/>
-<area shape="rect" id="node2" href="$class_voiture.html#adc4d753778f824d3975e653a1ccfa74b" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="287,5,472,32"/>
-<area shape="rect" id="node5" href="$class_parking.html#a28bcb84c5a6f26d13646253fd69471dd" title=" " alt="" coords="292,56,467,83"/>
-<area shape="rect" id="node7" href="$class_parking.html#aba04e48c6e34ae0c1eaee8f3d670e8fb" title="Destroy the Parking:: Parking object." alt="" coords="311,107,448,133"/>
-<area shape="rect" id="node3" href="$main_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title=" " alt="" coords="108,5,239,32"/>
-<area shape="rect" id="node4" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,31,60,57"/>
-<area shape="rect" id="node6" href="$main_8cpp.html#a40f844fb99335a27ed43122c6e2c3532" title=" " alt="" coords="126,56,221,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="928,56,1060,83"/>
+<area shape="rect" id="node2" href="$class_voiture.html#adc4d753778f824d3975e653a1ccfa74b" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="695,5,880,32"/>
+<area shape="rect" id="node7" href="$class_parking.html#a28bcb84c5a6f26d13646253fd69471dd" title=" " alt="" coords="700,56,875,83"/>
+<area shape="rect" id="node10" href="$class_parking.html#aba04e48c6e34ae0c1eaee8f3d670e8fb" title="Destroy the Parking:: Parking object." alt="" coords="719,107,856,133"/>
+<area shape="rect" id="node3" href="$main__back_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title=" " alt="" coords="516,5,647,32"/>
+<area shape="rect" id="node4" href="$class_main__back.html#afb5d52770eaa974d965395c9558cc211" title="This is where the magic happens! The whole process is done here hence the name of the method...." alt="" coords="307,5,458,32"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#ab54f77022b284a6b892c630d2e96225f" title=" " alt="" coords="108,5,249,32"/>
+<area shape="rect" id="node6" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node8" href="$main__back_8cpp.html#a40f844fb99335a27ed43122c6e2c3532" title=" " alt="" coords="534,56,629,83"/>
+<area shape="rect" id="node9" href="$class_main__back.html#a551476b70e94fadff5b4c516332f6bf4" title="Construct a new Main_back::Main_back object initialise Parking, Voiture and Thread lists...." alt="" coords="297,56,468,83"/>
 </map>

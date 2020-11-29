@@ -9,7 +9,7 @@ LBLIBS = -lsfml-graphics -lsfml-window -lsfml-system
 THREAD = -std=c++11 -pthread
 
 EXE=sa6.out
-DOX=../Doxyfile
+DOX=doc/Doxyfile
 
 TARGET=bin/
 CPATH=src/

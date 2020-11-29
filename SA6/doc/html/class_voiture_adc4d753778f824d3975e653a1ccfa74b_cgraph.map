@@ -8,7 +8,7 @@
 <area shape="rect" id="node4" href="$class_voiture.html#a0718aa0f96ae77fff1ec7e4293ee7a4d" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="481,56,721,83"/>
 <area shape="rect" id="node8" href="$class_socket_voiture.html#acb36402a6ffbf2add9b058b4bfd7d053" title="Recieves a message trough the socket." alt="" coords="516,107,687,133"/>
 <area shape="rect" id="node9" href="$class_socket_voiture.html#a474e340fb03ec04c18aa5e6109f9740d" title="Sends a message trough the socket." alt="" coords="526,157,677,184"/>
-<area shape="rect" id="node5" href="$class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay." alt="" coords="779,5,926,32"/>
+<area shape="rect" id="node5" href="$class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="779,5,926,32"/>
 <area shape="rect" id="node6" href="$namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="769,56,936,83"/>
 <area shape="rect" id="node7" href="$namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="779,107,926,133"/>
 </map>

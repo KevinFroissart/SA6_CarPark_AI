@@ -1,6 +1,6 @@
 <map id="Voiture::protocoleCommunication" name="Voiture::protocoleCommunication">
 <area shape="rect" id="node1" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="5,56,245,83"/>
-<area shape="rect" id="node2" href="$class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay." alt="" coords="303,5,450,32"/>
+<area shape="rect" id="node2" href="$class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="303,5,450,32"/>
 <area shape="rect" id="node3" href="$namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="293,56,460,83"/>
 <area shape="rect" id="node4" href="$namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="303,107,450,133"/>
 </map>
