@@ -31,7 +31,6 @@ namespace ServerP {
 	#define BUFFER_MAX 1024
 	/**
 	 * @brief Method that checks if data was sent through a socket
-	 * 
 	 * @param socket the client's socket
 	 * @param _buffer the data
 	 * @return true or false if catches an error
@@ -57,7 +56,6 @@ namespace ServerP {
 
 	/**
 	 * @brief Method that starts a server a communicate with a list of related sockets
-	 * 
 	 * @param port port of the server
 	 * @param parking an pointer of a parking
 	 * @return false if the server fails to start or catches an error
@@ -68,7 +66,7 @@ namespace ServerP {
 		if (server == INVALID_SOCKET)
 			return false;
 		sockaddr_in addr;
-		addr.sin_addr.s_addr = INADDR_ANY; // indique que toutes les adresses sont accept�es
+		addr.sin_addr.s_addr = INADDR_ANY;
 		addr.sin_port = htons(port);
 		addr.sin_family = AF_INET;
 		int res = bind(server, (sockaddr*)&addr, sizeof(addr));
@@ -99,9 +97,8 @@ namespace ServerP {
 					continue;
 				}
 				Client client(newClient, Sockets::ConvertAddr(from), ntohs(from.sin_port));
-				//cout << "Connexion de " << client.ip.c_str() << ":"<< client.port << endl;
 				Sockets::SetNonBlocking(newClient);
-				client.etape_client = 1; // A chaque connexion l'etape client est a 1
+				client.etape_client = 1;
 				clients.push_back(client);
 			}
 			vector<Client>::iterator client = clients.begin();
@@ -112,9 +109,7 @@ namespace ServerP {
 				{
 					if ( !buffer.empty() )
 					{
-						//cout << "Recu de [" << client->ip.c_str() << ":" << client->port << "] : " << buffer << endl;
 						string reply = parking->protocoleCommunication(buffer, client->etape_client++);
-						//cout << "Reponse a [" << client->ip.c_str() << ":" << client->port << "] > " << reply << endl;
 						send(client->socket, reply.c_str(), reply.length(), 0);
 					}
 					++client;

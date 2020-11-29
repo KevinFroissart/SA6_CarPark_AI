@@ -10,6 +10,11 @@ void connexionServer(Voiture * v, int port, int id){
     if(!v->connexionServer(port, id)) cout << "La voiture ne parviens pas à se connecter au serveur" << endl;
 }
 
+/**
+ * @brief Construct a new Main_back::Main_back object
+ * initialise Parking, Voiture and Thread lists.
+ * Voitures are stored randomly.
+ */
 Main_back::Main_back(){
 
     m_nbParking = 3;
@@ -31,7 +36,6 @@ Main_back::Main_back(){
         listeVoitureTmp.push_back(new Voiture(i + 1, "voitures.csv"));
     }
 
-    //Ajouter des voitures de manière aléatoire dans notre liste
     while(listeVoiture.size() != (unsigned int) m_nbVoiture){
         srand(time(NULL));
         int voitureRand = rand() % (int) listeVoitureTmp.size();
@@ -40,13 +44,16 @@ Main_back::Main_back(){
         listeVoitureTmp.erase(listeVoitureTmp.begin() + voitureRand);
     }
 
-
     m_listeParking = listeParking;
     m_listeThreadParking = listeThreadParking;
     m_listeVoiture = listeVoiture;
     m_listeVoitureTmp = listeVoitureTmp;
 }
 
+/**
+ * @brief Destroy the Main_back::Main_back object
+ * Destroys every Parking Objects and Threads previously created.
+ */
 Main_back::~Main_back(){
     for(int i = 0; i < m_nbParking; i++){
         delete m_listeThreadParking[i];
@@ -54,11 +61,17 @@ Main_back::~Main_back(){
     }      
 }
 
+/**
+ * @brief This is where the magic happens!
+ * The whole process is done here hence the name of the method.
+ * Each Voiture seeks a Parking and they argue prices while looking for a slot.
+ * the 'sleep(4)' is necessary in order to let the Parkings servers start.
+ * @return int 
+ */
 int Main_back::process (){
 
     sleep(4);
 
-    //Creer les threads pour chaque voitures
     for(int i = 0; i < m_nbVoiture; i++){
         for(int j = 0; j < m_nbParking && m_listeVoiture[i]->rechercheParking; j++){
             thread * tmp = new thread(connexionServer, m_listeVoiture[i], m_listeParking[j]->getPort(), m_listeParking[j]->getId());
@@ -83,9 +96,7 @@ int Main_back::process (){
                 itr2->second = m_listeParking[j]->caisseTotal();
             }
             delete tmp;
-            
         }
-        //cout << m_listeVoiture[i]->rechercheParking ? "La voiture n'as pas trouvé de parking" : "La voiture a trouvé un parking" << endl;
     }
     
     for(Voiture* voiture : m_listeVoiture){

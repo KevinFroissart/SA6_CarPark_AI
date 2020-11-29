@@ -4,7 +4,6 @@
 
 /**
  * @brief Construct a new SocketVoiture::SocketVoiture object.
- * 
  */
 SocketVoiture::SocketVoiture() {
 	mSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -18,7 +17,6 @@ SocketVoiture::SocketVoiture() {
 
 /**
  * @brief Destroy the SocketVoiture::SocketVoiture object.
- * 
  */
 SocketVoiture::~SocketVoiture() {
 	Sockets::CloseSocket(mSocket);
@@ -26,7 +24,6 @@ SocketVoiture::~SocketVoiture() {
 
 /**
  * @brief Connects an IP Adress to a specific port.
- * 
  * @param ipaddress 
  * @param port 
  * @return true if the connection was succesfull, false otherwise.
@@ -41,7 +38,6 @@ bool SocketVoiture::Connect(const std::string& ipaddress, unsigned short port) {
 
 /**
  * @brief Sends a message trough the socket.
- * 
  * @param data 
  * @param len 
  * @return int 
@@ -52,7 +48,6 @@ int SocketVoiture::Send(const char* data, unsigned int len) {
 
 /**
  * @brief Recieves a message trough the socket.
- * 
  * @param buffer 
  * @param len 
  * @return int 

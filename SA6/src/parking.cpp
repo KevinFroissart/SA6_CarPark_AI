@@ -5,7 +5,6 @@
 
 /**
  * @brief Construct a new Parking:: Parking object
- * 
  * @param id 
  * @param defaultPrice 
  * @param capacite_max 
@@ -26,7 +25,6 @@ Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFich
 
 /**
  * @brief Construct a new Parking:: Parking object
- * 
  * @param id 
  * @param cheminFichier 
  */
@@ -57,7 +55,6 @@ Parking::~Parking(){
 
 /**
  * @brief Get the parking id
- * 
  * @return int the parking's id
  */
 int Parking::getId(){
@@ -66,7 +63,6 @@ int Parking::getId(){
 
 /**
  * @brief 
- * 
  * @return true 
  * @return false 
  */
@@ -76,7 +72,6 @@ bool Parking::EstRempli(){
 
 /**
  * @brief method that return the port of the server.
- * 
  * @return the port of the server.
  */
 int Parking::getPort() {
@@ -85,7 +80,6 @@ int Parking::getPort() {
 
 /**
  * @brief 
- * 
  * @param tab 
  * @return float 
  */
@@ -121,7 +115,7 @@ float Parking::calcul_prix(vector<string> tab){
 
 /**
  * @brief 
- * 
+
  * @return true 
  * @return false 
  */
@@ -146,7 +140,6 @@ bool Parking::demarerServer(){
 //on fait appel au protocole directement dans la classe ServerPaking
 /**
  * @brief 
- * 
  * @param message 
  * @return string 
  */
@@ -197,7 +190,6 @@ string Parking::protocoleCommunication(string message, int etape){
 
 /**
  * @brief When a car is added, the whole process is done here.
- * 
  * @return a message fot the car
  */
 string Parking::ajouterVoiture() {
@@ -209,10 +201,8 @@ string Parking::ajouterVoiture() {
 
 /**
  * @brief collect the log of the car.
- * 
  * @return 0, 1, or 2 depending on how often the car visited the parking
  */
-
 int Parking::readLog(int id){
     vector<string> string_passages = tb::StringToTab(tb::CSVReader(logPath, id),',');
     int nb_passages = 0;
@@ -220,14 +210,27 @@ int Parking::readLog(int id){
     return nb_passages<5 ? 0 : nb_passages>10 ? 2 : 1;
 }
 
+/**
+ * @brief return the amount the Parking earned by renting slots.
+ * @return float 
+ */
 float Parking::caisseTotal(){
     return s_caisse;
 }
 
+/**
+ * @brief return the total capacity of the Parking.
+ * @return string 
+ */
 string Parking::getCapaciteTotale(){
     return s_parkingData[3];
 }
 
+/**
+ * @brief return the amount of slots already filled.
+ * 
+ * @return string 
+ */
 string Parking::getRemplissage(){
     return s_parkingData[2];
 }
