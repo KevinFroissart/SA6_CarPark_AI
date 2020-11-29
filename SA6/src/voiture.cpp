@@ -150,7 +150,7 @@ bool Voiture::connexionServer(int port, int id)
     }
 	else
 	{
-		cout << v_voitureData[0] << " est connectée!" << endl;
+		//cout << v_voitureData[0] << " est connectée!" << endl;
 		communicateWithParking(client, ""); //on démarre la conversation avec le serveur
 	}
 	Sockets::Release();
@@ -169,7 +169,7 @@ bool Voiture::communicateWithParking(SocketVoiture client, string replyServer) {
     string phrase = protocoleCommunication(replyServer);
 
     if(phrase == "stop"){ //Si le protocole nous renvoie stop, on coupe la communication avec le parking
-        cout << "Communication terminée" << endl << endl;
+        //cout << "Communication terminée" << endl << endl;
         return false;
     }
 	if(client.Send(phrase.c_str(), phrase.length()) == SOCKET_ERROR){ //Ici on envoie le message au parking et on vérifie s'il n'y a pas d'erreur

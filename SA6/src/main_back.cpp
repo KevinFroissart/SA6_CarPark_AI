@@ -66,8 +66,14 @@ int Main_back::process (){
             usleep(700);
 
             map<string, string>::iterator itr;
-            if((itr = m_listeParking[j]->discussionVoiture.find(to_string(i))) != m_listeParking[j]->discussionVoiture.end())
-                conversation[j].insert(make_pair(i, itr->second));   
+            if((itr = m_listeParking[j]->discussionVoiture.find(to_string(m_listeVoiture[i]->getID()))) != m_listeParking[j]->discussionVoiture.end()){
+                conversation[j].insert(make_pair(m_listeVoiture[i]->getID(), itr->second));
+                map<int, string>::iterator itr_tmp1;
+                map<int, map<int, string>>::iterator itr_tmp2;
+                if((itr_tmp1 = conversation[j].find(m_listeVoiture[i]->getID())) != conversation[j].end()){
+                    cout << itr_tmp1->second << endl;
+                } 
+            }
                 
             map<int, float>::iterator itr2;
             if(caisseParking.find(j) == caisseParking.end()){
@@ -77,9 +83,9 @@ int Main_back::process (){
                 itr2->second = m_listeParking[j]->caisseTotal();
             }
             delete tmp;
+            
         }
-        cout << (m_listeVoiture[i]->rechercheParking ? "La voiture n'as pas trouvé de parking" : "La voiture a trouvé un parking");
-        cout << endl;
+        //cout << m_listeVoiture[i]->rechercheParking ? "La voiture n'as pas trouvé de parking" : "La voiture a trouvé un parking" << endl;
     }
     
     for(Voiture* voiture : m_listeVoiture){

@@ -24,6 +24,7 @@ class Parking{
         map<string, string>::iterator itr;
         float s_prix;
         float s_caisse;
+        string id_parking;
         string id_voiture;
         string logPath;
         string filePath;

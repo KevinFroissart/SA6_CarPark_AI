@@ -32,4 +32,5 @@ Semaine 8 :
 Semaine 9 :
     - Affichage de la caisse en direct
     - stockage des conversation dans une map
+    - Affichage de toutes les conversation via les map et pas des cout de partout dans nos classes
     difficultés: acceder aux données du parking -> copie d'information via des maps et maps de maps dans le main.

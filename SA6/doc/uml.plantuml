@@ -41,6 +41,8 @@ package SA6 {
             - float s_caisse
             - string logPath
             - string filePath
+            - string id_voiture
+            - string id_parking
             - string s_infoVoiture
             - string s_parkingData[5]
             - vector<string> idVoiture

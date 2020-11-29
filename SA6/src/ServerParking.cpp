@@ -112,9 +112,9 @@ namespace ServerP {
 				{
 					if ( !buffer.empty() )
 					{
-						cout << "Recu de [" << client->ip.c_str() << ":" << client->port << "] : " << buffer << endl;
+						//cout << "Recu de [" << client->ip.c_str() << ":" << client->port << "] : " << buffer << endl;
 						string reply = parking->protocoleCommunication(buffer, client->etape_client++);
-						cout << "Reponse a [" << client->ip.c_str() << ":" << client->port << "] > " << reply << endl;
+						//cout << "Reponse a [" << client->ip.c_str() << ":" << client->port << "] > " << reply << endl;
 						send(client->socket, reply.c_str(), reply.length(), 0);
 					}
 					++client;
