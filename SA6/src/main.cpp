@@ -14,13 +14,15 @@ void back_end_process(Main_back * mb){
     mb->process();
 }
 
-string round(float var) { 
-    char str[40];  
-    sprintf(str, "%.2f", var); 
-    sscanf(str, "%f", &var);  
-  
-    return str;  
+/*bool CircleButton::collision(int x, int y) const{
+    sf::Vector2f point(x,y);
+    sf::FloatRect boundingBox = m_spriteButton.getGlobalBounds();
+    return boundingBox.contains(point);
 }
+
+bool bouton(int x, int y, int tailleX, int tailleY){
+    sf::Mouse::isButtonPressed(sf::Mouse::Left)
+}*/
 
 int main (void){
 
@@ -70,23 +72,14 @@ int main (void){
             window.clear(sf::Color(210,210,210,255)); //gris
 
             for(int i = 0; i < main_b->m_nbParking; i++){
-                sf::Text text("Parking " + to_string(i+1), font, 50);
+                sf::Text text("Parking " + to_string(i+1), font, 40);
                 text.setFillColor(sf::Color::Black);
                 int y = i*50;
-                text.move(0.f, y);
+                text.move(0.f, y+3);
                 
-                sf::Text label_progress(main_b->m_listeParking[i]->getRemplissage() + "/" + to_string(tab_capacite[i]), font, 50);
-                label_progress.move(650.f, y);
+                sf::Text label_progress(main_b->m_listeParking[i]->getRemplissage() + "/" + to_string(tab_capacite[i]), font, 40);
+                label_progress.move(650.f, y+3);
                 label_progress.setFillColor(sf::Color::Black);
-
-                map<int, float>::iterator itr;
-                float caisse = 0;
-                if((itr = main_b->caisseParking.find(i)) != main_b->caisseParking.end())
-                    caisse = itr->second;
-                
-                sf::Text label_caisse(round(caisse) + "e", font, 50);
-                label_caisse.move(790.f, y);
-                label_caisse.setFillColor(sf::Color::Black);
 
                 int length = 300;
                 int width = 50;
@@ -99,6 +92,32 @@ int main (void){
                 ProgressBackground.setSize(sf::Vector2f(length, width));
                 ProgressBackground.move(300.f, y);
 
+                //sf::RectangleShape fond_infos;
+                //fond_infos.setFillColor(sf::Color::White);
+
+                sf::Text info_parking("Info Parking " + to_string(i+1), font, 20);
+                info_parking.setFillColor(sf::Color::Black);
+                info_parking.move(700, 300);
+
+                sf::RectangleShape button;
+                button.setOutlineColor(sf::Color::Black);
+                button.setOutlineThickness(1);
+                button.setSize(sf::Vector2f(length*0.80, width));
+                button.setFillColor(sf::Color::Transparent); 	
+                button.move(0.f, y);
+                if(    sf::Mouse::getPosition(window).x > button.getGlobalBounds().left
+                    && sf::Mouse::getPosition(window).x < (button.getGlobalBounds().left + button.getGlobalBounds().width)
+                    && sf::Mouse::getPosition(window).y > button.getGlobalBounds().top
+                    && sf::Mouse::getPosition(window).y < (button.getGlobalBounds().top + button.getGlobalBounds().height)){
+                        button.setOutlineColor(sf::Color::White);
+                        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+                            button.setFillColor(sf::Color::White);
+                            window.draw(info_parking);
+                            cout<<"Info Parking " + to_string(i+1)<<endl;
+                    }
+                }
+
+
                 sf::RectangleShape ProgressBar;
                 ProgressBar.setFillColor(sf::Color::Red);
                 ProgressBar.setOutlineThickness(2);
@@ -108,9 +127,9 @@ int main (void){
 
                 window.draw(ProgressBackground);
                 window.draw(ProgressBar);
+                window.draw(button);
                 window.draw(text);
-                window.draw(label_progress); 
-                window.draw(label_caisse);
+                window.draw(label_progress);
             }
 
             window.display(); 
