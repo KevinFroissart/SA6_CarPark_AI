@@ -24,6 +24,14 @@ bool bouton(int x, int y, int tailleX, int tailleY){
     sf::Mouse::isButtonPressed(sf::Mouse::Left)
 }*/
 
+string round(float var) { 
+    char str[40];  
+    sprintf(str, "%.2f", var); 
+    sscanf(str, "%f", &var);  
+
+    return str; 
+}
+
 int main (void){
 
     Main_back * main_b = new Main_back();
@@ -81,6 +89,15 @@ int main (void){
                 label_progress.move(650.f, y+3);
                 label_progress.setFillColor(sf::Color::Black);
 
+                map<int, float>::iterator itr;
+                float caisse = 0;
+                if((itr = main_b->caisseParking.find(i)) != main_b->caisseParking.end())
+                    caisse = itr->second;
+
+                sf::Text label_caisse(round(caisse) + "e", font, 40);
+                label_caisse.move(790.f, y+3);
+                label_caisse.setFillColor(sf::Color::Black);
+
                 int length = 300;
                 int width = 50;
                 float progress_scale = length/tab_capacite[i];
@@ -95,9 +112,17 @@ int main (void){
                 //sf::RectangleShape fond_infos;
                 //fond_infos.setFillColor(sf::Color::White);
 
-                sf::Text info_parking("Info Parking " + to_string(i+1), font, 20);
+                string conversation;              
+
+                for(map<int, string>::iterator itr_conv = main_b->conversation[i].begin(); itr_conv != main_b->conversation[i].end(); ++itr_conv){
+                    conversation += itr_conv->second + "\n";
+                }
+
+                sf::Text info_parking(conversation, font, 20);
                 info_parking.setFillColor(sf::Color::Black);
                 info_parking.move(700, 300);
+
+                //cout << conversation << endl;
 
                 sf::RectangleShape button;
                 button.setOutlineColor(sf::Color::Black);
@@ -113,7 +138,6 @@ int main (void){
                         if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                             button.setFillColor(sf::Color::White);
                             window.draw(info_parking);
-                            cout<<"Info Parking " + to_string(i+1)<<endl;
                     }
                 }
 
@@ -130,6 +154,7 @@ int main (void){
                 window.draw(button);
                 window.draw(text);
                 window.draw(label_progress);
+                window.draw(label_caisse);
             }
 
             window.display(); 

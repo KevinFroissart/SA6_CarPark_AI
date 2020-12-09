@@ -84,7 +84,7 @@ int Main_back::process (){
                 map<int, string>::iterator itr_tmp1;
                 map<int, map<int, string>>::iterator itr_tmp2;
                 if((itr_tmp1 = conversation[j].find(m_listeVoiture[i]->getID())) != conversation[j].end()){
-                    cout << itr_tmp1->second << endl;
+                    //cout << itr_tmp1->second << endl;
                 } 
             }
                 
