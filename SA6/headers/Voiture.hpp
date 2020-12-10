@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <time.h>
 #include "../headers/SocketVoiture.hpp"
 
 using namespace std;

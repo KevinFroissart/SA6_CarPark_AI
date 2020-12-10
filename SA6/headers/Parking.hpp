@@ -23,6 +23,7 @@ class Parking{
     private:
         map<string, string>::iterator itr;
         float s_prix;
+        float prix_demande;
         float s_caisse;
         string id_parking;
         string id_voiture;

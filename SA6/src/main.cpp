@@ -25,11 +25,12 @@ bool bouton(int x, int y, int tailleX, int tailleY){
 }*/
 
 string round(float var) { 
-    char str[40];  
+    char* str = new char[40];  //uninitialised value ??..
     sprintf(str, "%.2f", var); 
     sscanf(str, "%f", &var);  
-
-    return str; 
+    string r = str;
+    delete[] str;
+    return r; 
 }
 
 int main (void){

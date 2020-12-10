@@ -145,13 +145,12 @@ bool Parking::demarerServer(){
  */
 string Parking::protocoleCommunication(string message, int etape){
 
-    float prix_propose = 0;
     // Vérifie si il reste de la place dans le parking, si non on arrete l'échange, si oui on continu
     if(etape == 1) return EstRempli() ? "Non" : "Oui"; 
     
     if(etape == 2){
         s_infoVoiture = message;
-        prix_propose = calcul_prix(tb::StringToTab(message, ','));
+        calcul_prix(tb::StringToTab(message, ','));
 
         vector<string> tmpTab = tb::StringToTab(message, ',');
         if(discussionVoiture.find(tmpTab[0]) == discussionVoiture.end()){
@@ -162,28 +161,42 @@ string Parking::protocoleCommunication(string message, int etape){
         id_voiture =  "Voiture " + tmpTab[0] + ": ";
         id_parking = "Parking " + to_string(getId()) + ": ";
         itr->second += id_voiture + "Est-ce que vous avez de la place ?\n" + id_parking + "Oui\n";
-        itr->second += id_voiture + "Très bien, voici une trame contenant mes informations <" + message + ">\n";
-        itr->second += id_parking + "C'est reçu, je peux vous obtenir une place pour " + to_string(prix_propose) + "€.\n";
-        return to_string(prix_propose);
+        itr->second += id_voiture + "Tres bien, voici une trame contenant mes informations <" + message + ">\n";
+        itr->second += id_parking + "C'est recu, je peux vous obtenir une place pour " + to_string(s_prix) + "€.\n";
+        return to_string(s_prix);
     }
     if(etape == 3){
         //Si la voiture accepte ce prix alors on lui reserve une place et on lui indique que c'est bon
         if(message == "Accepte"){
             itr->second += id_voiture + "J'accepte !\n";
             itr->second += id_parking + "Bienvenue dans mon parking\n";
-            s_caisse += prix_propose;
+            s_caisse += s_prix;
             return ajouterVoiture();
         }   
         else { //Si la voiture n'accepte pas alors elle nous renvoie son prix
-            itr->second += id_voiture + "Désolé, ça ne rentre pas dans mon budget, voici mon offre: " + message + "€\n";
+            itr->second += id_voiture + "Desole, ca ne rentre pas dans mon budget, voici mon offre: " + message + "€\n";
             if(stof(message) > (0.65 * s_prix)){
                 itr->second += id_parking+ "J'accepte, bienvenue dans mon parking\n";
                 s_caisse += stof(message);
                 return ajouterVoiture();
             }
-            itr->second += id_parking + "Désolé mais je me dois de refuser !\n"; 
-            return "Refusé";
+            itr->second += id_parking + "Desole mais je me dois de refuser !\n"; 
+            return "Refuse";
         }
+    }
+    if(etape == 4){
+        // Le parking a refusé mais la voiture négocie
+        if(message.find("handicap") != string::npos){
+            itr->second += id_voiture + message + "\n";
+            if(tb::StringToTab(s_infoVoiture, ',')[2] == "1"){
+                itr->second += id_parking + "Je comprends, j'accepte votre precedente offre.\n";
+                return ajouterVoiture();
+            } else {
+                itr->second += id_parking + "Desole mais les informations que vous m'avez communique me disent le contraire.\n";
+                return "Refuse";
+            }
+        }
+
     }
     return "stop";
 }

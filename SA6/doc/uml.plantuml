@@ -37,6 +37,7 @@ package SA6 {
         
         class Parking {
             - float s_prix
+            - float prix_demande
             - float s_caisse
             - string logPath
             - string filePath

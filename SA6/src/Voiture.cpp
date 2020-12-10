@@ -182,6 +182,9 @@ bool Voiture::communicateWithParking(SocketVoiture client, string replyServer) {
  * @return the string that will be send to the server.
  */
 string Voiture::protocoleCommunication(string message){
+   // time_t theTime = time(NULL);
+   // struct tm *aTime = localtime(&theTime);
+
     if(v_etape == 1){
         v_etape++;
         return "Est-ce que vous avez de la place ?";
@@ -209,8 +212,26 @@ string Voiture::protocoleCommunication(string message){
     }
 
     if (v_etape == 4) {
-        if(message == "Refusé") return "stop";
-
+        if(message == "Refuse"){
+            if(v_tab[2] == 1){
+                v_etape++;
+                return "J'ai une carte handicap !";
+            }
+            //else :
+            //si on est en semaine ou si on est le weekend mais pas en heure de pointe on négocie
+            /*if(aTime->tm_wday < 6){
+                v_etape++;
+                return "Nous sommes en semaine, vous pouvez réduire un peu le prix !";
+            }
+            else if(aTime->tm_hour < 7 || (aTime->tm_hour > 9 && 
+                    aTime->tm_hour < 17) || aTime->tm_hour > 18){
+                v_etape++;
+                return "Nous ne sommes même pas en heure de pointe, vous pourriez réduire le prix";
+            }*/
+            return "stop";
+        } 
+    }
+    if(v_etape == 5) {
         rechercheParking = false;
         return "stop";
     }
