@@ -13,12 +13,12 @@ namespace tb {
         std::fstream myFile(file);
         if(!myFile.is_open()) throw std::runtime_error("Could not open file");
 
-        int lineNumber = 0;
         std::string tmp;
         std::string line;
 
-        while(myFile.good()){
-            ++lineNumber == id ? getline(myFile, line, '\n') : getline(myFile, tmp, '\n');
+        while(std::getline(myFile, tmp)){
+            if(tmp.substr(0, tmp.find(",")) == std::to_string(id))
+                line = tmp;
         }
         myFile.close();
         return line;
@@ -134,7 +134,7 @@ namespace tb {
     int readLog(int id, std::string path){
         std::vector<std::string> string_passages = tb::StringToTab(tb::CSVReader(path, id),',');
         int nb_passages = 0;
-        if(string_passages.size() >= 1) string_passages[1];
+        if(string_passages.size() >= 1) nb_passages = stoi(string_passages[1]);
         return nb_passages<5 ? 0 : nb_passages>30 ? 2 : 1;
     }
 }

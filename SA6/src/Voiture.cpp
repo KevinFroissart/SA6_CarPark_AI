@@ -233,11 +233,8 @@ string Voiture::protocoleCommunication(string message){
     if(v_etape == 5) {
         v_etape++;
         if(message == "Refuse"){
-            cout << "test" << endl;
-            cout << to_string(tb::readLog(v_id, logPath)) << endl;
-            if(tb::readLog(v_id, logPath) >= 1){
+            if(tb::readLog(idParking, logPath) >= 1)
                 return "Je suis un client regulie";
-            }
             return "stop";
         }
         placeTrouve();
@@ -253,6 +250,10 @@ string Voiture::protocoleCommunication(string message){
             rechercheParking = false;
             return "stop";
         } else if(calcul_prix() > (stof(message) * 0.75)) return placeTrouve();
+        else{
+            cout << "mon prix: " << to_string(calcul_prix()) << " < à 0.75 x " << message << " soit " << to_string((stof(message) * 0.7)) << endl;
+            return "Une autre fois peut-être";
+        }
     }
     return "stop";
 }

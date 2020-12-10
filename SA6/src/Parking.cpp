@@ -171,16 +171,14 @@ string Parking::protocoleCommunication(string message, int etape){
         //Si la voiture accepte ce prix alors on lui reserve une place et on lui indique que c'est bon
         if(message == "Accepte"){
             itr->second += id_voiture + "J'accepte !\n";
-            itr->second += id_parking + "Bienvenue dans mon parking\n";
-            s_caisse += s_prix;
             return ajouterVoiture();
         }   
         else { //Si la voiture n'accepte pas alors elle nous renvoie son prix
             itr->second += id_voiture + "Desole, ca ne rentre pas dans mon budget, voici mon offre: " + message + "€\n";
             prix_demande = stof(message);
             if(prix_demande > (0.75 * s_prix)){
-                itr->second += id_parking+ "J'accepte, bienvenue dans mon parking\n";
-                s_caisse += prix_demande;
+                itr->second += id_parking+ "J'accepte !\n";
+ 
                 return ajouterVoiture();
             }
             itr->second += id_parking + "Desole mais je me dois de refuser !\n"; 
@@ -208,11 +206,9 @@ string Parking::protocoleCommunication(string message, int etape){
             } 
             else if(prix_demande > (0.65 * s_prix)){
                 itr->second += id_parking + "Je vous l'accorde.\n";
-                itr->second += id_parking + "Bienvenue dans mon parking\n";
                 return ajouterVoiture();    
             } else {
                 itr->second += id_parking + "C'est vrai mais votre prix est toujours trop haut.\n";
-                itr->second += "prix de la voiture: " + to_string(prix_demande) + " et mon prix / 2: " + to_string((s_prix * 0.65)) + "\n";
                 return "Refuse";
             }
         }
@@ -224,7 +220,6 @@ string Parking::protocoleCommunication(string message, int etape){
             }
             else if(prix_demande > (0.65 * s_prix)){
                 itr->second += id_parking + "Je vous l'accorde.\n";
-                itr->second += id_parking + "Bienvenue dans mon parking\n";
                 return ajouterVoiture();    
             }
             else {
@@ -237,19 +232,31 @@ string Parking::protocoleCommunication(string message, int etape){
         itr->second += id_voiture + message + "\n";
         if(message.find("regulie")){
             if(tb::readLog(getId(), logPath) == 2){
-                itr->second += id_parking + "C'est vrai, merci de votre fidelite.\n";
-                itr->second += id_parking + "Bienvenue dans mon parking\n";
-                return ajouterVoiture();
+                if(prix_demande < (s_prix * 0.75)){
+                    itr->second += id_parking + "Vous êtes un client très fidèle mais il nous ait impossible d'accéder à votre demande.\n";
+                    itr->second += id_parking + "Voici une reduction pour vous remercier de votre fidelite: " + to_string(s_prix * 0.75) + "\n";
+                    return to_string(s_prix * 0.75);
+                } 
+                else {
+                    itr->second += id_parking + "C'est vrai, merci de votre fidelite.\n";
+                    return ajouterVoiture();
+                }
             } else if(tb::readLog(getId(), logPath) == 1){
                 itr->second += id_parking + "Vous venez souvent mais pas assez pour un tel rabais.\n";
-                itr->second += id_parking + "Voici une reduction pour vous remercier de votre fidelite: " + to_string(s_prix * 0.90) + "\n";
-                return to_string(s_prix * 0.90);
+                itr->second += id_parking + "Voici une reduction pour vous remercier de votre fidelite: " + to_string(s_prix * 0.80) + "\n";
+                return to_string(s_prix * 0.80);
             } else {
                 itr->second += id_parking + "Vous n'êtes presque jamais venu..\n";
                 return "Refuse";
             }
         }
-        
+    }
+    if(etape == 6){
+        if(message == "Accepte"){
+            itr->second += id_voiture + "J'accepte votre offre.\n";
+            return ajouterVoiture();
+        } 
+        else itr->second += id_voiture + message + "\n";
     }
     return "stop";
 }
@@ -262,6 +269,8 @@ string Parking::ajouterVoiture() {
     s_parkingData[2] = to_string(stoi(s_parkingData[2]) + 1);
     tb::CSVWriterParkLogs("CSV/Parking/", "parking" + s_parkingData[0] + "Log.csv", idVoiture[0]);
     idVoiture.erase(idVoiture.begin());
+    itr->second += id_parking + "Bienvenue dans mon parking\n";
+    s_caisse += s_prix;
     return "OK, place reservée";
 }
 
