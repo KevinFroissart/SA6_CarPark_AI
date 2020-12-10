@@ -144,6 +144,8 @@ bool Parking::demarerServer(){
  * @return string 
  */
 string Parking::protocoleCommunication(string message, int etape){
+    time_t theTime = time(NULL);
+    struct tm *aTime = localtime(&theTime);
 
     // Vérifie si il reste de la place dans le parking, si non on arrete l'échange, si oui on continu
     if(etape == 1) return EstRempli() ? "Non" : "Oui"; 
@@ -196,6 +198,31 @@ string Parking::protocoleCommunication(string message, int etape){
                 return "Refuse";
             }
         }
+        if(message.find("en semaine")){
+            itr->second += id_voiture + message + "\n";
+            if(aTime->tm_hour > 7 || (aTime->tm_hour < 9 && 
+               aTime->tm_hour > 17) || aTime->tm_hour < 18){
+                   itr->second += id_parking + "Oui mais nous sommes en pleine heure de pointe !\n";
+                   return "Refuse";
+            } 
+            else if(prix_demande > (0.5 * s_prix)){
+                itr->second += id_parking + "Je vous l'accorde.\n";
+                return ajouterVoiture();    
+            }
+        }
+        if(message.find("heure de pointe")){
+            itr->second += id_voiture + message + "\n";
+            if(aTime->tm_wday > 5){
+                itr->second += id_parking + "Oui mais nous sommes le week end !\n";
+                return "Refuse";
+            }
+            else if(prix_demande > (0.5 * s_prix)){
+                itr->second += id_parking + "Je vous l'accorde.\n";
+                return ajouterVoiture();    
+            }
+        }
+    }
+    if(etape == 5){
 
     }
     return "stop";
