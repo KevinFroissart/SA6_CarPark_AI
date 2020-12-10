@@ -32,6 +32,8 @@ package SA6 {
                 + string floatTabToString(vector<float> tab, char delimiter)
                 + vector<string> StringToTab(string tab, char delimiter)
                 + int getNbLines(string file)
+                + int readLog(int id, string path)
+
             }
         }
         
@@ -58,7 +60,6 @@ package SA6 {
             + string getCapaciteTotale()
             + string protocoleCommunication(string message, int etape)
             - bool EstRempli()
-            - int readLog(int id)
             - string ajouterVoiture()
             - float calcul_prix(vector<string> tab)
         }

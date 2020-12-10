@@ -96,7 +96,7 @@ float Parking::calcul_prix(vector<string> tab){
     tab_facteurs.push_back(1 - 0.25 * stof(tab[2]));             //Facteur handicap
     tab_facteurs.push_back(1 - 0.25 * stof(tab[3]));            //facteur age (jeune, adulte, vieux)
     tab_facteurs.push_back(1 - 0.25 * stof(tab[4]));            //facteur statut social
-    tab_facteurs.push_back(1 - 0.25 * readLog(stof(tab[0])));   //client habitué?
+    tab_facteurs.push_back(1 - 0.25 * tb::readLog(stof(tab[0]), logPath));   //client habitué?
 
     float somme_facteur = 0;
     for(unsigned int i = 1; i<tab_facteurs.size(); i++){
@@ -177,9 +177,10 @@ string Parking::protocoleCommunication(string message, int etape){
         }   
         else { //Si la voiture n'accepte pas alors elle nous renvoie son prix
             itr->second += id_voiture + "Desole, ca ne rentre pas dans mon budget, voici mon offre: " + message + "€\n";
-            if(stof(message) > (0.65 * s_prix)){
+            prix_demande = stof(message);
+            if(prix_demande > (0.75 * s_prix)){
                 itr->second += id_parking+ "J'accepte, bienvenue dans mon parking\n";
-                s_caisse += stof(message);
+                s_caisse += prix_demande;
                 return ajouterVoiture();
             }
             itr->second += id_parking + "Desole mais je me dois de refuser !\n"; 
@@ -200,30 +201,55 @@ string Parking::protocoleCommunication(string message, int etape){
         }
         if(message.find("en semaine")){
             itr->second += id_voiture + message + "\n";
-            if(aTime->tm_hour > 7 || (aTime->tm_hour < 9 && 
-               aTime->tm_hour > 17) || aTime->tm_hour < 18){
+            if((aTime->tm_hour > 7 && aTime->tm_hour < 9) || 
+               (aTime->tm_hour > 17 && aTime->tm_hour < 18)){
                    itr->second += id_parking + "Oui mais nous sommes en pleine heure de pointe !\n";
                    return "Refuse";
             } 
-            else if(prix_demande > (0.5 * s_prix)){
+            else if(prix_demande > (0.65 * s_prix)){
                 itr->second += id_parking + "Je vous l'accorde.\n";
+                itr->second += id_parking + "Bienvenue dans mon parking\n";
                 return ajouterVoiture();    
+            } else {
+                itr->second += id_parking + "C'est vrai mais votre prix est toujours trop haut.\n";
+                itr->second += "prix de la voiture: " + to_string(prix_demande) + " et mon prix / 2: " + to_string((s_prix * 0.65)) + "\n";
+                return "Refuse";
             }
         }
-        if(message.find("heure de pointe")){
+        if(message.find("heure")){
             itr->second += id_voiture + message + "\n";
             if(aTime->tm_wday > 5){
                 itr->second += id_parking + "Oui mais nous sommes le week end !\n";
                 return "Refuse";
             }
-            else if(prix_demande > (0.5 * s_prix)){
+            else if(prix_demande > (0.65 * s_prix)){
                 itr->second += id_parking + "Je vous l'accorde.\n";
+                itr->second += id_parking + "Bienvenue dans mon parking\n";
                 return ajouterVoiture();    
+            }
+            else {
+                itr->second += id_parking + "C'est vrai mais votre prix est toujours trop haut.\n";
+                return "Refuse";
             }
         }
     }
     if(etape == 5){
-
+        itr->second += id_voiture + message + "\n";
+        if(message.find("regulie")){
+            if(tb::readLog(getId(), logPath) == 2){
+                itr->second += id_parking + "C'est vrai, merci de votre fidelite.\n";
+                itr->second += id_parking + "Bienvenue dans mon parking\n";
+                return ajouterVoiture();
+            } else if(tb::readLog(getId(), logPath) == 1){
+                itr->second += id_parking + "Vous venez souvent mais pas assez pour un tel rabais.\n";
+                itr->second += id_parking + "Voici une reduction pour vous remercier de votre fidelite: " + to_string(s_prix * 0.90) + "\n";
+                return to_string(s_prix * 0.90);
+            } else {
+                itr->second += id_parking + "Vous n'êtes presque jamais venu..\n";
+                return "Refuse";
+            }
+        }
+        
     }
     return "stop";
 }
@@ -237,17 +263,6 @@ string Parking::ajouterVoiture() {
     tb::CSVWriterParkLogs("CSV/Parking/", "parking" + s_parkingData[0] + "Log.csv", idVoiture[0]);
     idVoiture.erase(idVoiture.begin());
     return "OK, place reservée";
-}
-
-/**
- * @brief collect the log of the car.
- * @return 0, 1, or 2 depending on how often the car visited the parking
- */
-int Parking::readLog(int id){
-    vector<string> string_passages = tb::StringToTab(tb::CSVReader(logPath, id),',');
-    int nb_passages = 0;
-    if(string_passages.size() >= 1) string_passages[1];
-    return nb_passages<5 ? 0 : nb_passages>10 ? 2 : 1;
 }
 
 /**

@@ -34,7 +34,6 @@ class Parking{
         vector<string> idVoiture;
         
         bool EstRempli();
-        int readLog(int id);
         string ajouterVoiture();
         float calcul_prix(vector<string> tab);
 };

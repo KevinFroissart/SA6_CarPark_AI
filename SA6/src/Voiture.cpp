@@ -201,8 +201,7 @@ string Voiture::protocoleCommunication(string message){
     if(v_etape == 3){
         if(stoi(message) <= v_prixBase){
             v_etape++;
-            tb::CSVWriterParkLogs("CSV/Voiture/", "voiture" + to_string(v_id) + "Log.csv", to_string(idParking));
-            return "Accepte";
+            return placeTrouve();
         }
         else { 
             float prix = calcul_prix();
@@ -212,32 +211,58 @@ string Voiture::protocoleCommunication(string message){
     }
 
     if (v_etape == 4) {
+        v_etape++;
         if(message == "Refuse"){
             if(v_tab[2] == 1){
-                v_etape++;
                 return "J'ai une carte handicap !";
             }
             //else :
             //si on est en semaine ou si on est le weekend mais pas en heure de pointe on négocie
             if(aTime->tm_wday < 6){
-                v_etape++;
                 return "Nous sommes en semaine, vous pouvez réduire un peu le prix !";
             }
             else if(aTime->tm_hour < 7 || (aTime->tm_hour > 9 && 
                     aTime->tm_hour < 17) || aTime->tm_hour > 18){
-                v_etape++;
                 return "Nous ne sommes même pas en heure de pointe, vous pourriez réduire le prix";
             }
         }
+        placeTrouve();
         rechercheParking = false;
         return "stop";
     }
     if(v_etape == 5) {
+        v_etape++;
         if(message == "Refuse"){
+            cout << "test" << endl;
+            cout << to_string(tb::readLog(v_id, logPath)) << endl;
+            if(tb::readLog(v_id, logPath) >= 1){
+                return "Je suis un client regulie";
+            }
             return "stop";
         }
+        placeTrouve();
         rechercheParking = false;
         return "stop";
     }
+    if(v_etape == 6){
+        v_etape++;
+        if(message == "Refuse")
+            return "stop";
+        else if(message == "OK, place reservée"){
+            placeTrouve();
+            rechercheParking = false;
+            return "stop";
+        } else if(calcul_prix() > (stof(message) * 0.75)) return placeTrouve();
+    }
     return "stop";
+}
+
+/**
+ * @brief Write in a Log file when a place is found.
+ * @return string 
+ */
+string Voiture::placeTrouve(){
+    tb::CSVWriterParkLogs("CSV/Voiture/", "voiture" + to_string(v_id) + "Log.csv", to_string(idParking));
+    rechercheParking = false;
+    return "Accepte";
 }

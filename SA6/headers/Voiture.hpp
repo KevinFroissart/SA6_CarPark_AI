@@ -30,6 +30,7 @@ class Voiture{
         vector<float> v_tab; 
 
         float calcul_prix();
+        string placeTrouve();
         vector<float> initTab(); 
         string protocoleCommunication(string message);
         bool communicateWithParking(SocketVoiture client, string replyServer);
