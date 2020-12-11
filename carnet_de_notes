@@ -34,3 +34,8 @@ Semaine 9 :
     - stockage des conversation dans une map
     - Affichage de toutes les conversation via les map et pas des cout de partout dans nos classes
     difficultés: acceder aux données du parking -> copie d'information via des maps et maps de maps dans le main.
+Semaine 10 :
+    - Amélioration du protocole : heure/jour de la semaine, si c'est un client régulier
+    - Création du logigramme de notre IA
+    - Boutons (fait par Anton)
+Semaine 11 :
