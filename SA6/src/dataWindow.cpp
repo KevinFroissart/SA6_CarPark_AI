@@ -1,17 +1,16 @@
-#include "dataWindow.hpp"
+#include "../headers/dataWindow.hpp"
 #include <SFML/Graphics.hpp>
 #include <string.h>
-#include <thread>
-#include <pthread.h>
 #include <unistd.h>
-#include <time.h>
-using namespace std;
+
+dataWindow::dataWindow(int idParking) : id_parking(idParking)
+{
+}
 
 int dataWindow::newWindow()
 {
-
     sf::RenderWindow window;
-    window.create(sf::VideoMode(1000, 450), "Parking x infos");
+    window.create(sf::VideoMode(1000, 450), "Parking " + to_string(id_parking) + " - Conversations");
 
     sf::Event event;
 
@@ -20,7 +19,6 @@ int dataWindow::newWindow()
         bool closed = false;
         while (window.pollEvent(event))
         {
-
             switch (event.type)
             {
             case sf::Event::Closed:
@@ -41,13 +39,16 @@ int dataWindow::newWindow()
 
         if (!closed)
         {
-
             sf::Font font;
             if (!font.loadFromFile("arial.ttf"))
                 return EXIT_FAILURE;
+            sf::Text text("Parking ", font, 40);
+            text.setFillColor(sf::Color::Black);
 
             window.clear(sf::Color(210, 210, 210, 255));
+            window.draw(text);
             window.display();
         }
     }
+    return 0;
 }

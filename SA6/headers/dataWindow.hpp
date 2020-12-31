@@ -4,10 +4,14 @@
 
 using namespace std;
 
-class Main_back
+class dataWindow
 {
 public:
+    dataWindow(int idParking);
     int newWindow();
+
+private:
+    int id_parking;
 };
 
 #endif

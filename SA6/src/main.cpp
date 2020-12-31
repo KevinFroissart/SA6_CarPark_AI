@@ -2,6 +2,7 @@
 #include "../headers/Parking.hpp"
 #include "../headers/ToolBox.hpp"
 #include "../headers/main_back.hpp"
+#include "../headers/dataWindow.hpp"
 #include <SFML/Graphics.hpp>
 #include <string.h>
 #include <thread>
@@ -13,6 +14,12 @@ using namespace std;
 void back_end_process(Main_back *mb)
 {
     mb->process();
+}
+
+void new_window(int idParking)
+{
+    dataWindow *nw = new dataWindow(idParking);
+    nw->newWindow();
 }
 
 /*bool CircleButton::collision(int x, int y) const{
@@ -48,6 +55,8 @@ int main(void)
     {
         tab_capacite[i] = stoi(main_b->m_listeParking[i]->getCapaciteTotale());
     }
+
+    vector<thread *> windows;
 
     sf::RenderWindow window;
     window.create(sf::VideoMode(1000, 450), "SA6 Parking Manager");
@@ -149,6 +158,8 @@ int main(void)
                     {
                         button.setFillColor(sf::Color::White);
                         window.draw(info_parking);
+                        windows.push_back(new thread(new_window, i + 1));
+                        windows[windows.size() - 1]->join();
                     }
                 }
 
