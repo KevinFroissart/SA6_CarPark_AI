@@ -5,7 +5,8 @@
 /**
  * @brief Construct a new SocketVoiture::SocketVoiture object.
  */
-SocketVoiture::SocketVoiture() {
+SocketVoiture::SocketVoiture()
+{
 	mSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (mSocket == INVALID_SOCKET)
 	{
@@ -18,7 +19,8 @@ SocketVoiture::SocketVoiture() {
 /**
  * @brief Destroy the SocketVoiture::SocketVoiture object.
  */
-SocketVoiture::~SocketVoiture() {
+SocketVoiture::~SocketVoiture()
+{
 	Sockets::CloseSocket(mSocket);
 }
 
@@ -28,12 +30,13 @@ SocketVoiture::~SocketVoiture() {
  * @param port 
  * @return true if the connection was succesfull, false otherwise.
  */
-bool SocketVoiture::Connect(const std::string& ipaddress, unsigned short port) {
+bool SocketVoiture::Connect(const std::string &ipaddress, unsigned short port)
+{
 	sockaddr_in server;
 	inet_pton(AF_INET, ipaddress.c_str(), &server.sin_addr.s_addr);
 	server.sin_family = AF_INET;
 	server.sin_port = htons(port);
-	return connect(mSocket, (const sockaddr*)&server, sizeof(server)) == 0;
+	return connect(mSocket, (const sockaddr *)&server, sizeof(server)) == 0;
 }
 
 /**
@@ -42,7 +45,8 @@ bool SocketVoiture::Connect(const std::string& ipaddress, unsigned short port) {
  * @param len 
  * @return int 
  */
-int SocketVoiture::Send(const char* data, unsigned int len) {
+int SocketVoiture::Send(const char *data, unsigned int len)
+{
 	return send(mSocket, data, len, 0);
 }
 
@@ -52,6 +56,7 @@ int SocketVoiture::Send(const char* data, unsigned int len) {
  * @param len 
  * @return int 
  */
-int SocketVoiture::Receive(char* buffer, unsigned int len) {
+int SocketVoiture::Receive(char *buffer, unsigned int len)
+{
 	return recv(mSocket, buffer, len, 0);
 }

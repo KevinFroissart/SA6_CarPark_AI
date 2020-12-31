@@ -10,7 +10,8 @@
 #include <time.h>
 using namespace std;
 
-void back_end_process(Main_back * mb){
+void back_end_process(Main_back *mb)
+{
     mb->process();
 }
 
@@ -24,24 +25,27 @@ bool bouton(int x, int y, int tailleX, int tailleY){
     sf::Mouse::isButtonPressed(sf::Mouse::Left)
 }*/
 
-string round(float var) { 
-    char* str = new char[40];  //uninitialised value ??..
-    sprintf(str, "%.2f", var); 
-    sscanf(str, "%f", &var);  
+string round(float var)
+{
+    char *str = new char[40]; //uninitialised value ??..
+    sprintf(str, "%.2f", var);
+    sscanf(str, "%f", &var);
     string r = str;
     delete[] str;
-    return r; 
+    return r;
 }
 
-int main (void){
+int main(void)
+{
 
-    Main_back * main_b = new Main_back();
+    Main_back *main_b = new Main_back();
 
-    thread * back_thread = new thread(back_end_process, main_b);
+    thread *back_thread = new thread(back_end_process, main_b);
     back_thread->detach();
 
     int tab_capacite[main_b->m_nbParking];
-    for(int i = 0; i < main_b->m_nbParking; i++){
+    for (int i = 0; i < main_b->m_nbParking; i++)
+    {
         tab_capacite[i] = stoi(main_b->m_listeParking[i]->getCapaciteTotale());
     }
 
@@ -50,58 +54,64 @@ int main (void){
 
     sf::Event event;
 
-    while(window.isOpen()){
+    while (window.isOpen())
+    {
         bool closed = false;
-        while(window.pollEvent(event)){
+        while (window.pollEvent(event))
+        {
 
-            switch (event.type){
-                case sf::Event::Closed:
+            switch (event.type)
+            {
+            case sf::Event::Closed:
+                window.close();
+                main_b->~Main_back();
+                closed = true;
+                break;
+            case sf::Event::KeyPressed:
+                if (event.key.code == sf::Keyboard::Q)
+                {
                     window.close();
-                    main_b->~Main_back(); 
+                    main_b->~Main_back();
                     closed = true;
-                    break;
-                case sf::Event::KeyPressed :
-                    if(event.key.code == sf::Keyboard::Q){
-                        window.close();  
-                        main_b->~Main_back();
-                        closed = true;
-                    } 
-                    break;
-                default:
-                    break;
+                }
+                break;
+            default:
+                break;
             }
         }
 
-        if(!closed){
-            
+        if (!closed)
+        {
+
             sf::Font font;
             if (!font.loadFromFile("arial.ttf"))
                 return EXIT_FAILURE;
-            
-            window.clear(sf::Color(210,210,210,255)); //gris
 
-            for(int i = 0; i < main_b->m_nbParking; i++){
-                sf::Text text("Parking " + to_string(i+1), font, 40);
+            window.clear(sf::Color(210, 210, 210, 255)); //gris
+
+            for (int i = 0; i < main_b->m_nbParking; i++)
+            {
+                sf::Text text("Parking " + to_string(i + 1), font, 40);
                 text.setFillColor(sf::Color::Black);
-                int y = i*50;
-                text.move(0.f, y+3);
-                
+                int y = i * 50;
+                text.move(0.f, y + 3);
+
                 sf::Text label_progress(main_b->m_listeParking[i]->getRemplissage() + "/" + to_string(tab_capacite[i]), font, 40);
-                label_progress.move(650.f, y+3);
+                label_progress.move(650.f, y + 3);
                 label_progress.setFillColor(sf::Color::Black);
 
                 map<int, float>::iterator itr;
                 float caisse = 0;
-                if((itr = main_b->caisseParking.find(i)) != main_b->caisseParking.end())
+                if ((itr = main_b->caisseParking.find(i)) != main_b->caisseParking.end())
                     caisse = itr->second;
 
                 sf::Text label_caisse(round(caisse) + "e", font, 40);
-                label_caisse.move(790.f, y+3);
+                label_caisse.move(790.f, y + 3);
                 label_caisse.setFillColor(sf::Color::Black);
 
                 int length = 300;
                 int width = 50;
-                float progress_scale = length/tab_capacite[i];
+                float progress_scale = length / tab_capacite[i];
 
                 sf::RectangleShape ProgressBackground;
                 ProgressBackground.setFillColor(sf::Color::White);
@@ -113,9 +123,10 @@ int main (void){
                 //sf::RectangleShape fond_infos;
                 //fond_infos.setFillColor(sf::Color::White);
 
-                string conversation;              
+                string conversation;
 
-                for(map<int, string>::iterator itr_conv = main_b->conversation[i].begin(); itr_conv != main_b->conversation[i].end(); ++itr_conv){
+                for (map<int, string>::iterator itr_conv = main_b->conversation[i].begin(); itr_conv != main_b->conversation[i].end(); ++itr_conv)
+                {
                     conversation += itr_conv->second + "\n";
                 }
 
@@ -128,20 +139,18 @@ int main (void){
                 sf::RectangleShape button;
                 button.setOutlineColor(sf::Color::Black);
                 button.setOutlineThickness(1);
-                button.setSize(sf::Vector2f(length*0.80, width));
-                button.setFillColor(sf::Color::Transparent); 	
+                button.setSize(sf::Vector2f(length * 0.80, width));
+                button.setFillColor(sf::Color::Transparent);
                 button.move(0.f, y);
-                if(    sf::Mouse::getPosition(window).x > button.getGlobalBounds().left
-                    && sf::Mouse::getPosition(window).x < (button.getGlobalBounds().left + button.getGlobalBounds().width)
-                    && sf::Mouse::getPosition(window).y > button.getGlobalBounds().top
-                    && sf::Mouse::getPosition(window).y < (button.getGlobalBounds().top + button.getGlobalBounds().height)){
-                        button.setOutlineColor(sf::Color::White);
-                        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                            button.setFillColor(sf::Color::White);
-                            window.draw(info_parking);
+                if (sf::Mouse::getPosition(window).x > button.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (button.getGlobalBounds().left + button.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > button.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (button.getGlobalBounds().top + button.getGlobalBounds().height))
+                {
+                    button.setOutlineColor(sf::Color::White);
+                    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+                    {
+                        button.setFillColor(sf::Color::White);
+                        window.draw(info_parking);
                     }
                 }
-
 
                 sf::RectangleShape ProgressBar;
                 ProgressBar.setFillColor(sf::Color::Red);
@@ -158,8 +167,8 @@ int main (void){
                 window.draw(label_caisse);
             }
 
-            window.display(); 
-        }       
+            window.display();
+        }
     }
 
     return 0;

@@ -1,45 +1,51 @@
 #include "../headers/ServerParking.hpp"
 #include "../headers/Parking.hpp"
 
-namespace ServerP {
+namespace ServerP
+{
 
 	namespace Errors
 	{
 		enum Type
 		{
-			#ifdef _WIN32
+#ifdef _WIN32
 			WOULDBLOCK = WSAEWOULDBLOCK,
-			#else
+#else
 			WOULDBLOCK = EWOULDBLOCK,
-			#endif
+#endif
 		};
-	};
+	}; // namespace Errors
 
-	struct Client {
+	struct Client
+	{
 		SOCKET socket;
 		string ip;
 		int port;
 		int etape_client;
-		Client(SOCKET _socket, const string& _ip, int _port)
-			: socket(_socket)
-			, ip(_ip)
-			, port(_port)
-		{}
-		void Close() { Sockets::CloseSocket(socket); socket = INVALID_SOCKET; }
+		Client(SOCKET _socket, const string &_ip, int _port)
+			: socket(_socket), ip(_ip), port(_port)
+		{
+		}
+		void Close()
+		{
+			Sockets::CloseSocket(socket);
+			socket = INVALID_SOCKET;
+		}
 	};
 
-	#define BUFFER_MAX 1024
+#define BUFFER_MAX 1024
 	/**
 	 * @brief Method that checks if data was sent through a socket
 	 * @param socket the client's socket
 	 * @param _buffer the data
 	 * @return true or false if catches an error
 	 */
-	bool Receive(SOCKET socket, string& _buffer)
+	bool Receive(SOCKET socket, string &_buffer)
 	{
-		char buffer[BUFFER_MAX + 1] = { 0 };
+		char buffer[BUFFER_MAX + 1] = {0};
 		int iLastRecievedBufferLen = 0;
-		do {
+		do
+		{
 			iLastRecievedBufferLen = recv(socket, buffer, BUFFER_MAX, 0);
 			_buffer += buffer;
 		} while (iLastRecievedBufferLen == BUFFER_MAX);
@@ -48,7 +54,7 @@ namespace ServerP {
 		else
 		{
 			int error = Sockets::GetError();
-			if ( error == Errors::WOULDBLOCK )
+			if (error == Errors::WOULDBLOCK)
 				return true;
 			return false;
 		}
@@ -69,7 +75,7 @@ namespace ServerP {
 		addr.sin_addr.s_addr = INADDR_ANY;
 		addr.sin_port = htons(port);
 		addr.sin_family = AF_INET;
-		int res = bind(server, (sockaddr*)&addr, sizeof(addr));
+		int res = bind(server, (sockaddr *)&addr, sizeof(addr));
 		if (res != 0)
 			return false;
 		res = listen(server, SOMAXCONN);
@@ -83,14 +89,14 @@ namespace ServerP {
 			for (;;)
 			{
 				SOCKET newClient;
-				sockaddr addr = { 0,0 };
+				sockaddr addr = {0, 0};
 				socklen_t len = sizeof(addr);
 				newClient = accept(server, &addr, &len);
 				if (newClient == INVALID_SOCKET)
 					break;
 				sockaddr_in from;
 				socklen_t addrlen = sizeof(from);
-				if (getpeername(newClient, (sockaddr*)&from, &addrlen) != 0)
+				if (getpeername(newClient, (sockaddr *)&from, &addrlen) != 0)
 				{
 					cout << "Nouveau client, Impossible de retrouver son IP : " << Sockets::GetError() << " (deconnexion)" << endl;
 					Sockets::CloseSocket(newClient);
@@ -107,7 +113,7 @@ namespace ServerP {
 				string buffer;
 				if (Receive(client->socket, buffer))
 				{
-					if ( !buffer.empty() )
+					if (!buffer.empty())
 					{
 						string reply = parking->protocoleCommunication(buffer, client->etape_client++);
 						send(client->socket, reply.c_str(), reply.length(), 0);
@@ -117,10 +123,11 @@ namespace ServerP {
 				else
 				{
 					client->Close();
-					cout << "[" << client->ip.c_str() << ":" << client->port << "] " << " Deconnexion" << endl;
+					cout << "[" << client->ip.c_str() << ":" << client->port << "] "
+						 << " Deconnexion" << endl;
 					client = clients.erase(client);
 				}
 			}
 		}
 	}
-}
+} // namespace ServerP

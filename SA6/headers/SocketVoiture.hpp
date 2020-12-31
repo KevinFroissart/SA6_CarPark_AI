@@ -6,17 +6,16 @@
 
 class SocketVoiture
 {
-	public:
-		SocketVoiture();
-		~SocketVoiture();
+public:
+	SocketVoiture();
+	~SocketVoiture();
 
-		bool Connect(const std::string& ipaddress, unsigned short port);
-		int Send(const char* data, unsigned int len);
-		int Receive(char* buffer, unsigned int len);
+	bool Connect(const std::string &ipaddress, unsigned short port);
+	int Send(const char *data, unsigned int len);
+	int Receive(char *buffer, unsigned int len);
 
-	private:
-		SOCKET mSocket;
+private:
+	SOCKET mSocket;
 };
-
 
 #endif // BOUSK_DVP_SOCKET_COURS_SOCKETVOITURE_H

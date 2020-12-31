@@ -19,8 +19,8 @@ typedef int socklen_t;
 #else
 #include <sys/socket.h>
 #include <netinet/in.h> // sockaddr_in, IPPROTO_TCP
-#include <arpa/inet.h> // hton*, ntoh*, inet_addr
-#include <unistd.h>  // close
+#include <arpa/inet.h>  // hton*, ntoh*, inet_addr
+#include <unistd.h>     // close
 #include <fcntl.h>
 #include <cerrno> // errno
 #define SOCKET int
@@ -30,7 +30,7 @@ typedef int socklen_t;
 #include <string>
 #include <vector>
 #include <iostream>
-#include <algorithm> 
+#include <algorithm>
 #include "../headers/Parking.hpp"
 #include "../headers/Sockets.hpp"
 
@@ -38,8 +38,8 @@ using namespace std;
 
 namespace ServerP
 {
-    bool Receive(SOCKET socket, string& _buffer);
-    bool Server(int port, Parking * parking);
-};
+    bool Receive(SOCKET socket, string &_buffer);
+    bool Server(int port, Parking *parking);
+}; // namespace ServerP
 
 #endif

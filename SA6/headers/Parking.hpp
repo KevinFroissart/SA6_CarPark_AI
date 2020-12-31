@@ -6,36 +6,37 @@
 #include <map>
 using namespace std;
 
-class Parking{
-    public:
-        Parking(int id, float defaultPrice, int capacite_max, string cheminFichier);
-        Parking(int id, string cheminFichier);
-        ~Parking();
-        int getId();
-        int getPort();
-        float caisseTotal();
-        bool demarerServer();
-        string protocoleCommunication(string message, int etape);
-        string getCapaciteTotale();
-        string getRemplissage();
-        map<string, string> discussionVoiture;
+class Parking
+{
+public:
+    Parking(int id, float defaultPrice, int capacite_max, string cheminFichier);
+    Parking(int id, string cheminFichier);
+    ~Parking();
+    int getId();
+    int getPort();
+    float caisseTotal();
+    bool demarerServer();
+    string protocoleCommunication(string message, int etape);
+    string getCapaciteTotale();
+    string getRemplissage();
+    map<string, string> discussionVoiture;
 
-    private:
-        map<string, string>::iterator itr;
-        float s_prix;
-        float prix_demande;
-        float s_caisse;
-        string id_parking;
-        string id_voiture;
-        string logPath;
-        string filePath;
-        string s_infoVoiture;
-        string s_parkingData[5];
-        vector<string> idVoiture;
-        
-        bool EstRempli();
-        string ajouterVoiture();
-        float calcul_prix(vector<string> tab);
+private:
+    map<string, string>::iterator itr;
+    float s_prix;
+    float prix_demande;
+    float s_caisse;
+    string id_parking;
+    string id_voiture;
+    string logPath;
+    string filePath;
+    string s_infoVoiture;
+    string s_parkingData[5];
+    vector<string> idVoiture;
+
+    bool EstRempli();
+    string ajouterVoiture();
+    float calcul_prix(vector<string> tab);
 };
 
 #endif

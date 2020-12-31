@@ -23,8 +23,8 @@ typedef int socklen_t;
 #else
 #include <sys/socket.h>
 #include <netinet/in.h> // sockaddr_in, IPPROTO_TCP
-#include <arpa/inet.h> // hton*, ntoh*, inet_addr
-#include <unistd.h>  // close
+#include <arpa/inet.h>	// hton*, ntoh*, inet_addr
+#include <unistd.h>		// close
 #include <fcntl.h>
 #include <string>
 #include <cerrno> // errno
@@ -40,7 +40,7 @@ namespace Sockets
 	int GetError();
 	void CloseSocket(SOCKET socket);
 	bool SetNonBlocking(SOCKET s);
-    std::string ConvertAddr(const sockaddr_in& addr);
-}
+	std::string ConvertAddr(const sockaddr_in &addr);
+} // namespace Sockets
 
 #endif // BOUSK_DVP_COURS_SOCKET_H
