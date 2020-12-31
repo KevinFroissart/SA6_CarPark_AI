@@ -251,11 +251,11 @@ string Voiture::protocoleCommunication(string message)
             //si on est en semaine ou si on est le weekend mais pas en heure de pointe on négocie
             if (aTime->tm_wday < 6)
             {
-                return "Nous sommes en semaine, vous pouvez réduire un peu le prix !";
+                return "Nous sommes en semaine, vous pouvez reduire un peu le prix !";
             }
             else if (aTime->tm_hour < 7 || (aTime->tm_hour > 9 && aTime->tm_hour < 17) || aTime->tm_hour > 18)
             {
-                return "Nous ne sommes même pas en heure de pointe, vous pourriez réduire le prix";
+                return "Nous ne sommes même pas en heure de pointe, vous pourriez reduire le prix";
             }
         }
         placeTrouve();

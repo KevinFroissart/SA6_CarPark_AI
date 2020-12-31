@@ -16,9 +16,9 @@ void back_end_process(Main_back *mb)
     mb->process();
 }
 
-void new_window(int idParking)
+void new_window(int idParking, map<int, map<int, string>> conversation)
 {
-    dataWindow *nw = new dataWindow(idParking);
+    dataWindow *nw = new dataWindow(idParking, conversation);
     nw->newWindow();
 }
 
@@ -158,7 +158,7 @@ int main(void)
                     {
                         button.setFillColor(sf::Color::White);
                         window.draw(info_parking);
-                        windows.push_back(new thread(new_window, i + 1));
+                        windows.push_back(new thread(new_window, i + 1, main_b->conversation));
                         windows[windows.size() - 1]->join();
                     }
                 }
