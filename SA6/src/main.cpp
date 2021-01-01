@@ -16,9 +16,9 @@ void back_end_process(Main_back *mb)
     mb->process();
 }
 
-void new_window(int idParking, map<int, map<int, string>> conversation)
+void new_window(int idParking, Main_back *main_b)
 {
-    dataWindow *nw = new dataWindow(idParking, conversation);
+    dataWindow *nw = new dataWindow(idParking, main_b);
     nw->newWindow();
 }
 
@@ -129,9 +129,6 @@ int main(void)
                 ProgressBackground.setSize(sf::Vector2f(length, width));
                 ProgressBackground.move(300.f, y);
 
-                //sf::RectangleShape fond_infos;
-                //fond_infos.setFillColor(sf::Color::White);
-
                 string conversation;
 
                 for (map<int, string>::iterator itr_conv = main_b->conversation[i].begin(); itr_conv != main_b->conversation[i].end(); ++itr_conv)
@@ -158,7 +155,7 @@ int main(void)
                     {
                         button.setFillColor(sf::Color::White);
                         window.draw(info_parking);
-                        windows.push_back(new thread(new_window, i + 1, main_b->conversation));
+                        windows.push_back(new thread(new_window, i + 1, main_b));
                         windows[windows.size() - 1]->join();
                     }
                 }

@@ -1,5 +1,6 @@
 #ifndef DATAWINDOW_HPP
 #define DATAWINDOW_HPP
+#include "../headers/main_back.hpp"
 #include <string.h>
 #include <map>
 
@@ -8,13 +9,14 @@ using namespace std;
 class dataWindow
 {
 public:
-    dataWindow(int idParking, map<int, map<int, string>> conversation);
+    dataWindow(int idParking, Main_back *main_b);
     int newWindow();
 
 private:
     string currentConv;
     int id_parking;
-    map<int, map<int, string>> conversation;
+    map<int, map<int, string>> *conversation;
+    Main_back *main_b;
 };
 
 #endif

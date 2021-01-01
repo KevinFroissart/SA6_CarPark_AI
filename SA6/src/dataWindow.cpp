@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <iostream>
 
-dataWindow::dataWindow(int idParking, map<int, map<int, string>> conversation) : id_parking(idParking), conversation(conversation)
+dataWindow::dataWindow(int idParking, Main_back *main_b) : id_parking(idParking), main_b(main_b)
 {
     currentConv = "";
 }
@@ -13,8 +13,8 @@ int dataWindow::newWindow()
 {
     sf::RenderWindow window;
     int width = 630;
-    if (conversation[id_parking].size() > 17)
-        width = conversation[id_parking - 1].size() * 35 + 35;
+    if (main_b->conversation[id_parking].size() > 17)
+        width = main_b->conversation[id_parking - 1].size() * 35 + 35;
 
     window.create(sf::VideoMode(1400, width), "Parking " + to_string(id_parking) + " - Conversations");
 
@@ -45,6 +45,10 @@ int dataWindow::newWindow()
 
         if (!closed)
         {
+            if (main_b->conversation[id_parking - 1].size() > 17)
+                width = main_b->conversation[id_parking - 1].size() * 35 + 35;
+
+            window.setSize(sf::Vector2u(1400, width));
             sf::Font font;
             if (!font.loadFromFile("arial.ttf"))
                 return EXIT_FAILURE;
@@ -53,7 +57,7 @@ int dataWindow::newWindow()
             int length = 180;
             int width = 35;
             int i = 0;
-            for (map<int, string>::iterator itr_conv = conversation[id_parking - 1].begin(); itr_conv != conversation[id_parking - 1].end(); ++itr_conv, i++)
+            for (map<int, string>::iterator itr_conv = main_b->conversation[id_parking - 1].begin(); itr_conv != main_b->conversation[id_parking - 1].end(); ++itr_conv, i++)
             {
                 int y = i * width;
 
@@ -88,13 +92,13 @@ int dataWindow::newWindow()
             }
             sf::Text close_label("Retour", font, 25);
             close_label.setFillColor(sf::Color::Black);
-            close_label.move(0.f, ((conversation[id_parking - 1].size()) * 35) + 3);
+            close_label.move(0.f, ((main_b->conversation[id_parking - 1].size()) * 35) + 3);
             sf::RectangleShape close_button;
             close_button.setOutlineColor(sf::Color::Black);
             close_button.setOutlineThickness(1);
             close_button.setSize(sf::Vector2f(length * 0.80, width));
             close_button.setFillColor(sf::Color::Transparent);
-            close_button.move(0.f, ((conversation[id_parking - 1].size()) * 35));
+            close_button.move(0.f, ((main_b->conversation[id_parking - 1].size()) * 35));
 
             if (sf::Mouse::getPosition(window).x > close_button.getGlobalBounds().left && sf::Mouse::getPosition(window).x < (close_button.getGlobalBounds().left + close_button.getGlobalBounds().width) && sf::Mouse::getPosition(window).y > close_button.getGlobalBounds().top && sf::Mouse::getPosition(window).y < (close_button.getGlobalBounds().top + close_button.getGlobalBounds().height))
             {
