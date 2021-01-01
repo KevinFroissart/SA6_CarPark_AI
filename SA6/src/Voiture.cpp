@@ -291,7 +291,7 @@ string Voiture::protocoleCommunication(string message)
         else
         {
             cout << "mon prix: " << to_string(calcul_prix()) << " < à 0.75 x " << message << " soit " << to_string((stof(message) * 0.7)) << endl;
-            return "Une autre fois peut-être";
+            return "Une autre fois peut-etre";
         }
     }
     return "stop";

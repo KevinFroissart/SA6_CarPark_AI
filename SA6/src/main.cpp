@@ -59,7 +59,7 @@ int main(void)
     vector<thread *> windows;
 
     sf::RenderWindow window;
-    window.create(sf::VideoMode(1000, 450), "SA6 Parking Manager");
+    window.create(sf::VideoMode(1000, main_b->m_nbParking * 50 + 100), "SA6 Parking Manager");
 
     sf::Event event;
 
