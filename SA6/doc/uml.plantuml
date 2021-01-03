@@ -4,6 +4,14 @@ package SA6 {
 
     package front_end {
         class main {}
+        class dataWindow {
+            - string currentConv
+            - int id_parking
+            - Main_back *main_b
+
+            + dataWindow(int idParking, Main_back *main_b)
+            + int newWindow()
+        }
     }
 
     class SFML {}
@@ -20,9 +28,9 @@ package SA6 {
             - vector<Voiture *> m_listeVoiture
             - vector<Voiture *> m_listeVoitureTmp
 
-            + Main_back();
-            + ~Main_back();
-            + int process();
+            + Main_back()
+            + ~Main_back()
+            + int process()
         }
 
         package ns_tb {
@@ -138,11 +146,13 @@ package SA6 {
     }
 }
 
-main .right.> SFML
-main -down-  "1 " main_back
+dataWindow .left.> SFML
 
-main_back *-- "n" Voiture
-main_back *-- "n " Parking
+main *-left- "*" dataWindow
+main *-down-  "1 " main_back
+
+main_back *-- "*" Voiture
+main_back *-- "* " Parking
 
 ToolBox --o Voiture
 ToolBox --o Parking

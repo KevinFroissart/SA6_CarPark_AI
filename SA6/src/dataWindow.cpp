@@ -4,11 +4,21 @@
 #include <unistd.h>
 #include <iostream>
 
+/**
+ * @brief Construct a new data Window::data Window object
+ * 
+ * @param idParking 
+ * @param main_b 
+ */
 dataWindow::dataWindow(int idParking, Main_back *main_b) : id_parking(idParking), main_b(main_b)
 {
     currentConv = "";
 }
 
+/**
+ * @brief Create a new window
+ * @return int 
+ */
 int dataWindow::newWindow()
 {
     sf::RenderWindow window;
@@ -90,7 +100,7 @@ int dataWindow::newWindow()
                 window.draw(label);
                 window.draw(button);
             }
-            sf::Text close_label("Retour", font, 25);
+            /*sf::Text close_label("Retour", font, 25);
             close_label.setFillColor(sf::Color::Black);
             close_label.move(0.f, ((main_b->conversation[id_parking - 1].size()) * 35) + 3);
             sf::RectangleShape close_button;
@@ -110,7 +120,8 @@ int dataWindow::newWindow()
                 }
             }
             window.draw(close_label);
-            window.draw(close_button);
+            window.draw(close_button);*/
+            // -------- bug
             window.display();
         }
     }
