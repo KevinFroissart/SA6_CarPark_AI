@@ -3,14 +3,6 @@
 #include "../headers/ToolBox.hpp"
 #include <map>
 using namespace std;
-
-/*
-#include <iostream>
-#include <fstream>
-#include <vector>
-*/
-// Dans ToolBox
-
 class Parking
 {
 public:

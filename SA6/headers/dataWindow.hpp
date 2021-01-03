@@ -18,7 +18,6 @@ public:
 private:
     string currentConv;
     int id_parking;
-    map<int, map<int, string>> *conversation;
     Main_back *main_b;
 };
 

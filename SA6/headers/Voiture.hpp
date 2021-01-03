@@ -5,14 +5,6 @@
 #include "../headers/Sockets.hpp"
 #include <time.h>
 
-/*
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <vector>
-*/
-// Dans ToolBox
-
 using namespace std;
 
 class Voiture
