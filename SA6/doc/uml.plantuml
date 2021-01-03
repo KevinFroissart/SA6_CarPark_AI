@@ -46,6 +46,7 @@ package SA6 {
         }
         
         class Parking {
+            + map<string, string> discussionVoiture
             - float s_prix
             - float prix_demande
             - float s_caisse
@@ -56,6 +57,7 @@ package SA6 {
             - string s_infoVoiture
             - string s_parkingData[5]
             - vector<string> idVoiture
+            - map<string, string>::iterator itr
 
             + Parking(int id, float defaultPrice, int capacite_max, string cheminFichier)
             + Parking(int id, string cheminFichier)
@@ -82,6 +84,7 @@ package SA6 {
             - string v_path
             - string v_voitureData[6]
             - vector<float> v_tab
+            + rechercheParking
 
             + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
             + Voiture(int id, string filePath)
@@ -89,6 +92,7 @@ package SA6 {
             + int getId()
             + bool connexionServer(int port, int id)
             - float calcul_prix()
+            - string placeTrouve()
             - vector<float> initTab()
             - string protocoleCommunication(string message)
             - bool communicateWithParking(SocketVoiture client, string replyServer)

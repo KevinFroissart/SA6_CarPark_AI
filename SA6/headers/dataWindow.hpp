@@ -1,6 +1,9 @@
 #ifndef DATAWINDOW_HPP
 #define DATAWINDOW_HPP
 #include "../headers/main_back.hpp"
+#include <SFML/Graphics.hpp>
+#include <unistd.h>
+#include <iostream>
 #include <string.h>
 #include <map>
 

@@ -1,11 +1,17 @@
 #ifndef VOITURE_HPP
 #define VOITURE_HPP
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <time.h>
 #include "../headers/SocketVoiture.hpp"
+#include "../headers/ToolBox.hpp"
+#include "../headers/Sockets.hpp"
+#include <time.h>
+
+/*
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <vector>
+*/
+// Dans ToolBox
 
 using namespace std;
 

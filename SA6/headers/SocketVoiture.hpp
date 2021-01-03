@@ -3,6 +3,8 @@
 #define BOUSK_DVP_SOCKET_COURS_SOCKETVOITURE_HPP
 
 #include "Sockets.hpp"
+#include <stdexcept>
+#include <sstream>
 
 class SocketVoiture
 {

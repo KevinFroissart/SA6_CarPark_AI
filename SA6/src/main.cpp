@@ -1,14 +1,8 @@
 #include "../headers/Voiture.hpp"
 #include "../headers/Parking.hpp"
-#include "../headers/ToolBox.hpp"
 #include "../headers/main_back.hpp"
 #include "../headers/dataWindow.hpp"
-#include <SFML/Graphics.hpp>
-#include <string.h>
-#include <thread>
-#include <pthread.h>
-#include <unistd.h>
-#include <time.h>
+
 using namespace std;
 
 void back_end_process(Main_back *mb)
@@ -22,19 +16,15 @@ void new_window(int idParking, Main_back *main_b)
     nw->newWindow();
 }
 
-/*bool CircleButton::collision(int x, int y) const{
-    sf::Vector2f point(x,y);
-    sf::FloatRect boundingBox = m_spriteButton.getGlobalBounds();
-    return boundingBox.contains(point);
-}
-
-bool bouton(int x, int y, int tailleX, int tailleY){
-    sf::Mouse::isButtonPressed(sf::Mouse::Left)
-}*/
-
+/**
+ * @brief round a float to two decimals
+ * 
+ * @param var 
+ * @return string 
+ */
 string round(float var)
 {
-    char *str = new char[40]; //uninitialised value ??..
+    char *str = new char[40];
     sprintf(str, "%.2f", var);
     sscanf(str, "%f", &var);
     string r = str;
@@ -42,6 +32,11 @@ string round(float var)
     return r;
 }
 
+/**
+ * @brief Create the main window
+ * 
+ * @return int 
+ */
 int main(void)
 {
 
@@ -139,8 +134,6 @@ int main(void)
                 sf::Text info_parking(conversation, font, 20);
                 info_parking.setFillColor(sf::Color::Black);
                 info_parking.move(700, 300);
-
-                //cout << conversation << endl;
 
                 sf::RectangleShape button;
                 button.setOutlineColor(sf::Color::Black);

@@ -1,8 +1,4 @@
 #include "../headers/dataWindow.hpp"
-#include <SFML/Graphics.hpp>
-#include <string.h>
-#include <unistd.h>
-#include <iostream>
 
 /**
  * @brief Construct a new data Window::data Window object

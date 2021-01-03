@@ -17,22 +17,12 @@ typedef int socklen_t;
 #endif
 #endif
 #else
-#include <sys/socket.h>
-#include <netinet/in.h> // sockaddr_in, IPPROTO_TCP
-#include <arpa/inet.h>  // hton*, ntoh*, inet_addr
-#include <unistd.h>     // close
-#include <fcntl.h>
-#include <cerrno> // errno
+#include "../headers/Parking.hpp"
+#include "../headers/Sockets.hpp"
+#include <algorithm>
 #define SOCKET int
 #define INVALID_SOCKET ((int)-1)
 #endif
-
-#include <string>
-#include <vector>
-#include <iostream>
-#include <algorithm>
-#include "../headers/Parking.hpp"
-#include "../headers/Sockets.hpp"
 
 using namespace std;
 
