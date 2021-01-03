@@ -175,7 +175,6 @@ string Parking::protocoleCommunication(string message, int etape)
             discussionVoiture.insert(pair<string, string>(tmpTab[0], ""));
         }
         itr = discussionVoiture.find(tmpTab[0]);
-        //////////////////
         id_voiture = "Voiture " + tmpTab[0] + ": ";
         id_parking = "Parking " + to_string(getId()) + ": ";
         itr->second += id_voiture + "Est-ce que vous avez de la place ?\n" + id_parking + "Oui\n";

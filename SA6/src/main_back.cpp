@@ -2,12 +2,24 @@
 
 using namespace std;
 
+/**
+ * @brief run the server
+ * 
+ * @param P 
+ */
 void startServer(Parking *P)
 {
     if (!P->demarerServer())
         cout << "Le parking ne parviens pas à démarrer le serveur" << endl;
 }
 
+/**
+ * @brief connect a Voiture to a Parking
+ * 
+ * @param v 
+ * @param port 
+ * @param id 
+ */
 void connexionServer(Voiture *v, int port, int id)
 {
     if (!v->connexionServer(port, id))
