@@ -1,4 +1,6 @@
 #include "../headers/main_back.hpp"
+#include <algorithm>
+#include <random>
 
 using namespace std;
 
@@ -97,6 +99,8 @@ int Main_back::process()
 
     for (int i = 0; i < m_nbVoiture; i++)
     {
+        srand(unsigned(time(NULL)));
+        std::random_shuffle(m_listeParking.begin(), m_listeParking.end());
         for (int j = 0; j < m_nbParking && m_listeVoiture[i]->rechercheParking; j++)
         {
             thread *tmp = new thread(connexionServer, m_listeVoiture[i], m_listeParking[j]->getPort(), m_listeParking[j]->getId());
@@ -106,23 +110,23 @@ int Main_back::process()
             map<string, string>::iterator itr;
             if ((itr = m_listeParking[j]->discussionVoiture.find(to_string(m_listeVoiture[i]->getID()))) != m_listeParking[j]->discussionVoiture.end())
             {
-                conversation[j].insert(make_pair(m_listeVoiture[i]->getID(), itr->second));
+                conversation[m_listeParking[j]->getId() - 1].insert(make_pair(m_listeVoiture[i]->getID(), itr->second));
                 map<int, string>::iterator itr_tmp1;
                 map<int, map<int, string>>::iterator itr_tmp2;
-                if ((itr_tmp1 = conversation[j].find(m_listeVoiture[i]->getID())) != conversation[j].end())
+                if ((itr_tmp1 = conversation[m_listeParking[j]->getId() - 1].find(m_listeVoiture[i]->getID())) != conversation[m_listeParking[j]->getId() - 1].end())
                 {
                     cout << itr_tmp1->second << endl;
                 }
             }
 
             map<int, float>::iterator itr2;
-            if (caisseParking.find(j) == caisseParking.end())
+            if (caisseParking.find(m_listeParking[j]->getId() - 1) == caisseParking.end())
             {
-                caisseParking.insert(make_pair(j, m_listeParking[j]->caisseTotal()));
+                caisseParking.insert(make_pair(m_listeParking[j]->getId() - 1, m_listeParking[j]->caisseTotal()));
             }
             else
             {
-                itr2 = caisseParking.find(j);
+                itr2 = caisseParking.find(m_listeParking[j]->getId() - 1);
                 itr2->second = m_listeParking[j]->caisseTotal();
             }
             delete tmp;

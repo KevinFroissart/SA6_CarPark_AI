@@ -272,7 +272,7 @@ string Parking::protocoleCommunication(string message, int etape)
             {
                 if (prix_demande < (s_prix * 0.80))
                 {
-                    itr->second += id_parking + "Vous etes un client tres fidele mais il nous ait impossible d'acceder a votre demande.\n";
+                    itr->second += id_parking + "Vous etes un client tres fidele mais il nous est impossible d'acceder a votre demande.\n";
                     itr->second += id_parking + "Voici une reduction pour vous remercier de votre fidelite: " + to_string(s_prix * 0.80) + "\n";
                     return to_string(s_prix * 0.80);
                 }
