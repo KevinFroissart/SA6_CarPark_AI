@@ -154,7 +154,7 @@ namespace tb
     {
         std::vector<std::string> string_passages = tb::StringToTab(tb::CSVReader(path, id), ',');
         int nb_passages = 0;
-        if (string_passages.size() >= 1)
+        if (string_passages.size() > 1)
             nb_passages = stoi(string_passages[1]);
         return nb_passages < 5 ? 0 : nb_passages > 30 ? 2 : 1;
     }

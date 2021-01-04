@@ -223,14 +223,14 @@ string Voiture::protocoleCommunication(string message)
 
     if (v_etape == 3)
     {
-        if (stoi(message) <= v_prixBase)
+        float prix = calcul_prix();
+        if (stoi(message) <= (v_prixBase + v_prixBase * 0.1))
         {
             v_etape++;
             return placeTrouve();
         }
         else
         {
-            float prix = calcul_prix();
             v_etape++;
             return to_string(prix);
         }
@@ -284,11 +284,10 @@ string Voiture::protocoleCommunication(string message)
             rechercheParking = false;
             return "stop";
         }
-        else if (calcul_prix() > (stof(message) * 0.75))
+        else if (calcul_prix() > (stof(message) * 0.85))
             return placeTrouve();
         else
         {
-            //cout << "mon prix: " << to_string(calcul_prix()) << " < à 0.75 x " << message << " soit " << to_string((stof(message) * 0.7)) << endl;
             return "Une autre fois peut-etre";
         }
     }

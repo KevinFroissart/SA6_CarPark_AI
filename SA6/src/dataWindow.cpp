@@ -18,9 +18,9 @@ dataWindow::dataWindow(int idParking, Main_back *main_b) : id_parking(idParking)
 int dataWindow::newWindow()
 {
     sf::RenderWindow window;
-    int width = 630;
-    if (main_b->conversation[id_parking].size() > 17)
-        width = main_b->conversation[id_parking - 1].size() * 35 + 35;
+    int width = 850;
+    if (main_b->conversation[id_parking].size() > 30)
+        width = main_b->conversation[id_parking - 1].size() * 25 + 100;
 
     window.create(sf::VideoMode(1400, width), "Parking " + to_string(id_parking) + " - Conversations");
 
@@ -51,8 +51,8 @@ int dataWindow::newWindow()
 
         if (!closed)
         {
-            if (main_b->conversation[id_parking - 1].size() > 17)
-                width = main_b->conversation[id_parking - 1].size() * 35 + 35;
+            if (main_b->conversation[id_parking - 1].size() > 30)
+                width = main_b->conversation[id_parking - 1].size() * 25 + 100;
 
             window.setSize(sf::Vector2u(1400, width));
             sf::Font font;
@@ -61,13 +61,13 @@ int dataWindow::newWindow()
 
             window.clear(sf::Color(210, 210, 210, 255));
             int length = 180;
-            int width = 35;
+            int width = 25;
             int i = 0;
             for (map<int, string>::iterator itr_conv = main_b->conversation[id_parking - 1].begin(); itr_conv != main_b->conversation[id_parking - 1].end(); ++itr_conv, i++)
             {
                 int y = i * width;
 
-                sf::Text label("Voiture " + to_string(itr_conv->first), font, 25);
+                sf::Text label("Voiture " + to_string(itr_conv->first), font, 15);
                 label.setFillColor(sf::Color::Black);
                 label.move(0.f, y + 3);
 
