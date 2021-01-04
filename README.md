@@ -6,6 +6,12 @@ This project was made in collaboration with **Kévin FROISSART, Valentin GACHOD,
 
 ## Usage
 
+### Disclaimer !
+
+Works **only on Linux !**
+Can also be used on Windows using WSL and fast forwarding X11 display with VcXsrv X Server
+Follow [THIS](https://www.youtube.com/watch?v=6_mbd1hvUnE&t=301s) tutorial to install VcXsrv X Server
+
 ### Execute the program
 
 ```
