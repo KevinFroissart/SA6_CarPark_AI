@@ -11,6 +11,7 @@
  */
 Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFichier) : filePath(cheminFichier)
 {
+    s_caisse = 0;
     s_parkingData[1] = defaultPrice;
     s_parkingData[0] = id;
     s_parkingData[2] = "0";
@@ -32,6 +33,7 @@ Parking::Parking(int id, float defaultPrice, int capacite_max, string cheminFich
  */
 Parking::Parking(int id, string cheminFichier) : filePath(cheminFichier)
 {
+    s_caisse = 0;
     string input = tb::CSVReader(filePath, id);
     stringstream input_stringstream(input);
 
@@ -194,7 +196,7 @@ string Parking::protocoleCommunication(string message, int etape)
         { //Si la voiture n'accepte pas alors elle nous renvoie son prix
             itr->second += id_voiture + "Desole, ca ne rentre pas dans mon budget, voici mon offre: " + message + "e\n";
             prix_demande = stof(message);
-            if (prix_demande > (0.75 * s_prix))
+            if (prix_demande > (0.85 * s_prix))
             {
                 itr->second += id_parking + "J'accepte !\n";
 
@@ -230,7 +232,7 @@ string Parking::protocoleCommunication(string message, int etape)
                 itr->second += id_parking + "Oui mais nous sommes en pleine heure de pointe !\n";
                 return "Refuse";
             }
-            else if (prix_demande > (0.65 * s_prix))
+            else if (prix_demande > (0.75 * s_prix))
             {
                 itr->second += id_parking + "Je vous l'accorde.\n";
                 return ajouterVoiture();
@@ -249,7 +251,7 @@ string Parking::protocoleCommunication(string message, int etape)
                 itr->second += id_parking + "Oui mais nous sommes le week end !\n";
                 return "Refuse";
             }
-            else if (prix_demande > (0.65 * s_prix))
+            else if (prix_demande > (0.75 * s_prix))
             {
                 itr->second += id_parking + "Je vous l'accorde.\n";
                 return ajouterVoiture();
@@ -268,11 +270,11 @@ string Parking::protocoleCommunication(string message, int etape)
         {
             if (tb::readLog(getId(), logPath) == 2)
             {
-                if (prix_demande < (s_prix * 0.75))
+                if (prix_demande < (s_prix * 0.70))
                 {
                     itr->second += id_parking + "Vous etes un client tres fidele mais il nous ait impossible d'acceder a votre demande.\n";
-                    itr->second += id_parking + "Voici une reduction pour vous remercier de votre fidelite: " + to_string(s_prix * 0.75) + "\n";
-                    return to_string(s_prix * 0.75);
+                    itr->second += id_parking + "Voici une reduction pour vous remercier de votre fidelite: " + to_string(s_prix * 0.70) + "\n";
+                    return to_string(s_prix * 0.70);
                 }
                 else
                 {

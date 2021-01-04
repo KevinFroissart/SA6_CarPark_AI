@@ -2,6 +2,7 @@
 #include "../headers/Parking.hpp"
 #include "../headers/main_back.hpp"
 #include "../headers/dataWindow.hpp"
+#include <math.h>
 
 using namespace std;
 
@@ -22,15 +23,15 @@ void new_window(int idParking, Main_back *main_b)
  * @param var 
  * @return string 
  */
-string round(float var)
+/*string roundD(float var)
 {
-    char *str = new char[40];
-    sprintf(str, "%.2f", var);
-    sscanf(str, "%f", &var);
-    string r = str;
-    delete[] str;
-    return r;
-}
+    float nearest = roundf(var * 100) / 100;
+    cout << " ------> :" << nearest << endl;
+    std::ostringstream ss;
+    ss << nearest;
+    std::string s(ss.str());
+    return s;
+}*/
 
 /**
  * @brief Create the main window
@@ -104,12 +105,14 @@ int main(void)
                 label_progress.move(650.f, y + 3);
                 label_progress.setFillColor(sf::Color::Black);
 
-                map<int, float>::iterator itr;
+                map<int, float>::iterator itr = main_b->caisseParking.find(i);
                 float caisse = 0;
-                if ((itr = main_b->caisseParking.find(i)) != main_b->caisseParking.end())
+                if (itr != main_b->caisseParking.end())
+                {
                     caisse = itr->second;
+                }
 
-                sf::Text label_caisse(round(caisse) + "e", font, 40);
+                sf::Text label_caisse(to_string(caisse) + "e", font, 40);
                 label_caisse.move(790.f, y + 3);
                 label_caisse.setFillColor(sf::Color::Black);
 
