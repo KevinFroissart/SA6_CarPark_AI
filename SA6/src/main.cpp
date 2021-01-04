@@ -23,15 +23,14 @@ void new_window(int idParking, Main_back *main_b)
  * @param var 
  * @return string 
  */
-/*string roundD(float var)
+string roundD(float var)
 {
     float nearest = roundf(var * 100) / 100;
-    cout << " ------> :" << nearest << endl;
     std::ostringstream ss;
     ss << nearest;
     std::string s(ss.str());
     return s;
-}*/
+}
 
 /**
  * @brief Create the main window
@@ -52,11 +51,7 @@ int main(void)
         tab_capacite[i] = stoi(main_b->m_listeParking[i]->getCapaciteTotale());
     }
 
-    vector<thread *> windows;
-
-    sf::RenderWindow window;
-    window.create(sf::VideoMode(1000, main_b->m_nbParking * 50 + 100), "SA6 Parking Manager");
-
+    sf::RenderWindow window(sf::VideoMode(1000, main_b->m_nbParking * 50 + 100), "SA6 Parking Manager");
     sf::Event event;
 
     while (window.isOpen())
@@ -112,7 +107,7 @@ int main(void)
                     caisse = itr->second;
                 }
 
-                sf::Text label_caisse(to_string(caisse) + "e", font, 40);
+                sf::Text label_caisse(roundD(caisse) + "e", font, 40);
                 label_caisse.move(790.f, y + 3);
                 label_caisse.setFillColor(sf::Color::Black);
 
@@ -151,8 +146,8 @@ int main(void)
                     {
                         button.setFillColor(sf::Color::White);
                         window.draw(info_parking);
-                        windows.push_back(new thread(new_window, i + 1, main_b));
-                        windows[windows.size() - 1]->join();
+                        thread *s_window = new thread(new_window, i + 1, main_b);
+                        s_window->join();
                     }
                 }
 
