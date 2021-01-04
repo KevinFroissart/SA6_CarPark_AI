@@ -157,7 +157,6 @@ int main(void)
                 ProgressBar.setOutlineColor(sf::Color::Black);
                 ProgressBar.setSize(sf::Vector2f(stoi(main_b->m_listeParking[i]->getRemplissage()) * progress_scale, width));
                 ProgressBar.move(300.f, y);
-
                 window.draw(ProgressBackground);
                 window.draw(ProgressBar);
                 window.draw(button);
