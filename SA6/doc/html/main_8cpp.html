@@ -74,43 +74,39 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_voiture_8hpp_source.html">../headers/Voiture.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_parking_8hpp_source.html">../headers/Parking.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_tool_box_8hpp_source.html">../headers/ToolBox.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="main__back_8hpp_source.html">../headers/main_back.hpp</a>&quot;</code><br />
-<code>#include &lt;SFML/Graphics.hpp&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;thread&gt;</code><br />
-<code>#include &lt;pthread.h&gt;</code><br />
-<code>#include &lt;unistd.h&gt;</code><br />
-<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="data_window_8hpp_source.html">../headers/dataWindow.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#src_2main_8cpp" alt=""/></div>
 <map name="src_2main_8cpp" id="src_2main_8cpp">
-<area shape="rect" title=" " alt="" coords="860,5,965,32"/>
-<area shape="rect" href="_voiture_8hpp.html" title=" " alt="" coords="128,155,292,181"/>
-<area shape="rect" title=" " alt="" coords="727,379,802,405"/>
-<area shape="rect" href="_parking_8hpp.html" title=" " alt="" coords="509,155,676,181"/>
-<area shape="rect" href="_tool_box_8hpp.html" title=" " alt="" coords="316,155,485,181"/>
-<area shape="rect" href="main__back_8hpp.html" title=" " alt="" coords="661,80,850,107"/>
-<area shape="rect" title=" " alt="" coords="803,155,873,181"/>
-<area shape="rect" title=" " alt="" coords="898,155,962,181"/>
-<area shape="rect" title=" " alt="" coords="987,155,1071,181"/>
-<area shape="rect" title=" " alt="" coords="1095,155,1159,181"/>
-<area shape="rect" title=" " alt="" coords="1234,80,1381,107"/>
-<area shape="rect" title=" " alt="" coords="451,229,531,256"/>
-<area shape="rect" title=" " alt="" coords="556,229,629,256"/>
-<area shape="rect" title=" " alt="" coords="265,229,339,256"/>
-<area shape="rect" title=" " alt="" coords="364,229,427,256"/>
-<area shape="rect" href="_socket_voiture_8hpp.html" title=" " alt="" coords="33,229,240,256"/>
-<area shape="rect" href="_sockets_8hpp.html" title=" " alt="" coords="231,304,331,331"/>
-<area shape="rect" title=" " alt="" coords="379,379,481,405"/>
-<area shape="rect" title=" " alt="" coords="506,379,602,405"/>
-<area shape="rect" title=" " alt="" coords="5,379,97,405"/>
-<area shape="rect" title=" " alt="" coords="121,379,184,405"/>
-<area shape="rect" title=" " alt="" coords="209,379,267,405"/>
-<area shape="rect" title=" " alt="" coords="292,379,355,405"/>
-<area shape="rect" title=" " alt="" coords="666,229,717,256"/>
+<area shape="rect" title=" " alt="" coords="507,5,612,32"/>
+<area shape="rect" href="_voiture_8hpp.html" title=" " alt="" coords="295,229,459,256"/>
+<area shape="rect" href="_parking_8hpp.html" title=" " alt="" coords="483,229,649,256"/>
+<area shape="rect" href="main__back_8hpp.html" title=" " alt="" coords="531,155,721,181"/>
+<area shape="rect" href="data_window_8hpp.html" title=" " alt="" coords="829,80,1028,107"/>
+<area shape="rect" href="_socket_voiture_8hpp.html" title=" " alt="" coords="273,304,480,331"/>
+<area shape="rect" href="_sockets_8hpp.html" title=" " alt="" coords="211,379,311,405"/>
+<area shape="rect" href="_tool_box_8hpp.html" title=" " alt="" coords="593,304,763,331"/>
+<area shape="rect" title=" " alt="" coords="505,304,569,331"/>
+<area shape="rect" title=" " alt="" coords="335,379,421,405"/>
+<area shape="rect" title=" " alt="" coords="493,379,567,405"/>
+<area shape="rect" title=" " alt="" coords="263,453,365,480"/>
+<area shape="rect" title=" " alt="" coords="390,453,486,480"/>
+<area shape="rect" title=" " alt="" coords="511,453,603,480"/>
+<area shape="rect" title=" " alt="" coords="835,453,910,480"/>
+<area shape="rect" title=" " alt="" coords="5,453,68,480"/>
+<area shape="rect" title=" " alt="" coords="93,453,151,480"/>
+<area shape="rect" title=" " alt="" coords="176,453,239,480"/>
+<area shape="rect" title=" " alt="" coords="849,379,929,405"/>
+<area shape="rect" title=" " alt="" coords="595,379,668,405"/>
+<area shape="rect" title=" " alt="" coords="692,379,755,405"/>
+<area shape="rect" title=" " alt="" coords="865,304,915,331"/>
+<area shape="rect" title=" " alt="" coords="871,229,941,256"/>
+<area shape="rect" title=" " alt="" coords="782,229,846,256"/>
+<area shape="rect" title=" " alt="" coords="673,229,757,256"/>
+<area shape="rect" title=" " alt="" coords="745,155,891,181"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -118,9 +114,13 @@ Include dependency graph for main.cpp:</div>
 Functions</h2></td></tr>
 <tr class="memitem:ab54f77022b284a6b892c630d2e96225f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab54f77022b284a6b892c630d2e96225f">back_end_process</a> (<a class="el" href="class_main__back.html">Main_back</a> *mb)</td></tr>
 <tr class="separator:ab54f77022b284a6b892c630d2e96225f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad407c1c039182fb0b63e8e8a5f0e3938"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ad407c1c039182fb0b63e8e8a5f0e3938">new_window</a> (int idParking, <a class="el" href="class_main__back.html">Main_back</a> *main_b)</td></tr>
+<tr class="separator:ad407c1c039182fb0b63e8e8a5f0e3938"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d0985553ab1695e34ba175b88117e90"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a7d0985553ab1695e34ba175b88117e90">round</a> (float var)</td></tr>
+<tr class="memdesc:a7d0985553ab1695e34ba175b88117e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">round a float to two decimals  <a href="main_8cpp.html#a7d0985553ab1695e34ba175b88117e90">More...</a><br /></td></tr>
 <tr class="separator:a7d0985553ab1695e34ba175b88117e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
+<tr class="memdesc:a840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the main window.  <a href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe">More...</a><br /></td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -144,21 +144,25 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp_ab54f77022b284a6b892c630d2e96225f_cgraph.png" border="0" usemap="#main_8cpp_ab54f77022b284a6b892c630d2e96225f_cgraph" alt=""/></div>
 <map name="main_8cpp_ab54f77022b284a6b892c630d2e96225f_cgraph" id="main_8cpp_ab54f77022b284a6b892c630d2e96225f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,123,147,149"/>
-<area shape="rect" href="class_main__back.html#afb5d52770eaa974d965395c9558cc211" title="This is where the magic happens! The whole process is done here hence the name of the method...." alt="" coords="195,123,345,149"/>
-<area shape="rect" href="main__back_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title=" " alt="" coords="393,123,524,149"/>
-<area shape="rect" href="class_voiture.html#adc4d753778f824d3975e653a1ccfa74b" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="572,123,757,149"/>
-<area shape="rect" href="class_voiture.html#ac4c44298731385957152cf73cc691892" title="Method used to send a string to the Parking using sockets." alt="" coords="805,57,1000,98"/>
-<area shape="rect" href="namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89" title=" " alt="" coords="1101,5,1235,32"/>
-<area shape="rect" href="class_socket_voiture.html#ab3553b39cae65485b14547d3ca0b1dbb" title="Connects an IP Adress to a specific port." alt="" coords="817,123,989,149"/>
-<area shape="rect" href="namespace_sockets.html#a92596c80f2c7e8918d9671750aaf9930" title=" " alt="" coords="837,173,969,200"/>
-<area shape="rect" href="namespace_sockets.html#abd487b24f7668b197a0b244273ec004f" title=" " alt="" coords="847,224,958,251"/>
-<area shape="rect" href="class_voiture.html#a0718aa0f96ae77fff1ec7e4293ee7a4d" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="1048,56,1288,83"/>
-<area shape="rect" href="class_socket_voiture.html#acb36402a6ffbf2add9b058b4bfd7d053" title="Recieves a message trough the socket." alt="" coords="1083,107,1253,133"/>
-<area shape="rect" href="class_socket_voiture.html#a474e340fb03ec04c18aa5e6109f9740d" title="Sends a message trough the socket." alt="" coords="1093,157,1243,184"/>
-<area shape="rect" href="class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="1346,5,1493,32"/>
-<area shape="rect" href="namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="1336,56,1503,83"/>
-<area shape="rect" href="namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="1346,107,1493,133"/>
+<area shape="rect" title=" " alt="" coords="5,148,147,175"/>
+<area shape="rect" href="class_main__back.html#afb5d52770eaa974d965395c9558cc211" title="This is where the magic happens! The whole process is done here hence the name of the method...." alt="" coords="195,148,345,175"/>
+<area shape="rect" href="main__back_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title="connect a Voiture to a Parking" alt="" coords="393,148,524,175"/>
+<area shape="rect" href="class_voiture.html#adc4d753778f824d3975e653a1ccfa74b" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="572,148,757,175"/>
+<area shape="rect" href="class_voiture.html#ac4c44298731385957152cf73cc691892" title="Method used to send a string to the Parking using sockets." alt="" coords="805,82,1000,123"/>
+<area shape="rect" href="namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89" title=" " alt="" coords="1101,31,1235,57"/>
+<area shape="rect" href="class_socket_voiture.html#ab3553b39cae65485b14547d3ca0b1dbb" title="Connects an IP Adress to a specific port." alt="" coords="817,148,989,175"/>
+<area shape="rect" href="namespace_sockets.html#a92596c80f2c7e8918d9671750aaf9930" title=" " alt="" coords="837,199,969,225"/>
+<area shape="rect" href="namespace_sockets.html#abd487b24f7668b197a0b244273ec004f" title=" " alt="" coords="847,249,958,276"/>
+<area shape="rect" href="class_voiture.html#a0718aa0f96ae77fff1ec7e4293ee7a4d" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="1048,81,1288,108"/>
+<area shape="rect" href="class_socket_voiture.html#acb36402a6ffbf2add9b058b4bfd7d053" title="Recieves a message trough the socket." alt="" coords="1083,132,1253,159"/>
+<area shape="rect" href="class_socket_voiture.html#a474e340fb03ec04c18aa5e6109f9740d" title="Sends a message trough the socket." alt="" coords="1093,183,1243,209"/>
+<area shape="rect" href="class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="1340,5,1487,32"/>
+<area shape="rect" href="namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="1340,56,1487,83"/>
+<area shape="rect" href="class_voiture.html#aa2e74d5edba1026f2b3eda48e4888de8" title="Write in a Log file when a place is found." alt="" coords="1336,107,1491,133"/>
+<area shape="rect" href="namespacetb.html#a54da8745786d0ea1a7fde1a1b5aed14f" title="Reads how many times a Voiture visited a Parking." alt="" coords="1366,157,1461,184"/>
+<area shape="rect" href="namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="1539,107,1705,133"/>
+<area shape="rect" href="namespacetb.html#a0081b40bffde606234a14b31afbf9194" title="Read a CSV file at a specific line." alt="" coords="1565,157,1679,184"/>
+<area shape="rect" href="namespacetb.html#a7c0df73fca85c8f6319e5ee4928fab06" title="Convert a string to a tab of strings." alt="" coords="1563,208,1681,235"/>
 </map>
 </div>
 <div class="dynheader">
@@ -167,7 +171,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="main_8cpp_ab54f77022b284a6b892c630d2e96225f_icgraph.png" border="0" usemap="#main_8cpp_ab54f77022b284a6b892c630d2e96225f_icgraph" alt=""/></div>
 <map name="main_8cpp_ab54f77022b284a6b892c630d2e96225f_icgraph" id="main_8cpp_ab54f77022b284a6b892c630d2e96225f_icgraph">
 <area shape="rect" title=" " alt="" coords="108,5,249,32"/>
-<area shape="rect" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="Create the main window." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -188,29 +192,84 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Create the main window. </p>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png" border="0" usemap="#main_8cpp_a840291bc02cba5474a4cb46a9b9566fe_cgraph" alt=""/></div>
 <map name="main_8cpp_a840291bc02cba5474a4cb46a9b9566fe_cgraph" id="main_8cpp_a840291bc02cba5474a4cb46a9b9566fe_cgraph">
-<area shape="rect" title=" " alt="" coords="5,173,60,200"/>
-<area shape="rect" href="main_8cpp.html#ab54f77022b284a6b892c630d2e96225f" title=" " alt="" coords="128,123,269,149"/>
-<area shape="rect" href="main_8cpp.html#a7d0985553ab1695e34ba175b88117e90" title=" " alt="" coords="169,173,228,200"/>
-<area shape="rect" href="class_main__back.html#a1ff578a524cb7e4a9070bcf3561042f1" title="Destroy the Main_back::Main_back object Destroys every Parking Objects and Threads previously created..." alt="" coords="108,224,289,251"/>
-<area shape="rect" href="class_main__back.html#afb5d52770eaa974d965395c9558cc211" title="This is where the magic happens! The whole process is done here hence the name of the method...." alt="" coords="337,123,488,149"/>
-<area shape="rect" href="main__back_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title=" " alt="" coords="536,123,667,149"/>
-<area shape="rect" href="class_voiture.html#adc4d753778f824d3975e653a1ccfa74b" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="715,123,900,149"/>
-<area shape="rect" href="class_voiture.html#ac4c44298731385957152cf73cc691892" title="Method used to send a string to the Parking using sockets." alt="" coords="948,57,1143,98"/>
-<area shape="rect" href="namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89" title=" " alt="" coords="1243,5,1378,32"/>
-<area shape="rect" href="class_socket_voiture.html#ab3553b39cae65485b14547d3ca0b1dbb" title="Connects an IP Adress to a specific port." alt="" coords="959,123,1131,149"/>
-<area shape="rect" href="namespace_sockets.html#a92596c80f2c7e8918d9671750aaf9930" title=" " alt="" coords="979,173,1111,200"/>
-<area shape="rect" href="namespace_sockets.html#abd487b24f7668b197a0b244273ec004f" title=" " alt="" coords="990,224,1101,251"/>
-<area shape="rect" href="class_voiture.html#a0718aa0f96ae77fff1ec7e4293ee7a4d" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="1191,56,1431,83"/>
-<area shape="rect" href="class_socket_voiture.html#acb36402a6ffbf2add9b058b4bfd7d053" title="Recieves a message trough the socket." alt="" coords="1225,107,1396,133"/>
-<area shape="rect" href="class_socket_voiture.html#a474e340fb03ec04c18aa5e6109f9740d" title="Sends a message trough the socket." alt="" coords="1235,157,1386,184"/>
-<area shape="rect" href="class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="1489,5,1635,32"/>
-<area shape="rect" href="namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="1479,56,1645,83"/>
-<area shape="rect" href="namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="1489,107,1635,133"/>
+<area shape="rect" title="Create the main window." alt="" coords="5,224,60,251"/>
+<area shape="rect" href="main_8cpp.html#ab54f77022b284a6b892c630d2e96225f" title=" " alt="" coords="128,148,269,175"/>
+<area shape="rect" href="main_8cpp.html#ad407c1c039182fb0b63e8e8a5f0e3938" title=" " alt="" coords="145,199,252,225"/>
+<area shape="rect" href="main_8cpp.html#a7d0985553ab1695e34ba175b88117e90" title="round a float to two decimals" alt="" coords="169,249,228,276"/>
+<area shape="rect" href="class_main__back.html#a1ff578a524cb7e4a9070bcf3561042f1" title="Destroy the Main_back::Main_back object Destroys every Parking Objects and Threads previously created..." alt="" coords="108,300,289,327"/>
+<area shape="rect" href="class_main__back.html#afb5d52770eaa974d965395c9558cc211" title="This is where the magic happens! The whole process is done here hence the name of the method...." alt="" coords="357,148,507,175"/>
+<area shape="rect" href="main__back_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title="connect a Voiture to a Parking" alt="" coords="575,148,705,175"/>
+<area shape="rect" href="class_voiture.html#adc4d753778f824d3975e653a1ccfa74b" title="Method used to connect the car with a specific Parking using sockets." alt="" coords="753,148,939,175"/>
+<area shape="rect" href="class_voiture.html#ac4c44298731385957152cf73cc691892" title="Method used to send a string to the Parking using sockets." alt="" coords="987,82,1181,123"/>
+<area shape="rect" href="namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89" title=" " alt="" coords="1282,31,1417,57"/>
+<area shape="rect" href="class_socket_voiture.html#ab3553b39cae65485b14547d3ca0b1dbb" title="Connects an IP Adress to a specific port." alt="" coords="998,148,1170,175"/>
+<area shape="rect" href="namespace_sockets.html#a92596c80f2c7e8918d9671750aaf9930" title=" " alt="" coords="1018,199,1150,225"/>
+<area shape="rect" href="namespace_sockets.html#abd487b24f7668b197a0b244273ec004f" title=" " alt="" coords="1029,249,1139,276"/>
+<area shape="rect" href="class_voiture.html#a0718aa0f96ae77fff1ec7e4293ee7a4d" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="1229,81,1469,108"/>
+<area shape="rect" href="class_socket_voiture.html#acb36402a6ffbf2add9b058b4bfd7d053" title="Recieves a message trough the socket." alt="" coords="1264,132,1435,159"/>
+<area shape="rect" href="class_socket_voiture.html#a474e340fb03ec04c18aa5e6109f9740d" title="Sends a message trough the socket." alt="" coords="1274,183,1425,209"/>
+<area shape="rect" href="class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="1521,5,1668,32"/>
+<area shape="rect" href="namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="1521,56,1668,83"/>
+<area shape="rect" href="class_voiture.html#aa2e74d5edba1026f2b3eda48e4888de8" title="Write in a Log file when a place is found." alt="" coords="1517,107,1672,133"/>
+<area shape="rect" href="namespacetb.html#a54da8745786d0ea1a7fde1a1b5aed14f" title="Reads how many times a Voiture visited a Parking." alt="" coords="1547,157,1642,184"/>
+<area shape="rect" href="namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="1720,107,1887,133"/>
+<area shape="rect" href="namespacetb.html#a0081b40bffde606234a14b31afbf9194" title="Read a CSV file at a specific line." alt="" coords="1746,157,1861,184"/>
+<area shape="rect" href="namespacetb.html#a7c0df73fca85c8f6319e5ee4928fab06" title="Convert a string to a tab of strings." alt="" coords="1745,208,1862,235"/>
+<area shape="rect" href="classdata_window.html#ae3589bdc7a6206d9a8a81128d63f253e" title="Create a new window." alt="" coords="337,199,527,225"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad407c1c039182fb0b63e8e8a5f0e3938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad407c1c039182fb0b63e8e8a5f0e3938">&#9670;&nbsp;</a></span>new_window()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void new_window </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idParking</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_main__back.html">Main_back</a> *&#160;</td>
+          <td class="paramname"><em>main_b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_ad407c1c039182fb0b63e8e8a5f0e3938_cgraph.png" border="0" usemap="#main_8cpp_ad407c1c039182fb0b63e8e8a5f0e3938_cgraph" alt=""/></div>
+<map name="main_8cpp_ad407c1c039182fb0b63e8e8a5f0e3938_cgraph" id="main_8cpp_ad407c1c039182fb0b63e8e8a5f0e3938_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,112,32"/>
+<area shape="rect" href="classdata_window.html#ae3589bdc7a6206d9a8a81128d63f253e" title="Create a new window." alt="" coords="160,5,349,32"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="main_8cpp_ad407c1c039182fb0b63e8e8a5f0e3938_icgraph.png" border="0" usemap="#main_8cpp_ad407c1c039182fb0b63e8e8a5f0e3938_icgraph" alt=""/></div>
+<map name="main_8cpp_ad407c1c039182fb0b63e8e8a5f0e3938_icgraph" id="main_8cpp_ad407c1c039182fb0b63e8e8a5f0e3938_icgraph">
+<area shape="rect" title=" " alt="" coords="108,5,215,32"/>
+<area shape="rect" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="Create the main window." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 
@@ -231,13 +290,22 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>round a float to two decimals </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">var</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>string </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8cpp_a7d0985553ab1695e34ba175b88117e90_icgraph.png" border="0" usemap="#main_8cpp_a7d0985553ab1695e34ba175b88117e90_icgraph" alt=""/></div>
 <map name="main_8cpp_a7d0985553ab1695e34ba175b88117e90_icgraph" id="main_8cpp_a7d0985553ab1695e34ba175b88117e90_icgraph">
-<area shape="rect" title=" " alt="" coords="108,5,167,32"/>
-<area shape="rect" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" title="round a float to two decimals" alt="" coords="108,5,167,32"/>
+<area shape="rect" href="main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="Create the main window." alt="" coords="5,5,60,32"/>
 </map>
 </div>
 

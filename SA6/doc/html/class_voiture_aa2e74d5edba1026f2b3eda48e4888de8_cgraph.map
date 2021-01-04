@@ -1,0 +1,4 @@
+<map id="Voiture::placeTrouve" name="Voiture::placeTrouve">
+<area shape="rect" id="node1" title="Write in a Log file when a place is found." alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node2" href="$namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="208,5,375,32"/>
+</map>

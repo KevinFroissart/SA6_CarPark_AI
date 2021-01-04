@@ -12,5 +12,6 @@ var searchData=
   ['conversation_12',['conversation',['../class_main__back.html#a1f8b8744160fce0fdcfdfca1e3aa7e91',1,'Main_back']]],
   ['convertaddr_13',['ConvertAddr',['../namespace_sockets.html#a055fd82bb22b774ec00c5ed3042bc3f2',1,'Sockets']]],
   ['csvreader_14',['CSVReader',['../namespacetb.html#a0081b40bffde606234a14b31afbf9194',1,'tb']]],
-  ['csvwriterparklogs_15',['CSVWriterParkLogs',['../namespacetb.html#a751736f934cab35e028380f8ba90bbf0',1,'tb']]]
+  ['csvwriterparklogs_15',['CSVWriterParkLogs',['../namespacetb.html#a751736f934cab35e028380f8ba90bbf0',1,'tb']]],
+  ['currentconv_16',['currentConv',['../classdata_window.html#acb3002c17f92ae04e03a7f6609e50980',1,'dataWindow']]]
 ];

@@ -6,10 +6,10 @@
 <area shape="rect" id="node11" href="$namespace_server_p.html#ae77799260544f81c00027f54e58b6cf7" title="Method that checks if data was sent through a socket." alt="" coords="1019,173,1151,199"/>
 <area shape="rect" id="node12" href="$namespace_server_p.html#a0ca8fc21869d5851d3f443ab98ad61c2" title="Method that starts a server a communicate with a list of related sockets." alt="" coords="779,173,902,199"/>
 <area shape="rect" id="node13" href="$class_socket_voiture.html#a802b7b3fca7b337bf62568a11163d6c5" title="Construct a new SocketVoiture::SocketVoiture object." alt="" coords="981,274,1189,301"/>
-<area shape="rect" id="node4" href="$main__back_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title=" " alt="" coords="547,42,678,69"/>
+<area shape="rect" id="node4" href="$main__back_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title="connect a Voiture to a Parking" alt="" coords="547,42,678,69"/>
 <area shape="rect" id="node5" href="$class_main__back.html#afb5d52770eaa974d965395c9558cc211" title="This is where the magic happens! The whole process is done here hence the name of the method...." alt="" coords="327,42,477,69"/>
 <area shape="rect" id="node6" href="$main_8cpp.html#ab54f77022b284a6b892c630d2e96225f" title=" " alt="" coords="123,42,264,69"/>
-<area shape="rect" id="node7" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,42,60,69"/>
-<area shape="rect" id="node9" href="$main__back_8cpp.html#a40f844fb99335a27ed43122c6e2c3532" title=" " alt="" coords="355,147,449,174"/>
+<area shape="rect" id="node7" href="$main_8cpp.html#a840291bc02cba5474a4cb46a9b9566fe" title="Create the main window." alt="" coords="5,42,60,69"/>
+<area shape="rect" id="node9" href="$main__back_8cpp.html#a40f844fb99335a27ed43122c6e2c3532" title="run the server" alt="" coords="355,147,449,174"/>
 <area shape="rect" id="node10" href="$class_main__back.html#a551476b70e94fadff5b4c516332f6bf4" title="Construct a new Main_back::Main_back object initialise Parking, Voiture and Thread lists...." alt="" coords="108,147,279,174"/>
 </map>

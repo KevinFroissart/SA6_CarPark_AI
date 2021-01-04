@@ -32,7 +32,7 @@ uml:
 	java -jar $(DOC)$(LIBS) $(DOC)?*.plantuml 
 
 cleandoc:
-	$(RM) -Rf $(DOC)html $(DOC)rtf $(DOC)?*.png
+	$(RM) -Rf $(DOC)html $(DOC)rtf $(DOC)SA6_uml.png
 	#find $(DOC) -type f ! -name '*.info' -delete
 
 clean: 
@@ -42,7 +42,7 @@ clean:
 	
 mrproper: clean 
 	$(RM) $(BINARY)
- 
+
 rebuild: 
 	@make mrproper
 	@make

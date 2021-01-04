@@ -75,6 +75,7 @@ package SA6 {
         }
 
         Class Voiture {
+            + rechercheParking
             - int v_etape
             - int v_id
             - int idParking
@@ -84,7 +85,6 @@ package SA6 {
             - string v_path
             - string v_voitureData[6]
             - vector<float> v_tab
-            + rechercheParking
 
             + Voiture(int id, string name, string marque, string statut, string handicap, string age, string heure)
             + Voiture(int id, string filePath)
@@ -156,7 +156,7 @@ main *-left- "*" dataWindow
 main *-down-  "1 " main_back
 
 main_back *-- "*" Voiture
-main_back *-- "* " Parking
+main_back *-- "*" Parking
 
 ToolBox --o Voiture
 ToolBox --o Parking

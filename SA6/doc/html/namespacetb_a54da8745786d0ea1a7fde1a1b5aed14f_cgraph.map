@@ -1,0 +1,5 @@
+<map id="tb::readLog" name="tb::readLog">
+<area shape="rect" id="node1" title="Reads how many times a Voiture visited a Parking." alt="" coords="5,31,100,57"/>
+<area shape="rect" id="node2" href="$namespacetb.html#a0081b40bffde606234a14b31afbf9194" title="Read a CSV file at a specific line." alt="" coords="149,5,264,32"/>
+<area shape="rect" id="node3" href="$namespacetb.html#a7c0df73fca85c8f6319e5ee4928fab06" title="Convert a string to a tab of strings." alt="" coords="148,56,265,83"/>
+</map>

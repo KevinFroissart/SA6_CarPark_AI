@@ -1,5 +1,0 @@
-<map id="Parking::readLog" name="Parking::readLog">
-<area shape="rect" id="node1" title="collect the log of the car." alt="" coords="5,31,136,57"/>
-<area shape="rect" id="node2" href="$namespacetb.html#a0081b40bffde606234a14b31afbf9194" title="Read a CSV file at a specific line." alt="" coords="185,5,300,32"/>
-<area shape="rect" id="node3" href="$namespacetb.html#a7c0df73fca85c8f6319e5ee4928fab06" title="Convert a string to a tab of strings." alt="" coords="184,56,301,83"/>
-</map>

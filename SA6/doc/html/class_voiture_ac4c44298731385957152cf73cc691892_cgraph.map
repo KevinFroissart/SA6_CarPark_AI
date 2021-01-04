@@ -1,10 +1,14 @@
 <map id="Voiture::communicateWithParking" name="Voiture::communicateWithParking">
-<area shape="rect" id="node1" title="Method used to send a string to the Parking using sockets." alt="" coords="5,74,200,115"/>
-<area shape="rect" id="node2" href="$namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89" title=" " alt="" coords="301,5,435,32"/>
-<area shape="rect" id="node3" href="$class_voiture.html#a0718aa0f96ae77fff1ec7e4293ee7a4d" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="248,56,488,83"/>
-<area shape="rect" id="node7" href="$class_socket_voiture.html#acb36402a6ffbf2add9b058b4bfd7d053" title="Recieves a message trough the socket." alt="" coords="283,107,453,133"/>
-<area shape="rect" id="node8" href="$class_socket_voiture.html#a474e340fb03ec04c18aa5e6109f9740d" title="Sends a message trough the socket." alt="" coords="293,157,443,184"/>
-<area shape="rect" id="node4" href="$class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="546,5,693,32"/>
-<area shape="rect" id="node5" href="$namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="536,56,703,83"/>
-<area shape="rect" id="node6" href="$namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="546,107,693,133"/>
+<area shape="rect" id="node1" title="Method used to send a string to the Parking using sockets." alt="" coords="5,99,200,141"/>
+<area shape="rect" id="node2" href="$namespace_sockets.html#a637c6a293cb8a83bddfd037465d21b89" title=" " alt="" coords="301,31,435,57"/>
+<area shape="rect" id="node3" href="$class_voiture.html#a0718aa0f96ae77fff1ec7e4293ee7a4d" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="248,81,488,108"/>
+<area shape="rect" id="node11" href="$class_socket_voiture.html#acb36402a6ffbf2add9b058b4bfd7d053" title="Recieves a message trough the socket." alt="" coords="283,132,453,159"/>
+<area shape="rect" id="node12" href="$class_socket_voiture.html#a474e340fb03ec04c18aa5e6109f9740d" title="Sends a message trough the socket." alt="" coords="293,183,443,209"/>
+<area shape="rect" id="node4" href="$class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="540,5,687,32"/>
+<area shape="rect" id="node5" href="$namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="540,56,687,83"/>
+<area shape="rect" id="node6" href="$class_voiture.html#aa2e74d5edba1026f2b3eda48e4888de8" title="Write in a Log file when a place is found." alt="" coords="536,107,691,133"/>
+<area shape="rect" id="node8" href="$namespacetb.html#a54da8745786d0ea1a7fde1a1b5aed14f" title="Reads how many times a Voiture visited a Parking." alt="" coords="566,157,661,184"/>
+<area shape="rect" id="node7" href="$namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="739,107,905,133"/>
+<area shape="rect" id="node9" href="$namespacetb.html#a0081b40bffde606234a14b31afbf9194" title="Read a CSV file at a specific line." alt="" coords="765,157,879,184"/>
+<area shape="rect" id="node10" href="$namespacetb.html#a7c0df73fca85c8f6319e5ee4928fab06" title="Convert a string to a tab of strings." alt="" coords="763,208,881,235"/>
 </map>

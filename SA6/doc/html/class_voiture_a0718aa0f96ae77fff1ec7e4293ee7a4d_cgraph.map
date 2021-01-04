@@ -1,6 +1,10 @@
 <map id="Voiture::protocoleCommunication" name="Voiture::protocoleCommunication">
-<area shape="rect" id="node1" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="5,56,245,83"/>
-<area shape="rect" id="node2" href="$class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="303,5,450,32"/>
-<area shape="rect" id="node3" href="$namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="293,56,460,83"/>
-<area shape="rect" id="node4" href="$namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="303,107,450,133"/>
+<area shape="rect" id="node1" title="Method used to chose which message the Voiture has to send depending on the state of the Protocol and..." alt="" coords="5,81,245,108"/>
+<area shape="rect" id="node2" href="$class_voiture.html#a1cd531495d64c694292374d96724c654" title="Method that calculates the park price the car owner wants to pay. This method uses different data suc..." alt="" coords="297,5,444,32"/>
+<area shape="rect" id="node3" href="$namespacetb.html#a440f69d2374a7cf00967e651a3a1fe5f" title="Convert a tab of floats into a single string." alt="" coords="297,56,444,83"/>
+<area shape="rect" id="node4" href="$class_voiture.html#aa2e74d5edba1026f2b3eda48e4888de8" title="Write in a Log file when a place is found." alt="" coords="293,107,448,133"/>
+<area shape="rect" id="node6" href="$namespacetb.html#a54da8745786d0ea1a7fde1a1b5aed14f" title="Reads how many times a Voiture visited a Parking." alt="" coords="323,157,418,184"/>
+<area shape="rect" id="node5" href="$namespacetb.html#a751736f934cab35e028380f8ba90bbf0" title="Write in a CSV file at a specific line. Not done yet." alt="" coords="496,107,663,133"/>
+<area shape="rect" id="node7" href="$namespacetb.html#a0081b40bffde606234a14b31afbf9194" title="Read a CSV file at a specific line." alt="" coords="522,157,637,184"/>
+<area shape="rect" id="node8" href="$namespacetb.html#a7c0df73fca85c8f6319e5ee4928fab06" title="Convert a string to a tab of strings." alt="" coords="521,208,638,235"/>
 </map>
