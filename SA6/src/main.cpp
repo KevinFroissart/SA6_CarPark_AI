@@ -100,12 +100,8 @@ int main(void)
                 label_progress.move(650.f, y + 3);
                 label_progress.setFillColor(sf::Color::Black);
 
-                map<int, float>::iterator itr = main_b->caisseParking.find(i);
                 float caisse = 0;
-                if (itr != main_b->caisseParking.end())
-                {
-                    caisse = itr->second;
-                }
+                caisse = main_b->m_listeParking[i]->caisseTotal();
 
                 sf::Text label_caisse(roundD(caisse) + "e", font, 40);
                 label_caisse.move(790.f, y + 3);

@@ -67,6 +67,7 @@ Main_back::Main_back()
     }
 
     m_listeParking = listeParking;
+    m_listeParking_shuffle = listeParking;
     m_listeThreadParking = listeThreadParking;
     m_listeVoiture = listeVoiture;
     m_listeVoitureTmp = listeVoitureTmp;
@@ -100,34 +101,23 @@ int Main_back::process()
     for (int i = 0; i < m_nbVoiture; i++)
     {
         srand(unsigned(time(NULL)));
-        std::random_shuffle(m_listeParking.begin(), m_listeParking.end());
+        std::random_shuffle(m_listeParking_shuffle.begin(), m_listeParking_shuffle.end());
         for (int j = 0; j < m_nbParking && m_listeVoiture[i]->rechercheParking; j++)
         {
-            thread *tmp = new thread(connexionServer, m_listeVoiture[i], m_listeParking[j]->getPort(), m_listeParking[j]->getId());
+            thread *tmp = new thread(connexionServer, m_listeVoiture[i], m_listeParking_shuffle[j]->getPort(), m_listeParking_shuffle[j]->getId());
             tmp->join();
             usleep(700);
 
             map<string, string>::iterator itr;
-            if ((itr = m_listeParking[j]->discussionVoiture.find(to_string(m_listeVoiture[i]->getID()))) != m_listeParking[j]->discussionVoiture.end())
+            if ((itr = m_listeParking_shuffle[j]->discussionVoiture.find(to_string(m_listeVoiture[i]->getID()))) != m_listeParking_shuffle[j]->discussionVoiture.end())
             {
-                conversation[m_listeParking[j]->getId() - 1].insert(make_pair(m_listeVoiture[i]->getID(), itr->second));
+                conversation[m_listeParking_shuffle[j]->getId()].insert(make_pair(m_listeVoiture[i]->getID(), itr->second));
                 map<int, string>::iterator itr_tmp1;
                 map<int, map<int, string>>::iterator itr_tmp2;
-                if ((itr_tmp1 = conversation[m_listeParking[j]->getId() - 1].find(m_listeVoiture[i]->getID())) != conversation[m_listeParking[j]->getId() - 1].end())
+                if ((itr_tmp1 = conversation[m_listeParking_shuffle[j]->getId()].find(m_listeVoiture[i]->getID())) != conversation[m_listeParking_shuffle[j]->getId()].end())
                 {
                     cout << itr_tmp1->second << endl;
                 }
-            }
-
-            map<int, float>::iterator itr2;
-            if (caisseParking.find(m_listeParking[j]->getId() - 1) == caisseParking.end())
-            {
-                caisseParking.insert(make_pair(m_listeParking[j]->getId() - 1, m_listeParking[j]->caisseTotal()));
-            }
-            else
-            {
-                itr2 = caisseParking.find(m_listeParking[j]->getId() - 1);
-                itr2->second = m_listeParking[j]->caisseTotal();
             }
             delete tmp;
         }

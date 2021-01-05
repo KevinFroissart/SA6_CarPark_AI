@@ -18,9 +18,9 @@ public:
     int process();
     vector<Parking *> m_listeParking;
     map<int, map<int, string>> conversation;
-    map<int, float> caisseParking;
 
 private:
+    vector<Parking *> m_listeParking_shuffle;
     vector<thread *> m_listeThreadParking;
     vector<Voiture *> m_listeVoiture;
     vector<Voiture *> m_listeVoitureTmp;
