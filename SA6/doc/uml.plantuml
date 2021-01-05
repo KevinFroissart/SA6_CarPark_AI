@@ -23,7 +23,7 @@ package SA6 {
             + int m_nbVoiture
             + vector<Parking *> m_listeParking
             + map<int, map<int, string>> conversation
-            + map<int, float> caisseParking
+            - vector<Parking *> m_listeParking_shuffle
             - vector<thread *> m_listeThreadParking
             - vector<Voiture *> m_listeVoiture
             - vector<Voiture *> m_listeVoitureTmp

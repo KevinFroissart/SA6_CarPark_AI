@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title="Create the main window." alt="" coords="5,224,60,251"/>
 <area shape="rect" id="node2" href="$main_8cpp.html#ab54f77022b284a6b892c630d2e96225f" title=" " alt="" coords="128,148,269,175"/>
 <area shape="rect" id="node21" href="$main_8cpp.html#ad407c1c039182fb0b63e8e8a5f0e3938" title=" " alt="" coords="145,199,252,225"/>
-<area shape="rect" id="node23" href="$main_8cpp.html#a7d0985553ab1695e34ba175b88117e90" title="round a float to two decimals" alt="" coords="169,249,228,276"/>
+<area shape="rect" id="node23" href="$main_8cpp.html#a15220916047da9aa846359adb4b424f0" title="round a float to two decimals" alt="" coords="164,249,233,276"/>
 <area shape="rect" id="node24" href="$class_main__back.html#a1ff578a524cb7e4a9070bcf3561042f1" title="Destroy the Main_back::Main_back object Destroys every Parking Objects and Threads previously created..." alt="" coords="108,300,289,327"/>
 <area shape="rect" id="node3" href="$class_main__back.html#afb5d52770eaa974d965395c9558cc211" title="This is where the magic happens! The whole process is done here hence the name of the method...." alt="" coords="357,148,507,175"/>
 <area shape="rect" id="node4" href="$main__back_8cpp.html#ac4d5f391b97269838dc0181eabee48b2" title="connect a Voiture to a Parking" alt="" coords="575,148,705,175"/>
